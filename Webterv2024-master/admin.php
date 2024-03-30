@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>TryHard</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title> TryHard - Admin</title>
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
 <?php
@@ -15,17 +15,17 @@ if(isset($_SESSION['admin_id'])) {
     header("Location: admin_panel.php");
     exit();
 }
-include_once "includes/navbar.inc.php"; ?>
+include_once "inc/navbar.inc.php"; ?>
 <main>
-    <form action="admin.php" method="post" style="margin: 30px">
+    <form action="#" class="white background-form margin-30-px" method="post"><!--admin.html-->
         <fieldset>
-            <legend>Enter the super secret admin password</legend>
+            <legend>Enter the super confidential secret admin password</legend>
             <label for="admin_password">Admin password:</label>
-            <input type="password" name="admin_password" id="admin_password" placeholder="Password" required style="width: 300px">
+            <input id="admin_password" name="admin_password" placeholder="Password" required
+                   type="password">
             <button type="submit">Enter</button>
         </fieldset>
     </form>
-
     <section>
         <?php
         // Check if the form is submitted
@@ -33,7 +33,7 @@ include_once "includes/navbar.inc.php"; ?>
             @$password = $_POST["admin_password"];
 
             // TODO mf2: replace this with actual authentication logic and hashed password
-            if ($password === "meaowuwuka") {
+            if ($password === "meowuwuka") {
                 echo "<h2>Welcome, Admin!</h2>";
                 echo "<p>You have successfully entered the admin password.</p>";
 
@@ -71,6 +71,6 @@ include_once "includes/navbar.inc.php"; ?>
         ?>
     </section>
 </main>
-<?php include_once "includes/footer.inc.php"; ?>
+<?php include_once "inc/footer.inc.php"; ?>
 </body>
 </html>

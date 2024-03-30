@@ -3,42 +3,65 @@
 <html lang="hu">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feedback</title>
-    <link rel="stylesheet" href="css/style.css">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title> TryHard - Feedback</title>
+    <link href="css/style.css" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.10.2/css/all.css" rel="stylesheet"/>
 </head>
 <body>
 <?php
-include_once "includes/navbar.inc.php";
+include_once "inc/navbar.inc.php";
 ?>
-<header>
-    <h1>Feedback</h1>
-</header>
+<main>
+    <header>
+        <h1>Feedback</h1>
+    </header>
+    <section>
+        <form action="#" class="white background-form  feedback-form " method="POST"><!--inc/submit_feedback.inc.php-->
+            <h2>Rate Us (1-5):</h2>
+            <div class="rating">
+                <label>
+                    <input name="stars" type="radio" value="1"/>
+                    <span class="fa fa-star icon"></span>
+                </label>
+                <label>
+                    <input name="stars" type="radio" value="2"/>
+                    <span class="fa fa-star icon"></span>
+                    <span class="fa fa-star icon"></span>
+                </label>
+                <label>
+                    <input name="stars" type="radio" value="3"/>
+                    <span class="fa fa-star icon"></span>
+                    <span class="fa fa-star icon"></span>
+                    <span class="fa fa-star icon"></span>
+                </label>
+                <label>
+                    <input name="stars" type="radio" value="4"/>
+                    <span class="fa fa-star icon"></span>
+                    <span class="fa fa-star icon"></span>
+                    <span class="fa fa-star icon"></span>
+                    <span class="fa fa-star icon"></span>
+                </label>
+                <label>
+                    <input name="stars" type="radio" value="5"/>
+                    <span class="fa fa-star icon"></span>
+                    <span class="fa fa-star icon"></span>
+                    <span class="fa fa-star icon"></span>
+                    <span class="fa fa-star icon"></span>
+                    <span class="fa fa-star icon"></span>
+                </label>
+            </div>
+            <br>
+            <label for="comment">Feel free to leave a comment:
+                <textarea cols="50" id="comment" name="comment" placeholder="Write your feedback here..." rows="4"></textarea>
+            </label>
+            <br>
+            <button class="button" type="submit">Submit Feedback</button>
+        </form>
+    </section>
+</main>
 
-<section>
-    <!-- Your feedback form goes here -->
-    <form action="includes/submit_feedback.inc.php" method="POST" class="green-background-form">
-        <label for="rating">Rate Us (1-5):</label>
-        <div class="star-rating">
-            <input type="radio" id="rating1" name="rating" value="1" required>
-            <label for="rating1">&#9733;</label>
-            <input type="radio" id="rating2" name="rating" value="2">
-            <label for="rating2">&#9733;</label>
-            <input type="radio" id="rating3" name="rating" value="3">
-            <label for="rating3">&#9733;</label>
-            <input type="radio" id="rating4" name="rating" value="4">
-            <label for="rating4">&#9733;</label>
-            <input type="radio" id="rating5" name="rating" value="5">
-            <label for="rating5">&#9733;</label>
-        </div>
-        <br>
-        <label for="comment">Comment (optional):</label>
-        <textarea name="comment" id="comment" rows="4" cols="50" placeholder="Write your feedback here..."></textarea>
-        <br>
-        <button type="submit" class="button">Submit Feedback</button>
-    </form>
-</section>
 
-<?php include_once "includes/footer.inc.php";?>
+<?php include_once "inc/footer.inc.php";?>
 </body>
 </html>

@@ -7,7 +7,7 @@
 </head>
 <body>
 <?php
-include_once "includes/navbar.inc.php"; ?>
+include_once "inc/navbar.inc.php"; ?>
 <header class="yellow-font gray-background">
     <h1>CSS Tutorial</h1>
     <section class="html-css-nav">
@@ -140,12 +140,12 @@ include_once "includes/navbar.inc.php"; ?>
         <p>Visit the TryHard33 CSS Blog for in-depth tutorials, tips, and tricks on mastering CSS. Learn from industry
             experts and stay updated with the latest trends in web design.</p>
         <a href="https://tryhard33cssblog.com">Visit TryHard33 CSS Blog</a>
-        <h3>2. Meaowuwuka CSS Framework</h3>
-        <p>Meet Meaowuwka, the magical cat who helps you learn CSS and pass the university subject called "Web
+        <h3>2. Meowuwuka CSS Framework</h3>
+        <p>Meet Meowuwka, the magical cat who helps you learn CSS and pass the university subject called "Web
             tervezés".
-            Discover the Meaowuwuka CSS Framework, a lightweight and flexible framework for building beautiful and
+            Discover the Meowuwuka CSS Framework, a lightweight and flexible framework for building beautiful and
             responsive websites. Explore its features and documentation to streamline your development process.</p>
-        <a href="https://meaowuwukacss.com">Explore Meaowuwuka CSS Framework</a>
+        <a href="https://meowuwukacss.com">Explore Meowuwuka CSS Framework</a>
     </section>
     <div>
         <a class="left btn" href="index.php">&#10094;&#10094; Home</a>
@@ -154,6 +154,6 @@ include_once "includes/navbar.inc.php"; ?>
         <a class="right btn" href="javascript.php">Next &#10095;</a>
     </div>
 </main>
-<?php include_once "includes/footer.inc.php"; ?>
+<?php include_once "inc/footer.inc.php"; ?>
 </body>
 </html>

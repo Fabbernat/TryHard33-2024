@@ -7,7 +7,7 @@
 </head>
 <body>
 <?php
-include_once "includes/navbar.inc.php"; ?>
+include_once "inc/navbar.inc.php"; ?>
 <header class="yellow-font gray-background">
     <h1 class="yellow-font">HTML Tutorial</h1>
     <section class="html-css-nav">
@@ -157,6 +157,6 @@ include_once "includes/navbar.inc.php"; ?>
         <a class="right btn" href="css.php">Next &#10095;</a>
     </div>
 </main>
-<?php include_once "includes/footer.inc.php"; ?>
+<?php include_once "inc/footer.inc.php"; ?>
 </body>
 </html>
