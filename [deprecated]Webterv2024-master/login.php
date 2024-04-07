@@ -12,7 +12,7 @@
         <h1 class="signup-and-login-caption">Log in</h1>
         <a href="signup.html">Don't have an account yet? Click here to sign up!</a>
     </header>
-    <form action="#" class="background-form white" method="post"> <!--inc/login.inc.php-->
+    <form action="inc/login.inc.php" class="background-form white" method="post"> <!--inc/login.inc.php-->
         <fieldset>
             <legend> Log in credentials</legend>
             <label for="username"> Username

@@ -17,7 +17,7 @@ if(isset($_SESSION['admin_id'])) {
 }
 include_once "inc/navbar.inc.php"; ?>
 <main>
-    <form action="#" class="white background-form margin-30-px" method="post"><!--admin.html-->
+    <form action="inc/admin.inc.php" class="white background-form margin-30-px" method="post"><!--admin.html-->
         <fieldset>
             <legend>Enter the super confidential secret admin password</legend>
             <label for="admin_password">Admin password:</label>

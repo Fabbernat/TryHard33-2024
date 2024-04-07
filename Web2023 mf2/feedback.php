@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!--//https://studio.code.org/s/pre-express-2023/lessons/1/levels/1-->
 <!DOCTYPE html>
 <html lang="hu">
@@ -17,11 +20,11 @@ include_once "inc/navbar.inc.php";
         <h1>Feedback</h1>
     </header>
     <section>
-        <form action="#" class="white background-form  feedback-form " method="POST"><!--inc/submit_feedback.inc.php-->
+        <form action="inc/submit_feedback.inc.php" class="white background-form  feedback-form form" method="POST"><!--inc/submit_feedback.inc.php-->
             <h2>Rate Us (1-5):</h2>
             <div class="rating">
                 <label>
-                    <input name="stars" type="radio" value="1"/>
+                    <input name="stars" type="radio" value="1" required/>
                     <span class="fa fa-star icon"></span>
                 </label>
                 <label>
