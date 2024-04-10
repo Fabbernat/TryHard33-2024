@@ -1,0 +1,765 @@
+@media only screen and (max-width: 600px) {
+    /* CSS utasítások... */
+}
+
+@media print {
+    /* CSS utasítások nyomtatáshoz... */
+}
+
+@media only screen and (resolution: 300dpi) {
+    /* CSS utasítások... */
+}
+
+@media only screen and (orientation: landscape) {
+    /* CSS utasítások... */
+}
+
+@media screen and (min-width: 768px), print {
+    /* CSS utasítások... */
+}
+
+
+@media screen and (max-width: 600px) {
+    .container {
+        flex-direction: column; /* Stack the .creature elements vertically on small screens */
+    }
+
+    .creature {
+        flex: 1 0 auto; /* Allow the .creature elements to shrink if necessary */
+    }
+}
+
+.bar--higher {
+    animation: loadHigherBar 1s ease-out forwards; /* Apply the animation */
+}
+
+.bar--high {
+    animation: loadHighBar 1s ease-out forwards; /* Apply the animation */
+}
+
+.bar--medium {
+    animation: loadMediumBar 1s ease-out forwards; /* Apply the animation */
+}
+
+.bar--low {
+    animation: loadLowBar 1s ease-out forwards; /* Apply the animation */
+}
+
+.bar--lower {
+    animation: loadLowerBar 1s ease-out forwards; /* Apply the animation */
+}
+
+@keyframes loadHigherBar {
+    from {
+        width: 0; /* Start with width 0 */
+    }
+    to {
+        width: 90%; /* End with the desired width */
+    }
+}
+
+@keyframes loadHighBar {
+    from {
+        width: 0; /* Start with width 0 */
+    }
+    to {
+        width: 76%; /* End with the desired width */
+    }
+}
+
+@keyframes loadMediumBar {
+    from {
+        width: 0; /* Start with width 0 */
+    }
+    to {
+        width: 55%; /* End with the desired width */
+    }
+}
+
+@keyframes loadLowBar {
+    from {
+        width: 0; /* Start with width 0 */
+    }
+    to {
+        width: 32%; /* End with the desired width */
+    }
+}
+
+@keyframes loadLowerBar {
+    from {
+        width: 0; /* Start with width 0 */
+    }
+    to {
+        width: 20%; /* End with the desired width */
+    }
+}
+
+body > h1, h2, h3 {
+    text-align: center;
+}
+
+.blue {
+    color: blue;
+}
+
+.darkcyan {
+    color: darkcyan;
+}
+
+.button {
+    width: 30%;
+    height: 50px;
+    border-radius: 10px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #f2f2f2;
+    background-image: url("../img/background.png");
+    background-size: cover;
+}
+
+.greendiv {
+    background-color: lightgreen;
+    border-radius: 100px;
+    padding: 0;
+    margin: 10px;
+}
+
+aside {
+    vertical-align: middle;
+    horiz-align: left;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto; /* Center the content */
+}
+
+/* Header Styles */
+header {
+    background-color: #4CAF50;
+    padding: 20px;
+    text-align: center;
+    color: white;
+}
+
+/* Navigation Styles */
+nav {
+    background-color: #333;
+    overflow: hidden;
+}
+
+nav a {
+    float: left;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+.nav {
+    font-size: 30px; /* Adjust the font size to match the star labels */
+    text-align: left; /* Align the text to the right */
+    font-family: sans, serif;
+    color: yellow;
+    margin-right: 10px; /* Some margin for spacing */
+    border-radius: 4px;
+}
+
+.nav.current_page {
+    background-color: gray;
+}
+
+.nav:hover {
+    background-color: darkgray; /* Change the shade when hovered over */
+}
+
+.html-css-nav {
+    font-size: x-large;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    width: 80%;
+    margin-left: 100px;
+    margin-right: 100px;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+}
+
+footer {
+    background-color: #4CAF50;
+    padding: 10px;
+    text-align: center;
+    color: white;
+}
+
+footer section {
+    width: 80%;
+    background-color: black;
+    margin: auto;
+    padding: 20px;
+    border: 0;
+}
+
+footer section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer section ul li {
+    margin-bottom: 10px;
+}
+
+/* Style for the star icon */
+.yellow {
+    margin-left: 5px; /* Some spacing between the text and the icon */
+    color: #ffcc00; /* Change the color to match the text */
+}
+
+.star-rating {
+    display: inline-block;
+    font-size: 0; /* Hide the text labels */
+}
+
+.star-rating input[type="radio"] {
+    display: none; /* Hide the radio buttons */
+}
+
+.star-rating label {
+    font-size: 30px; /* Size of the stars */
+    color: #ffcc00; /* Default color for all stars (yellow) */
+    cursor: pointer; /* Show pointer cursor on hover */
+}
+
+.star-rating input[type="radio"]:checked ~ label {
+    color: #ffcc00; /* Yellow color for checked stars */
+}
+
+.alfonz{
+    unicode-bidi:bidi-override;
+    direction:rtl;
+}
+
+.signup-and-login-caption {
+}
+
+.background-form {
+    font-size: x-large;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    width: 35%;
+    margin: 30px auto 0;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+}
+
+.background-form-but-wider-for-profile-section{
+    font-size: x-large;
+    border: 5px solid black;
+    border-radius: 10px;
+    width: 80%;
+    padding: 20px;
+    margin: 30px auto;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+}
+
+input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.choose-a-lesson-to-learn {
+    border: 5px white; /* not working for some reason*/
+    font-size: 30px; /* Adjust the font size to match the star labels */
+    text-align: left; /* Align the text to the right */
+    font-family: sans, serif;
+    color: yellow;
+    margin-left: 10px;
+    margin-right: 10px; /* Some margin for spacing */
+}
+
+.yellow-font {
+    color: yellow;
+}
+
+.lightgreen-background {
+    background-color: lightgreen;
+}
+
+.html-intro, .html-intro * {
+    text-align: left;
+}
+
+.reset-this-root {
+    background-color: white;
+    border-radius: 0;
+    all: unset;
+}
+
+.btn {
+    font-size: 18px;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-family: 'Source Sans Pro', sans-serif;
+    margin-top: 6px;
+}
+
+.margin-bottom {
+    margin-bottom: 10px;
+}
+
+.gray-background {
+    background-color: #888
+}
+
+.left, .left h1, h2, h3 {
+    text-align: left;
+}
+
+.code {
+    padding: 20px;
+    background-color: lightgray;
+    border: 1px solid black;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* CSS Animation section */
+
+.animation-demo {
+    animation: fadeIn 1s ease-out;
+}
+
+/* Additional Styling */
+.animation-container {
+    background-color: lightgray;
+    border: 1px solid black;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.animation-heading {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.animation-demo img {
+    cursor: pointer; /* Change cursor to pointer to indicate clickable */
+    transition: transform 0.5s ease; /* Smooth transition effect */
+}
+
+/* Define CSS animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes scale {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.5);
+    }
+}
+
+@keyframes changeColor {
+    0% {
+        filter: hue-rotate(0deg);
+    }
+    100% {
+        filter: hue-rotate(360deg);
+    }
+}
+
+/* Move the inline CSS for the footer section to style.css */
+
+footer {
+    text-align: center;
+}
+
+footer section {
+    width: 80%;
+    background-color: black;
+    margin: auto;
+    padding: 20px;
+    border: 0;
+}
+
+footer section ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer section ul li {
+    margin-bottom: 10px;
+}
+
+.white {
+    background-color: white;
+}
+
+.feedback-form {
+    justify-content: center; /* Horizontally center the content */
+    align-items: center; /* Vertically center the content */
+    padding: 20px;
+    margin-bottom: 30px;
+    box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+.seventy-five-percent-width {
+    width: 75%;
+    margin: 0 auto; /* Horizontally center the element */
+    padding: 10px;
+    text-align: center;
+}
+
+/* Checkbox styling */
+.interests label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.interests input[type="checkbox"] + label:before {
+    content: "\2714";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    text-align: center;
+    line-height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.interests input[type="checkbox"]:checked + label:before {
+    background-color: #007bff;
+    color: white;
+}
+
+/* Progress Tracker Styles */
+.progress-tracker {
+    margin: 20px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+
+}
+
+.progress-item {
+    margin-bottom: 10px;
+}
+
+.progress-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.progress-bar {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 5px;
+    height: 20px;
+    margin-bottom: 5px;
+}
+
+.progress-bar-inner {
+    background-color: gray;
+    border-radius: 5px;
+    height: 100%;
+}
+
+.progress-bar-inner:hover{
+    background-color: darkgray;
+}
+
+.margin-30-px {
+    margin: 30px auto 0;
+}
+
+.lesson-container {
+    width: 80%;
+    margin: 20px auto 0;
+    box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 30px;
+
+}
+
+.lesson-content {
+    margin-top: 20px;
+}
+
+.php-code {
+    background-color: #f4f4f4;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.output {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.left-align {
+    text-align: left;
+}
+
+input[type="submit"]:hover {
+    transform: translateY(-5px); /* Move button up by 5 pixels */
+}
+
+input[type="submit"]:active {
+    background-color: #FFFFE0;
+}
+
+img:hover {
+    transform: scale(1.025);
+}
+
+.display-block{
+    display:block;
+}
+
+.colorpicker{
+    width: 30vw;
+    height: 30vh;
+}
+
+fieldset{
+    border-radius: 10px;
+}
+
+.choose-your-interests, .choose-your-interests > *{
+    font-size: small;
+}
+
+.a{
+ width: 100%;
+}
+
+.black-font{
+    color: black;
+}
+
+input[type="checkbox"] {
+    display: none;
+}
+
+/* Style for custom checkbox */
+.custom-checkbox {
+    display: inline-block;
+    position: relative;
+    padding-left: 25px;
+    margin-right: 15px;
+    cursor: pointer;
+}
+
+/* Checkmark design */
+.custom-checkbox::before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 0;
+    top: 1px;
+    width: 18px;
+    height: 18px;
+    border: 2px solid #ccc;
+    background-color: #fff;
+}
+
+/* Show checkmark when checkbox is checked */
+.custom-checkbox input:checked + .checkmark::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 8px;
+    height: 15px;
+    border: solid #000;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Style for the label */
+.custom-checkbox label {
+    font-size: 16px;
+}
+
+/*feedback star rating*/
+.rating {
+    display: inline-block;
+    position: relative;
+    height: 50px;
+    line-height: 50px;
+    font-size: 25px;
+}
+
+.rating label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    cursor: pointer;
+}
+
+.rating label:last-child {
+    position: static;
+}
+
+.rating label:nth-child(1) {
+    z-index: 5;
+}
+
+.rating label:nth-child(2) {
+    z-index: 4;
+}
+
+.rating label:nth-child(3) {
+    z-index: 3;
+}
+
+.rating label:nth-child(4) {
+    z-index: 2;
+}
+
+.rating label:nth-child(5) {
+    z-index: 1;
+}
+
+.rating label input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.rating label .icon {
+    float: left;
+    color: transparent;
+}
+
+.rating label:last-child .icon {
+    color: #000;
+}
+
+.rating:not(:hover) label input:checked ~ .icon,
+.rating:hover label:hover input ~ .icon {
+    color: #ffa904;
+}
+
+.rating label input:focus:not(:checked) ~ .icon:last-child {
+    color: #000;
+    text-shadow: 0 0 5px #ffa904;
+}
+
+.h1-demo{
+    font-size: xx-large;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating {
+    margin: 50px auto;
+    display: table;
+    width: 350px;
+}
+
+.star-rating label {
+    padding: 10px;
+    float: right;
+    font-size: 44px;
+    color: #eee;
+}
+
+.star-rating input:not(:checked)~label:hover,
+.star-rating input:not(:checked)~label:hover~label {
+    color: #ffc107;
+}
+.star-rating input[type="radio"]:checked ~label
+{
+    color: red!important;
+}
+
+.note {
+    background-color: lightyellow;
+    border: 1px solid beige;
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding around the note */
+    margin-top: 0;
+    margin-bottom: 10px; /* Margin between notes */
+    font-style: italic; /* Italic text */
+    font-size: 0.9em; /* Smaller font size */
+}
