@@ -339,6 +339,10 @@ input[type="submit"]:hover {
     background-color: #888
 }
 
+.lightgray-background{
+    background-color: #EEE;
+}
+
 .left, .left h1, h2, h3 {
     text-align: left;
 }

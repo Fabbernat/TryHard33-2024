@@ -23,7 +23,7 @@ if (isset($_POST["login"])) {    // miután az űrlapot elküldték...
             // a jelszavakat hash alapján, a password_verify() függvénnyel hasonlítjuk össze
             if ($fiok["username"] === $felhasznalonev && password_verify($jelszo, $fiok["password"])) {
                 $uzenet = "Sikeres belépés!";        // ekkor átírjuk a megjelenítendő üzenet szövegét
-                break;                               // mivel találtunk illeszkedést, ezért a többi felhasználót nem kell megvizsgálnunk, kilépünk a ciklusból
+                header("Location: index.php");
             }
         }
     }

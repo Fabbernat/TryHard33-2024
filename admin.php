@@ -36,7 +36,7 @@ include_once "inc/navbar.inc.php";
 
         // TODO mf2: replace this with actual authentication logic and hashed password
         if ($password === "meowuwuka") {
-            echo "<h2>Welcome, Admin!</h2>";
+            echo "<h2>Welcome admin!</h2>";
             echo "<p>You have successfully entered the admin password.</p>";
 
             // Add additional admin functionalities here, such as database queries, content management, etc.
@@ -45,6 +45,7 @@ include_once "inc/navbar.inc.php";
             // Admin functionalities
             echo "<h3>Admin Panel:</h3>";
             echo "<form action='inc/admin.inc.php' method='post' class='form'>";
+            echo  "Current session ID: <code class='lightgray-background'>" . session_id() . "</code><br><br>";
             echo "<fieldset>";
             echo "<legend>Admin Functions</legend>";
             echo "<label for='username'>Username:</label>";

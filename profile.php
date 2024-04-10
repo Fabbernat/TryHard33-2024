@@ -15,8 +15,24 @@ include_once "inc/navbar.inc.php"; ?>
 <main>
     <header>
         <h1 class="signup-and-login-caption">Profile</h1>
-        <?php if (session_status()===PHP_SESSION_ACTIVE){
-            echo "
+        <?php
+
+        $_SESSION["user"] = ["username" => $_SESSION["username"], "age" => 42]; // természetesen összetett adatok is tárolhatók a $_SESSION-ben
+
+        if (isset($_SESSION["user"]["username"])) {
+            echo "<h1>Welcome " . $_SESSION["user"]["username"] . "! </h1>
+                        <div>
+                            It seems like you're not logged in.
+                            <br>
+                            <br>
+                            <a href='signup.php'>Click here to sign up if you don't have an account yet</a>
+                            <br>
+                            <br>
+                            <a href='login.php'>Click here to log in if you already have an account</a>
+                        </div>
+";
+        } else {
+            echo "<h1>Welcome Visitor!</h1>
         <div>
             It seems like you're not logged in.
             <br>
@@ -30,49 +46,47 @@ include_once "inc/navbar.inc.php"; ?>
         }
         ?>
     </header>
-    <section class="interests white background-form-but-wider-for-profile-section">
-        <h1>Welcome, Visitor!</h1><!--TODO mf2 change to the actual name of the user when logged in-->
-        <div class="left">
-            <h3>Profile Information</h3>
-            <p>Username:</p><?php echo @$_REQUEST["username"]?>
-            <p>Email:</p><?php echo @$_REQUEST["email"]?>
-            <p>Birthdate:</p><?php echo @$_REQUEST["birthdate"]?>
-            <p>Interests:</p><?php echo @$_REQUEST["interests"]?>
-            <form class="choose-your-interests form" action="inc/process_interests.php">Choose Your Interests (only works when logged in):
-                <label class="custom-checkbox"><input name="interests" type="checkbox" value="frontend"><span
-                            class="checkmark"></span>Frontend Development</label>
-                <label class="custom-checkbox"><input name="interests" type="checkbox" value="backend"><span
-                            class="checkmark"></span>Backend Development</label>
-                <label class="custom-checkbox"><input name="interests" type="checkbox" value="devops"><span
-                            class="checkmark"></span>DevOps</label>
-                <label class="custom-checkbox"><input name="interests" type="checkbox" value="fullstackdev"><span
-                            class="checkmark"></span>Full Stack Development</label>
+    <section class="interests white background-form-but-wider-for-profile-section left">
+        <h3>Profile Information</h3>
+        <p>Username:</p><?php echo @$_REQUEST["username"] ?>
+        <p>Email:</p><?php echo @$_REQUEST["email"] ?>
+        <p>Birthdate:</p><?php echo @$_REQUEST["birthdate"] ?>
+        <p>Interests:</p><?php echo @$_REQUEST["interests"] ?>
+        <form class="choose-your-interests form" action="inc/process_interests.php">Choose Your Interests (only
+            works when logged in):
+            <label class="custom-checkbox"><input name="interests" type="checkbox" value="frontend"><span
+                        class="checkmark"></span>Frontend Development</label>
+            <label class="custom-checkbox"><input name="interests" type="checkbox" value="backend"><span
+                        class="checkmark"></span>Backend Development</label>
+            <label class="custom-checkbox"><input name="interests" type="checkbox" value="devops"><span
+                        class="checkmark"></span>DevOps</label>
+            <label class="custom-checkbox"><input name="interests" type="checkbox" value="fullstackdev"><span
+                        class="checkmark"></span>Full Stack Development</label>
 
-                <label class="custom-checkbox"><input name="interests" type="checkbox" value="html"><span
-                            class="checkmark"></span>HTML "programming"</label>
-                <label class="custom-checkbox"><input name="interests" type="checkbox" value="css"><span
-                            class="checkmark"></span>CSS Tips and Tricks</label>
-                <label class="custom-checkbox"><input name="interests" type="checkbox" value="javascript"><span
-                            class="checkmark"></span>JavaScript Frameworks</label>
-                <label class="custom-checkbox"><input name="interests" type="checkbox" value="php"><span
-                            class="checkmark"></span>PHP Database Support</label>
-                <label class="custom-checkbox"><input name="interests" type="checkbox" value="python"><span
-                            class="checkmark"></span>Python Programming</label>
-                <label for="submit"><input id="submit" type="submit" value="Save"></label>
-            </form>
-            <?php
-            $uzenet = "";                    // változó az űrlap alatt megjelenő üzenetnek
+            <label class="custom-checkbox"><input name="interests" type="checkbox" value="html"><span
+                        class="checkmark"></span>HTML "programming"</label>
+            <label class="custom-checkbox"><input name="interests" type="checkbox" value="css"><span
+                        class="checkmark"></span>CSS Tips and Tricks</label>
+            <label class="custom-checkbox"><input name="interests" type="checkbox" value="javascript"><span
+                        class="checkmark"></span>JavaScript Frameworks</label>
+            <label class="custom-checkbox"><input name="interests" type="checkbox" value="php"><span
+                        class="checkmark"></span>PHP Database Support</label>
+            <label class="custom-checkbox"><input name="interests" type="checkbox" value="python"><span
+                        class="checkmark"></span>Python Programming</label>
+            <label for="submit"><input id="submit" type="submit" value="Save"></label>
+        </form>
+        <?php
+        $uzenet = "";                    // változó az űrlap alatt megjelenő üzenetnek
 
-            if (isset($_POST["submit"])) {  // itt a $_POST szuperglobálist használjuk, hiszen az űrlapunk a method="POST" attribútummal rendelkezik
-                if (isset($_POST["interests"])) {
-                    // ha legalább egy opciót kiválasztottak, akkor eltároljuk a bejelölt értékeket egy változóban
-                    $chosen = $_POST["interests"];   // ez egy tömb lesz, ami a bejelölt jelölőnégyzetek value értékeit tartalmazza
-                    $uzenet = "Chosen interests: " . implode(", ", $chosen) . "<br/>"; // tömbelemek egyesítése egy stringgé
-                }
+        if (isset($_POST["submit"])) {  // itt a $_POST szuperglobálist használjuk, hiszen az űrlapunk a method="POST" attribútummal rendelkezik
+            if (isset($_POST["interests"])) {
+                // ha legalább egy opciót kiválasztottak, akkor eltároljuk a bejelölt értékeket egy változóban
+                $chosen = $_POST["interests"];   // ez egy tömb lesz, ami a bejelölt jelölőnégyzetek value értékeit tartalmazza
+                $uzenet = "Chosen interests: " . implode(", ", $chosen) . "<br/>"; // tömbelemek egyesítése egy stringgé
             }
-            ?>
-            <?php echo "<p>" . $uzenet . "</p>"; ?>
-        </div>
+        }
+        ?>
+        <?php echo "<p>" . $uzenet . "</p>"; ?>
     </section>
     <section class="background-form-but-wider-for-profile-section greendiv display-block">
         <h1>Subscribe for our newsletter!</h1>

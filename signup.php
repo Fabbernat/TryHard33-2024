@@ -1,6 +1,14 @@
 <?php
 session_start();
 setcookie("user", "meowuwuka", time() + 3600, "/");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+// Retrieve data from form
+    $username = $_POST['username'];
+
+// Save data into session variables
+    $_SESSION['username'] = $username;
+}
 $user = @$_COOKIE["user"];
 include "inc/functions.inc.php";              // beágyazzuk a load_users() és save_users() függvényeket tartalmazó PHP fájlt
 $fiokok = load_users("json/users.json"); // betöltjük a regisztrált felhasználók adatait, és eltároljuk őket a $fiokok változóban
@@ -60,9 +68,9 @@ if (isset($_POST["regiszt"])) {
             "hobbies" => $hobbik
         ];
         // elmentjük a kibővített $fiokok tömböt a users.json fájlba
-        save_users("users.json", $fiok);
+        save_users("json/users.json", $fiok);
         $siker = TRUE;
-        header("Location: login.php");
+        header("Location: login.php"); // Does not redirect fsr
     } else {                    // sikertelen regisztráció
         $siker = FALSE;
     }
@@ -89,44 +97,43 @@ include 'inc/navbar.inc.php';
         <fieldset>
             <legend> Registration</legend>
             <label for="username">Username
-                <input id="username" name="username" placeholder="Username" required type="text">
+                <input id="username" name="username" placeholder="Username" required type="text" value="<?php echo $_SESSION['username'] ?? ''; ?>">
             </label>
             <br>
             <label for="email">Email address
-                <input id="email" name="email" placeholder="Email address" required type="email">
+                <input id="email" name="email" placeholder="Email address" required type="email" value="<?php echo $_SESSION['email'] ?? ''; ?>">
             </label>
             <p class="note">
                 Format: <em>example@domainname.com</em>
             </p>
             <br>
             <label for="firstname">First name
-                <input id="firstname" name="firstname" placeholder="First name" required type="text">
+                <input id="firstname" name="firstname" placeholder="First name" required type="text" value="<?php echo $_SESSION['firstname'] ?? ''; ?>">
             </label>
             <p class="note">
                 You may include any UTF-8 characters
             </p>
             <br>
             <label for="lastname">Last name
-                <input id="lastname" name="lastname" placeholder="Last name" required type="text">
+                <input id="lastname" name="lastname" placeholder="Last name" required type="text" value="<?php echo $_SESSION['lastname'] ?? ''; ?>">
             </label>
             <p class="note">
                 You may include any UTF-8 characters
             </p>
             <br>
             <label for="birthdate">Birth date
-                <input id="birthdate" name="birthdate" required type="date">
+                <input id="birthdate" name="birthdate" required type="date" value="<?php echo $_SESSION['birthdate'] ?? ''; ?>">
             </label>
             <br>
             <label for="password">Password
-                <input id="password" name="password" placeholder="Password" required type="password">
+                <input id="password" name="password" placeholder="Password" required type="password" value="<?php echo $_SESSION['password'] ?? ''; ?>">
             </label>
             <p class="note">
                 The password must contain at least 8 characters, including at least one uppercase letter, one lowercase letter,
                 and one number </p>
             <br>
             <label for="confirm_password">Confirm Password
-                <input id="confirm_password" name="confirm_password" placeholder="Confirm Password" required
-                       type="password">
+                <input id="confirm_password" name="confirm_password" placeholder="Confirm Password" required type="password" value="<?php echo $_SESSION['confirm_password'] ?? ''; ?>">
             </label>
             <p class="note">
                 Re-enter the password you chose </p>
