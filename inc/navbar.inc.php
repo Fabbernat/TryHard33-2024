@@ -7,11 +7,7 @@ $current_file = basename($_SERVER['PHP_SELF']);
 ?>
 <nav>
     <a class="nav <?php echo ($current_file == 'index.php') ? 'current_page' : ''; ?>"
-       href="index.php">Home<i class="yellow"></i></a> |
-    <a class="nav <?php echo ($current_file == 'signup.php') ? 'current_page' : ''; ?>"
-       href="signup.php">Sign up<i class="yellow"></i></a> |
-    <a class="nav <?php echo ($current_file == 'login.php') ? 'current_page' : ''; ?>"
-       href="login.php">Log in<i class="yellow"></i></a> |
+       href="index.php">Home<i class="yellow"></i></a>
     <a class="nav <?php echo ($current_file == 'profile.php') ? 'current_page' : ''; ?>"
        href="profile.php">Profile <i class="yellow"></i></a>
     <a class="nav <?php echo ($current_file == 'progress.php') ? 'current_page' : ''; ?>"
@@ -21,6 +17,12 @@ $current_file = basename($_SERVER['PHP_SELF']);
     <a class="nav <?php echo ($current_file == 'admin.php') ? 'current_page' : ''; ?>"
        href="admin.php">Admin <i class="yellow"></i></a>
 
+    <a class="nav <?php echo ($current_file == 'signup.php') ? 'current_page' : ''; ?>"
+       href="signup.php">Sign up<i class="yellow"></i></a>
+    <a class="nav <?php echo ($current_file == 'login.php') ? 'current_page' : ''; ?>"
+       href="login.php">Log in<i class="yellow"></i></a>
+    <a class="nav <?php echo ($current_file == 'logout.php') ? 'current_page' : ''; ?>"
+       href="logout.php">Log out<i class="yellow"></i></a>
 </nav>
 <nav>
     <h1 class="choose-a-lesson-to-learn">Choose a lesson to learn:</h1>

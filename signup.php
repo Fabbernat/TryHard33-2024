@@ -1,4 +1,7 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 session_start();
 setcookie("user", "meowuwuka", time() + 3600, "/");
 
@@ -15,7 +18,7 @@ $fiokok = load_users("json/users.json"); // betöltjük a regisztrált felhaszn�
 
 $hibak = [];
 
-if (isset($_POST["regiszt"])) {
+if (isset($_POST["signup"])) {
     if (!isset($_POST["felhasznalonev"]) || trim($_POST["felhasznalonev"]) === "")
         $hibak[] = "A felhasználónév megadása kötelező!";
 
@@ -31,41 +34,40 @@ if (isset($_POST["regiszt"])) {
     if (!isset($_POST["hobbik"]) || count($_POST["hobbik"]) < 2)
         $hibak[] = "Legalább 2 hobbit kötelező kiválasztani!";
 
-    $felhasznalonev = $_POST["felhasznalonev"];
-    $jelszo = $_POST["jelszo"];
-    $jelszo2 = $_POST["jelszo2"];
-    $eletkor = $_POST["eletkor"];
-    $nem = NULL;
-    $hobbik = NULL;
+    $felhasznalonev = $_POST["username"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+    $confirm_password = $_POST["confirm_password"];
 
-    if (isset($_POST["nem"]))
-        $nem = $_POST["nem"];
-    if (isset($_POST["hobbik"]))
-        $hobbik = $_POST["hobbik"];
+    $birthdate_timestamp = strtotime($_POST["birthdate"]);
+    $current_timestamp = time();
+
+    $age_in_seconds = $current_timestamp - $birthdate_timestamp;
+
+    $eletkor = floor($age_in_seconds / (60 * 60 * 24 * 365));
+
 
     foreach ($fiokok as $fiok) {
-        if ($fiok["felhasznalonev"] === $felhasznalonev)
+        if (@$fiok["username"] === $felhasznalonev)
         $hibak[] = "A felhasználónév már foglalt!";
     }
 
-    if (strlen($jelszo) < 5)
+    if (strlen($password) < 5)
         $hibak[] = "A jelszónak legalább 5 karakter hosszúnak kell lennie!";
 
-    if ($jelszo !== $jelszo2)
+    if ($password !== $confirm_password)
         $hibak[] = "A jelszó és az ellenőrző jelszó nem egyezik!";
 
     if ($eletkor < 18)
         $hibak[] = "Csak 18 éves kortól lehet regisztrálni!";
 
     if (count($hibak) === 0) {   // sikeres regisztráció
-        $jelszo = password_hash($jelszo, PASSWORD_DEFAULT);       // jelszó hashelése
+        $password = password_hash($password, PASSWORD_DEFAULT);       // jelszó hashelése
         // hozzáfűzzük az újonnan regisztrált felhasználó adatait a rendszer által ismert felhasználókat tároló tömbhöz
         $fiok[] = [
             "username" => $felhasznalonev,
-            "password" => $jelszo,
+            "password" => $password,
             "age" => $eletkor,
-            "gender" => $nem,
-            "hobbies" => $hobbik
         ];
         // elmentjük a kibővített $fiokok tömböt a users.json fájlba
         save_users("json/users.json", $fiok);
@@ -140,7 +142,7 @@ include 'inc/navbar.inc.php';
         </fieldset>
         <br>
         <!-- Submit button for registration -->
-        <button class="button" type="submit">Sign up</button>
+        <button class="button" type="submit" name="signup">Sign up</button>
     </form>
     <?php
     if (isset($_GET['success']) && $_GET['success'] == 1) {
