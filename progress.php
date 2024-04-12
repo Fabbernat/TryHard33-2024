@@ -11,7 +11,10 @@ session_start();
 </head>
 <body>
 <?php
-include_once "inc/navbar.inc.php";?>
+include_once "inc/navbar.inc.php";
+include_once "inc/functions.inc.php";
+$userProgress = @getUserProgress($_SESSION['user_id']);
+?>
 <main>
     <header>
         <h1 class="signup-and-login-caption">Progress</h1>
@@ -29,7 +32,7 @@ include_once "inc/navbar.inc.php";?>
         <h2>Your progress in lessons:</h2>
         <div class="progress-item">
             <div class="progress-label">HTML</div>
-            <div class="progress-bar">
+            <div class="<?php if (isset($userProgress['html']) && $userProgress['html'] === 1) echo 'completed'; else echo 'progress-bar' ?>">
                 <div class="progress-bar-inner bar--higher"></div>
             </div>
         </div>

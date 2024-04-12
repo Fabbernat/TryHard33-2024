@@ -164,12 +164,15 @@ nav a {
 
 .nav {
     font-size: 30px; /* Adjust the font size to match the star labels */
-    text-align: left; /* Align the text to the right */
     font-family: sans, serif;
     color: yellow;
     margin-right: 10px; /* Some margin for spacing */
     border-radius: 4px;
 }
+
+.two-px-border{
+    border: solid black 2px;
+  }
 
 .nav.current_page {
     background-color: gray;
@@ -345,6 +348,26 @@ input[type="submit"]:hover {
 
 .left, .left h1, h2, h3 {
     text-align: left;
+}
+
+.nav-but-its-aligned-to-the-right{
+
+}
+
+.nav-left{
+    width: 50%;
+    display: inline;
+    float: left;
+}
+
+.nav-right {
+    display: inline;
+    width: 50%;
+    float: right; /* Float the container to the right */
+}
+
+.nav-right .nav {
+    margin-left: 10px; /* Add some spacing between the elements */
 }
 
 .code {
@@ -530,6 +553,14 @@ footer section ul li {
 .progress-bar {
     width: 100%;
     background-color: #ddd;
+    border-radius: 5px;
+    height: 20px;
+    margin-bottom: 5px;
+}
+
+.completed{
+    width: 100%;
+    background-color: lightgreen;
     border-radius: 5px;
     height: 20px;
     margin-bottom: 5px;

@@ -16,7 +16,7 @@ if (!isset($_POST["username"]) || trim($_POST["username"]) === "" || !isset($_PO
     $jelszo = $_POST["password"];
 
     // bejelentkezés sikerességének ellenőrzése
-    $uzenet = "Login failed! Incorrect login credentials.";  // alapból azt feltételezzük, hogy a bejelentkezés sikertelen
+    $uzenet = "Login failed! Check if the username and password you've given are correct!";  // alapból azt feltételezzük, hogy a bejelentkezés sikertelen
 
     foreach ($fiokok["users"] as $fiok) {              // végigmegyünk a regisztrált felhasználókon
         // a bejelentkezés pontosan akkor sikeres, ha az űrlapon megadott felhasználónév-jelszó páros megegyezik egy regisztrált felhasználó belépési adataival
@@ -30,7 +30,7 @@ if (!isset($_POST["username"]) || trim($_POST["username"]) === "" || !isset($_PO
     }
 }
 
-// Elv ez akkor nem is kell, mert a fenti kód megcsinálja TODO ha vmit magyarul ír ki azt angolra cserélni
+// Elv ez akkor nem is kell, mert a fenti kód megcsinálja
 /*
    if(isset($_POST["login"])){
       if(isset($_POST["username"]) && isset($_POST["password"])){

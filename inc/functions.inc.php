@@ -19,3 +19,8 @@ function load_users(string $path): array
 
     return json_decode($json, true);
 }
+
+function getUserProgress(mixed $user_id): array
+{
+    return [];
+}

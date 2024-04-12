@@ -5,7 +5,7 @@
  */
 $current_file = basename($_SERVER['PHP_SELF']);
 ?>
-<nav>
+<nav class="nav-left">
     <a class="nav <?php echo ($current_file == 'index.php') ? 'current_page' : ''; ?>"
        href="index.php">Home<i class="yellow"></i></a>
     <a class="nav <?php echo ($current_file == 'profile.php') ? 'current_page' : ''; ?>"
@@ -16,15 +16,17 @@ $current_file = basename($_SERVER['PHP_SELF']);
        href="feedback.php">Feedback <i class="yellow"></i></a>
     <a class="nav <?php echo ($current_file == 'admin.php') ? 'current_page' : ''; ?>"
        href="admin.php">Admin <i class="yellow"></i></a>
-
+</nav>
+<nav class="nav-right">
     <a class="nav <?php echo ($current_file == 'signup.php') ? 'current_page' : ''; ?>"
        href="signup.php">Sign up<i class="yellow"></i></a>
     <a class="nav <?php echo ($current_file == 'login.php') ? 'current_page' : ''; ?>"
        href="login.php">Log in<i class="yellow"></i></a>
     <a class="nav <?php echo ($current_file == 'logout.php') ? 'current_page' : ''; ?>"
        href="logout.php">Log out<i class="yellow"></i></a>
+    <img src="../img/nyul-icon.png" alt="profilkep" height="50px">
 </nav>
-<nav>
+<nav class="two-px-border">
     <h1 class="choose-a-lesson-to-learn">Choose a lesson to learn:</h1>
     <a class="nav <?php echo ($current_file == 'html.php') ? 'current_page' : ''; ?>" href="html.php">HTML</a>
     <a class="nav <?php echo ($current_file == 'css.php') ? 'current_page' : ''; ?>" href="css.php">CSS</a>

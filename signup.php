@@ -6,33 +6,28 @@ session_start();
 setcookie("user", "meowuwuka", time() + 3600, "/");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-// Retrieve data from form
+    // Retrieve data from form
     $username = $_POST['username'];
 
-// Save data into session variables
+    // Save data into session variables
     $_SESSION['username'] = $username;
 }
 $user = @$_COOKIE["user"];
 include "inc/functions.inc.php";              // beágyazzuk a load_users() és save_users() függvényeket tartalmazó PHP fájlt
-$fiokok = load_users("json/users.json"); // betöltjük a regisztrált felhasználók adatait, és eltároljuk őket a $fiokok változóban
+$accounts = load_users("json/users.json"); // betöltjük a regisztrált felhasználók adatait, és eltároljuk őket a $fiokok változóban
 
-$hibak = [];
+$errors = [];
+$echo_errors = false;
 
 if (isset($_POST["signup"])) {
-    if (!isset($_POST["felhasznalonev"]) || trim($_POST["felhasznalonev"]) === "")
-        $hibak[] = "A felhasználónév megadása kötelező!";
+    if (!isset($_POST["username"]) || trim($_POST["username"]) === "")
+        $errors[] = "The username is required! Please fill it!";
 
-    if (!isset($_POST["jelszo"]) || trim($_POST["jelszo"]) === "" || !isset($_POST["jelszo2"]) || trim($_POST["jelszo2"]) === "")
-        $hibak[] = "A jelszó és az ellenőrző jelszó megadása kötelező!";
+    if (!isset($_POST["password"]) || trim($_POST["password"]) === "" || !isset($_POST["confirm_password"]) || trim($_POST["confirm_password"]) === "")
+        $errors[] = "The password and password confirmation are required! Please fill it!";
 
-    if (!isset($_POST["eletkor"]) || trim($_POST["eletkor"]) === "")
-        $hibak[] = "Az életkor megadása kötelező!";
-
-    if (!isset($_POST["nem"]) || trim($_POST["nem"]) === "")
-        $hibak[] = "A nem megadása kötelező!";
-
-    if (!isset($_POST["hobbik"]) || count($_POST["hobbik"]) < 2)
-        $hibak[] = "Legalább 2 hobbit kötelező kiválasztani!";
+    if (!isset($_POST["birthdate"]) || trim($_POST["birthdate"]) === "")
+        $errors[] = "The birthdate is required! Please fill it!";
 
     $felhasznalonev = $_POST["username"];
     $email = $_POST["email"];
@@ -44,37 +39,37 @@ if (isset($_POST["signup"])) {
 
     $age_in_seconds = $current_timestamp - $birthdate_timestamp;
 
-    $eletkor = floor($age_in_seconds / (60 * 60 * 24 * 365));
+    $age = floor($age_in_seconds / (60 * 60 * 24 * 365));
 
 
-    foreach ($fiokok as $fiok) {
-        if (@$fiok["username"] === $felhasznalonev)
-        $hibak[] = "A felhasználónév már foglalt!";
+    foreach ($accounts as $account) {
+        if (@$account["username"] === $felhasznalonev)
+        $errors[] = "The username is already taken!";
     }
 
     if (strlen($password) < 5)
-        $hibak[] = "A jelszónak legalább 5 karakter hosszúnak kell lennie!";
+        $errors[] = "The password must be at least 5 characters long!";
 
     if ($password !== $confirm_password)
-        $hibak[] = "A jelszó és az ellenőrző jelszó nem egyezik!";
+        $errors[] = "The password and confirmation password do not match!";
 
-    if ($eletkor < 18)
-        $hibak[] = "Csak 18 éves kortól lehet regisztrálni!";
+    if ($age < 18)
+        $errors[] = "You must be at least 18 years old to register!";
 
-    if (count($hibak) === 0) {   // sikeres regisztráció
+    if (count($errors) === 0) {   // sikeres regisztráció
         $password = password_hash($password, PASSWORD_DEFAULT);       // jelszó hashelése
         // hozzáfűzzük az újonnan regisztrált felhasználó adatait a rendszer által ismert felhasználókat tároló tömbhöz
-        $fiok[] = [
+        $accounts[] = [
             "username" => $felhasznalonev,
             "password" => $password,
-            "age" => $eletkor,
+            "age" => $age,
         ];
         // elmentjük a kibővített $fiokok tömböt a users.json fájlba
-        save_users("json/users.json", $fiok);
-        $siker = TRUE;
+        save_users("json/users.json", $accounts);
+        $success = TRUE;
         header("Location: login.php"); // Does not redirect fsr
     } else {                    // sikertelen regisztráció
-        $siker = FALSE;
+        $echo_errors = true;
     }
 }
 ?>
@@ -143,19 +138,20 @@ include 'inc/navbar.inc.php';
         <br>
         <!-- Submit button for registration -->
         <button class="button" type="submit" name="signup">Sign up</button>
-    </form>
-    <?php
-    if (isset($_GET['success']) && $_GET['success'] == 1) {
-        echo "<p>Registration successful!</p>";
-    } elseif (isset($_GET['error'])) {
-        $errors = explode('<br>', $_GET['error']); // Explode the error message into an array
-        echo "<p>Errors:</p><ul>"; // Start unordered list
-        foreach ($errors as $error) {
-            echo "<li>" . $error . "</li>"; // Display each error as a list item
+        <div>
+
+        <?php
+        if ($echo_errors) {
+            echo "<p>Registration failed!</p>";
+            echo "<p class='left'>Error(s):</p><ul>"; // Start unordered list
+            foreach ($errors as $error) {
+                echo "<li>" . $error . "</li>"; // Display each error as a list item
+            }
+            echo "</ul>"; // End unordered list
         }
-        echo "</ul>"; // End unordered list
-    }
-    ?>
+        ?>
+        </div>
+    </form>
 </main>
 <?php include_once "inc/footer.inc.php"; ?>
 </body>

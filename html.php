@@ -10,7 +10,11 @@ session_start();
 </head>
 <body>
 <?php
-include_once "inc/navbar.inc.php"; ?>
+include_once "inc/navbar.inc.php";
+
+$userProgress = getUserProgress($_SESSION['user_id']);
+
+?>
 <header class="yellow-font gray-background">
     <h1 class="yellow-font">HTML Tutorial</h1>
     <section class="html-css-nav">
@@ -24,7 +28,7 @@ include_once "inc/navbar.inc.php"; ?>
     </section>
 </header>
 <main class="lesson-container white left-align">
-    <section id="introduction">
+    <section id="introduction" <?php if ($userProgress['html_introduction'] == 1) echo 'class="completed"'; ?>>
         <div class="html-intro">
             <hr>
             <h2 class="darkcyan">Introduction to HTML</h2>
@@ -53,7 +57,7 @@ include_once "inc/navbar.inc.php"; ?>
         </div>
     </section>
 
-    <section id="basics" class="html-intro">
+    <section id="basics" <?php if ($userProgress['html_basics'] == 1) echo 'class="completed"'; ?>>
         <hr>
         <h2 class="darkcyan">HTML Basics</h2>
         <p>HTML consists of a series of elements that define the structure of a webpage.</p>
