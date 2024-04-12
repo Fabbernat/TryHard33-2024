@@ -1,30 +1,48 @@
 <?php
+
 // File: inc/navbar.inc.php
 /**
  * The echo href paths below intentionally don't have ../, because the only place this include file should be used is in the root. Otherwise, the paths won't work.
  */
 $current_file = basename($_SERVER['PHP_SELF']);
+
+
+if (isset($_SESSION['user_id'])) {
+    $isLoggedIn = true;
+} else {
+    $isLoggedIn = false;
+}
 ?>
 <nav class="nav-left">
     <a class="nav <?php echo ($current_file == 'index.php') ? 'current_page' : ''; ?>"
        href="index.php">Home<i class="yellow"></i></a>
-    <a class="nav <?php echo ($current_file == 'profile.php') ? 'current_page' : ''; ?>"
-       href="profile.php">Profile <i class="yellow"></i></a>
-    <a class="nav <?php echo ($current_file == 'progress.php') ? 'current_page' : ''; ?>"
-       href="progress.php"> Progress <i class="yellow"></i></a>
     <a class="nav <?php echo ($current_file == 'feedback.php') ? 'current_page' : ''; ?>"
        href="feedback.php">Feedback <i class="yellow"></i></a>
     <a class="nav <?php echo ($current_file == 'admin.php') ? 'current_page' : ''; ?>"
        href="admin.php">Admin <i class="yellow"></i></a>
 </nav>
 <nav class="nav-right">
-    <a class="nav <?php echo ($current_file == 'signup.php') ? 'current_page' : ''; ?>"
-       href="signup.php">Sign up<i class="yellow"></i></a>
-    <a class="nav <?php echo ($current_file == 'login.php') ? 'current_page' : ''; ?>"
-       href="login.php">Log in<i class="yellow"></i></a>
-    <a class="nav <?php echo ($current_file == 'logout.php') ? 'current_page' : ''; ?>"
-       href="logout.php">Log out<i class="yellow"></i></a>
-    <img src="../img/nyul-icon.png" alt="profilkep" height="50px">
+        <!-- Display "Log in and Sign up" link only if the user is logged in -->
+    <?php if (!$isLoggedIn): ?>
+
+        <a class="nav <?php echo ($current_file == 'signup.php') ? 'current_page' : ''; ?>"
+           href="signup.php">Sign up<i class="yellow"></i></a>
+        <a class="nav <?php echo ($current_file == 'login.php') ? 'current_page' : ''; ?>"
+           href="login.php">Log in<i class="yellow"></i></a>
+    <?php endif; ?>
+    <!-- Display "Log out" link only if the user is logged in -->
+    <?php if ($isLoggedIn): ?>
+        <a class="nav <?php echo ($current_file == 'logout.php') ? 'current_page' : ''; ?>"
+           href="logout.php">Log out<i class="yellow"></i></a>
+        <a class="nav <?php echo ($current_file == 'profile.php') ? 'current_page' : ''; ?>"
+           href="profile.php">Profile <i class="yellow"></i></a>
+
+        <!-- Add the profile picture element here -->
+        <img src="../img/profile_icon.jpg" alt="profile picture" height="50px">
+
+        <a class="nav <?php echo ($current_file == 'progress.php') ? 'current_page' : ''; ?>"
+           href="progress.php"> Progress <i class="yellow"></i></a>
+    <?php endif; ?>
 </nav>
 <nav class="two-px-border">
     <h1 class="choose-a-lesson-to-learn">Choose a lesson to learn:</h1>
@@ -36,7 +54,7 @@ $current_file = basename($_SERVER['PHP_SELF']);
 </nav>
 <script>
     // Add an event listener to the form with the class "form"
-    document.querySelector(".form").addEventListener("submit", function(event) {
+    document.querySelector(".form").addEventListener("submit", function (event) {
         var form = event.target;
         var username = form.elements["username"];
         var email = form.elements["email"];
@@ -74,7 +92,7 @@ $current_file = basename($_SERVER['PHP_SELF']);
         fieldInput.classList.add("error-border");
 
         // Remove error message and red border when the field is filled out
-        fieldInput.addEventListener("input", function() {
+        fieldInput.addEventListener("input", function () {
             if (fieldInput.value) {
                 errorDiv.textContent = "";
                 errorDiv.style.display = "none";
