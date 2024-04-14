@@ -21,7 +21,7 @@ if (!isset($_POST["username"]) || trim($_POST["username"]) === "" || !isset($_PO
     foreach ($fiokok["users"] as $fiok) {              // végigmegyünk a regisztrált felhasználókon
         // a bejelentkezés pontosan akkor sikeres, ha az űrlapon megadott felhasználónév-jelszó páros megegyezik egy regisztrált felhasználó belépési adataival
         // a jelszavakat hash alapján, a password_verify() függvénnyel hasonlítjuk össze
-        if ($fiok["username"] === $felhasznalonev && password_verify($jelszo, $fiok["password"])) {
+        if (key_exists("username", $fiok["users"]) && $fiok["users"]["username"] === $felhasznalonev && password_verify($jelszo, $fiok["password"])) {
             $_SESSION["username"] = $felhasznalonev;
             header("Location: index.php");
             exit(); // Stop further execution after redirect

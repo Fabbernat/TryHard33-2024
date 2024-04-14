@@ -21,33 +21,19 @@ include_once "inc/navbar.inc.php"; ?>
 
         if (isset($_SESSION["user"]["username"])) {
             echo "<h1>Welcome " . $_SESSION["user"]["username"] . "! </h1>
-                        <div>
-                            It seems like you're not logged in.
-                            <br>
-                            <br>
-                            <a href='signup.php'>Click here to sign up if you don't have an account yet</a>
-                            <br>
-                            <br>
-                            <a href='login.php'>Click here to log in if you already have an account</a>
-                        </div>
 ";
         } else {
-            echo "<h1>Welcome Visitor!</h1>
-        <div>
-            It seems like you're not logged in.
-            <br>
-            <br>
-            <a href='signup.php'>Click here to sign up if you don't have an account yet</a>
-            <br>
-            <br>
-            <a href='login.php'>Click here to log in if you already have an account</a>
-        </div>
-        ";
+           header("Location:index.php");
         }
         ?>
     </header>
     <section class="interests white background-form-but-wider-for-profile-section left">
         <h3>Profile Information</h3>
+        <!-- Add a field for uploading profile picture -->
+        <form enctype="multipart/form-data" action="inc/upload.inc.php" method="POST">
+            <input type="file" name="profile_picture" accept="image/*">
+            <input type="submit" value="Upload Profile Picture">
+        </form>
         <p>Username:</p><?php echo @$_REQUEST["username"] ?>
         <p>Email:</p><?php echo @$_REQUEST["email"] ?>
         <p>Birthdate:</p><?php echo @$_REQUEST["birthdate"] ?>

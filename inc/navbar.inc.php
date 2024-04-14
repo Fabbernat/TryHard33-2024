@@ -35,10 +35,12 @@ if (isset($_SESSION['user_id'])) {
         <a class="nav <?php echo ($current_file == 'logout.php') ? 'current_page' : ''; ?>"
            href="logout.php">Log out<i class="yellow"></i></a>
         <a class="nav <?php echo ($current_file == 'profile.php') ? 'current_page' : ''; ?>"
-           href="profile.php">Profile <i class="yellow"></i></a>
+           href="profile.php">
+            <img src="../img/profile_icon.jpg" alt="profile picture" height="50px">
+             <p class="yellow">Profile</p>
+        </a>
 
         <!-- Add the profile picture element here -->
-        <img src="../img/profile_icon.jpg" alt="profile picture" height="50px">
 
         <a class="nav <?php echo ($current_file == 'progress.php') ? 'current_page' : ''; ?>"
            href="progress.php"> Progress <i class="yellow"></i></a>
