@@ -2,48 +2,59 @@
 session_start();
 include_once "inc/functions.inc.php";
 
-$fiokok = load_users("json/users.json"); // betöltjük a regisztrált felhasználók adatait, és eltároljuk őket a $fiokok változóban
+$accounts = load_users("json/users.json"); // betöltjük a regisztrált felhasználók adatait, és eltároljuk őket a $fiokok változóban
 
-$uzenet = "";                     // az űrlap feldolgozása után kiírandó üzenet
+$errors = [];
+$echo_errors = false;
 
 if (isset($_POST["login"])) {    // miután az űrlapot elküldték...
-if (!isset($_POST["username"]) || trim($_POST["username"]) === "" || !isset($_POST["password"]) || trim($_POST["password"]) === "") {
-    // ha a kötelezően kitöltendő űrlapmezők valamelyike üres, akkor hibaüzenetet jelenítünk meg
-    $uzenet = "<strong>Error:</strong> Please fill in all fields!";
-} else {
-    // ha megfelelően kitöltötték az űrlapot, lementjük az űrlapadatokat egy-egy változóba
-    $felhasznalonev = $_POST["username"];
-    $jelszo = $_POST["password"];
+    if (!isset($_POST["username"]) || trim($_POST["username"]) === "" || !isset($_POST["password"]) || trim($_POST["password"]) === "") {
+        // ha a kötelezően kitöltendő űrlapmezők valamelyike üres, akkor hibaüzenetet jelenítünk meg
+        $errors[] = "<strong>Error:</strong> Please fill in all fields!";
+        $echo_errors = true;
+    } else {
+        $username = $_POST["username"];
+        $password = $_POST["password"];
 
-    // bejelentkezés sikerességének ellenőrzése
-    $uzenet = "Login failed! Check if the username and password you've given are correct!";  // alapból azt feltételezzük, hogy a bejelentkezés sikertelen
-
-    foreach ($fiokok["users"] as $fiok) {              // végigmegyünk a regisztrált felhasználókon
-        // a bejelentkezés pontosan akkor sikeres, ha az űrlapon megadott felhasználónév-jelszó páros megegyezik egy regisztrált felhasználó belépési adataival
-        // a jelszavakat hash alapján, a password_verify() függvénnyel hasonlítjuk össze
-        if (key_exists("username", $fiok["users"]) && $fiok["users"]["username"] === $felhasznalonev && password_verify($jelszo, $fiok["password"])) {
-            $_SESSION["username"] = $felhasznalonev;
-            header("Location: index.php");
-            exit(); // Stop further execution after redirect
+        $authenticated = false;
+        foreach ($accounts["users"] as $account) {
+            if (@$account["username"] === $username && password_verify($password, $account["password"])) {
+                $authenticated = true;
+                $_SESSION["username"] = $username;
+                $_SESSION['user_id'] = $username;
+                header("Location: index.php");
+                exit(); // Stop further execution after redirect
             }
         }
+        $errors[] = "Login failed! Check if the username and password you've given are correct!";
+        $echo_errors = true;
     }
-}
 
-// Elv ez akkor nem is kell, mert a fenti kód megcsinálja
-/*
-   if(isset($_POST["login"])){
-      if(isset($_POST["username"]) && isset($_POST["password"])){
-          $users=load_users("json/users.json");
-          foreach ($users["users"] as $user) {
-              if($user["username"] === $_POST["username"] && password_verify($_POST["password"], $user["password"])){
-                  echo "You have logged in succesfully.";
-              }
-          }
-      }
-      echo "Login failed. Please try again.";
-  }
-*/
+//    if (count($errors) === 0) {
+//        // ha megfelelően kitöltötték az űrlapot, lementjük az űrlapadatokat egy-egy változóba
+//        $username = $_POST["username"];
+//        $password = $_POST["password"];
+//
+//        foreach ($accounts as $account) {
+//            if (@$account["username"] === $username)
+//                // végigmegyünk a regisztrált felhasználókon
+//                // a bejelentkezés pontosan akkor sikeres, ha az űrlapon megadott felhasználónév-jelszó páros megegyezik egy regisztrált felhasználó belépési adataival
+//                // a jelszavakat hash alapján, a password_verify() függvénnyel hasonlítjuk össze
+//                if ($account["username"] == $username && password_verify($password, $account["password"])) {
+//                    $_SESSION["username"] = $username;
+//                    header("Location: index.php");
+//                    exit(); // Stop further execution after redirect
+//                }
+//        }
+//
+//    } else {
+//        $_SESSION['username'] = $_POST['username'];
+//
+//        // bejelentkezés sikerességének ellenőrzése
+//        $errors[] = "Login failed! Check if the username and password you've given are correct!";  // alapból azt feltételezzük, hogy a bejelentkezés sikertelen
+//
+//    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="hu">
@@ -59,22 +70,28 @@ if (!isset($_POST["username"]) || trim($_POST["username"]) === "" || !isset($_PO
         <h1 class="signup-and-login-caption">Log in</h1>
         <a href="signup.php">Don't have an account yet? Click here to sign up!</a>
     </header>
-    <form action="login.php     " class="background-form white form" method="post"> <!--inc/login.inc.php-->
+    <form action="login.php" class="background-form white form" method="post"> <!--inc/login.inc.php-->
         <fieldset>
             <legend> Log in credentials</legend>
             <label for="username"> Username
-                <input id="username" name="username" placeholder="Username" required type="text" value="meowuwuka">
+                <input id="username" name="username" placeholder="Username" required type="text"
+                       value="<?php echo $_SESSION['username'] ?? ''; ?>">
             </label>
             <br>
             <label for="password"> Password
-                <input id="password" name="password" placeholder="Password" required type="password" value="password">
+                <input id="password" name="password" placeholder="Password" required type="password"
+                       value="<?php echo $_SESSION['username'] ?? ''; ?>">
             </label>
         </fieldset>
         <br>
         <button class="button" type="submit" name="login">Log in</button>
         <?php
-        if ($uzenet) {
-            echo "<p>$uzenet</p>";
+        if ($echo_errors) {
+            echo "<p>";
+            foreach ($errors as $error) {
+                echo $error . "<br>";
+            }
+            echo "</p>";
         }
         ?>
     </form>

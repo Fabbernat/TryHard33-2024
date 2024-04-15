@@ -28,16 +28,17 @@ include_once "inc/navbar.inc.php"; ?>
         ?>
     </header>
     <section class="interests white background-form-but-wider-for-profile-section left">
-        <h3>Profile Information</h3>
+        <h3>Upload a profile picture</h3>
         <!-- Add a field for uploading profile picture -->
         <form enctype="multipart/form-data" action="inc/upload.inc.php" method="POST">
             <input type="file" name="profile_picture" accept="image/*">
             <input type="submit" value="Upload Profile Picture">
         </form>
-        <p>Username:</p><?php echo @$_REQUEST["username"] ?>
-        <p>Email:</p><?php echo @$_REQUEST["email"] ?>
-        <p>Birthdate:</p><?php echo @$_REQUEST["birthdate"] ?>
-        <p>Interests:</p><?php echo @$_REQUEST["interests"] ?>
+        <h3>Profile Information</h3>
+        <p>Username:</p><?php echo @$_SESSION["username"] == "" ? "undefined" : @$_SESSION["username"] ?>
+        <p>Email:</p><?php echo @$_SESSION["email"] == "" ? "undefined" : @$_SESSION["email"] ?>
+        <p>Birthdate:</p><?php echo @$_SESSION["birthdate"]  == "" ? "undefined" : @$_SESSION["birthdate"] ?>
+        <p>Interests:</p><?php echo @$_SESSION["interests"] == "" ? "undefined" : @$_SESSION["interests"] ?>
         <form class="choose-your-interests form" action="inc/process_interests.php">Choose Your Interests (only
             works when logged in):
             <label class="custom-checkbox"><input name="interests" type="checkbox" value="frontend"><span

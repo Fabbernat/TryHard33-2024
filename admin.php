@@ -44,7 +44,7 @@ include_once "inc/navbar.inc.php";
 
             // Admin functionalities
             echo "<h3>Admin Panel:</h3>";
-            echo "<form action='inc/admin.inc.php' method='post' class='form'>";
+            echo "<form action='admin.php' method='post' class='form'>";
             echo  "Current session ID: <code class='lightgray-background'>" . session_id() . "</code><br><br>";
             echo "<fieldset>";
             echo "<legend>Admin Functions</legend>";
