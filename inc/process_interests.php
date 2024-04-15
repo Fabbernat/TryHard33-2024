@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 $chosen="";
 if (isset($_POST["submit"])) {  // itt a $_POST szuperglobálist használjuk, hiszen az űrlapunk a method="POST" attribútummal rendelkezik
     if (isset($_POST["interests"])) {

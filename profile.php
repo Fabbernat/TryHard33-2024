@@ -18,8 +18,7 @@ include_once "inc/navbar.inc.php";
         <h1 class="signup-and-login-caption">Profile</h1>
         <?php
 
-        $_SESSION["user"] = ["username" => $_SESSION["username"], "age" => 42]; // természetesen összetett adatok is tárolhatók a $_SESSION-ben
-
+        // Check if the user is logged in
         if (isset($_SESSION["user"]["username"])) {
             echo "<h1>Welcome " . $_SESSION["user"]["username"] . "! </h1>
 ";
@@ -29,17 +28,29 @@ include_once "inc/navbar.inc.php";
         ?>
     </header>
     <section class="interests white_background background-form-but-wider-for-profile-section left">
-        <h3>Upload a profile picture</h3>
-        <!-- Add a field for uploading profile picture -->
+        <h3>Change profile picture</h3>
+        <!-- Update the form action to point to the correct file handling logic -->
         <form enctype="multipart/form-data" action="inc/upload.inc.php" method="POST">
             <input type="file" name="profile_picture" accept="image/*">
             <input type="submit" value="Upload Profile Picture">
         </form>
         <h3>Profile Information</h3>
-        <p>Username:</p><?php echo @$_SESSION["username"] == "" ? "undefined" : @$_SESSION["username"] ?>
-        <p>Email:</p><?php echo @$_SESSION["email"] == "" ? "undefined" : @$_SESSION["email"] ?>
-        <p>Birthdate:</p><?php echo @$_SESSION["birthdate"]  == "" ? "undefined" : @$_SESSION["birthdate"] ?>
-        <p>Interests:</p><?php echo @$_SESSION["interests"] == "" ? "undefined" : @$_SESSION["interests"] ?>
+        <p>Username: <?php echo @$_SESSION["username"] == "" ? "undefined" : @$_SESSION["username"] ?></p>
+        <p>Email: <?php echo @$_SESSION["email"] == "" ? "undefined" : @$_SESSION["email"] ?></p>
+        <p>Birthdate: <?php echo @$_SESSION["birthdate"]  == "" ? "undefined" : @$_SESSION["birthdate"] ?></p>
+        <p>Interests: <?php echo @$_SESSION["interests"] == "" ? "undefined" : @$_SESSION["interests"] ?></p>
+
+        <!-- Show current profile picture -->
+        <h4>Current Profile Picture:</h4>
+        <?php
+        // Check if the user has a profile picture
+        if (isset($_SESSION['profile_picture'])) {
+            echo "<img src='" . $_SESSION['profile_picture'] . "' alt='Your Current Profile Picture'>";
+        } else {
+            echo '<img alt="Default profile picture" src="img/profile_icon.jpg" class="code border-radius-px">';
+        }
+        ?>
+        
         <form class="choose-your-interests form" action="inc/process_interests.php">Choose Your Interests (only
             works when logged in):
             <label class="custom-checkbox"><input name="interests" type="checkbox" value="frontend"><span
@@ -85,12 +96,12 @@ include_once "inc/navbar.inc.php";
     </section>
     <section class="background-form-but-wider-for-profile-section white_background">
         <h3>Delete Your Data</h3>
-        <form action="delete_data.php" method="POST">
+        <form action="inc/delete_data.inc.php" method="POST">
             <p>Are you sure you want to delete all your data?</p>
             <button type="submit" name="delete">Delete Data</button>
         </form>
     </section>
 </main>
-<?php include_once "inc/footer.inc.php"; ?>
+<?php include_once "inc/footer.inc.html"; ?>
 </body>
 </html>

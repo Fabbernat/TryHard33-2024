@@ -62,6 +62,6 @@ $userProgress = @getUserProgress($_SESSION['user_id']);
         </div>
     </section>
 </main>
-<?php include_once "inc/footer.inc.php"; ?>
+<?php include_once "inc/footer.inc.html"; ?>
 </body>
 </html>

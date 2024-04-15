@@ -75,6 +75,6 @@ include_once "inc/navbar.inc.php";?>
     <a class="left btn" href="php.php">&#10094; Previous</a>
     <a class="right btn" href="python.php" aria-disabled="true">Next &#10095;</a>
 </div>
-<?php include_once "inc/footer.inc.php"; ?>
+<?php include_once "inc/footer.inc.html"; ?>
 </body>
 </html>

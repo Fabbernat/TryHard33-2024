@@ -182,5 +182,5 @@ include 'inc/navbar.inc.php';
         </div>
     </form>
 </main>
-<?php include_once "inc/footer.inc.php"; ?>
+<?php include_once "inc/footer.inc.html"; ?>
 </body>

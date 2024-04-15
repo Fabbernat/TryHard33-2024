@@ -171,6 +171,6 @@ include_once "inc/navbar.inc.php"; ?>
     <a class="left btn" href="html.php">&#10094; Previous</a>
     <a class="right btn" href="javascript.php">Next &#10095;</a>
 </div>
-<?php include_once "inc/footer.inc.php"; ?>
+<?php include_once "inc/footer.inc.html"; ?>
 </body>
 </html>

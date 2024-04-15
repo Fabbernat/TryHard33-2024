@@ -150,6 +150,6 @@ include_once "inc/navbar.inc.php";
         ?>
     </section>
 </main>
-<?php include_once "inc/footer.inc.php"; ?>
+<?php include_once "inc/footer.inc.html"; ?>
 </body>
 </html>

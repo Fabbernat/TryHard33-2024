@@ -75,5 +75,5 @@ if (isset($_POST["login"])) {    // miután az űrlapot elküldték...
         ?>
     </form>
 </main>
-<?php include_once "inc/footer.inc.php"; ?>
+<?php include_once "inc/footer.inc.html"; ?>
 </body>

@@ -182,6 +182,6 @@ function functionName(parameters) {
     <a class="left btn" href="css.php">&#10094; Previous</a>
     <a class="right btn" href="php.php">Next &#10095;</a>
 </div>
-<?php include_once "inc/footer.inc.php"; ?>
+<?php include_once "inc/footer.inc.html"; ?>
 </body>
 </html>

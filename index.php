@@ -12,9 +12,11 @@ session_start();
 </head>
 
 <body>
+
 <?php
 include_once "inc/navbar.inc.php";
 ?>
+
 <header>
     <h1>Welcome to TryHard33</h1>
 </header>
@@ -30,7 +32,9 @@ include_once "inc/navbar.inc.php";
     </section>
 </main>
 
-<?php include_once "inc/footer.inc.php"; ?>
+<?php
+include_once "inc/footer.inc.html";
+?>
 
 </body>
 </html>
