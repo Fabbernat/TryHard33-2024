@@ -15,25 +15,26 @@ if (isset($_SESSION['user_id'])) {
 ?>
 <nav class="nav-left">
     <a class="nav <?php echo ($current_file == 'index.php') ? 'current_page' : ''; ?>"
-       href="index.php">Home<i class="yellow"></i></a>
+       href="index.php"><p class="yellow">Home</p></a>
     <a class="nav <?php echo ($current_file == 'feedback.php') ? 'current_page' : ''; ?>"
-       href="feedback.php">Feedback <i class="yellow"></i></a>
-    <a class="nav <?php echo ($current_file == 'admin.php') ? 'current_page' : ''; ?>"
-       href="admin.php">Admin <i class="yellow"></i></a>
+       href="feedback.php"> <p class="yellow">Feedback</p></a>
+    <?php
+echo ($current_file == 'admin.php') ? ' <a class="nav current_page" href="admin.php">Admin <p class="yellow"></p></a>' : '';
+?>
 </nav>
 <nav class="nav-right">
         <!-- Display "Log in and Sign up" link only if the user is logged in -->
     <?php if (!$isLoggedIn): ?>
 
         <a class="nav <?php echo ($current_file == 'signup.php') ? 'current_page' : ''; ?>"
-           href="signup.php">Sign up<i class="yellow"></i></a>
+           href="signup.php"><p class="yellow">Sign up</p></a>
         <a class="nav <?php echo ($current_file == 'login.php') ? 'current_page' : ''; ?>"
-           href="login.php">Log in<i class="yellow"></i></a>
+           href="login.php"><p class="yellow">Log in</p></a>
     <?php endif; ?>
     <!-- Display "Log out" link only if the user is logged in -->
     <?php if ($isLoggedIn): ?>
         <a class="nav <?php echo ($current_file == 'logout.php') ? 'current_page' : ''; ?>"
-           href="logout.php">Log out<i class="yellow"></i></a>
+           href="logout.php"><p class="yellow">Log out</p></a>
         <a class="nav <?php echo ($current_file == 'profile.php') ? 'current_page' : ''; ?>"
            href="profile.php">
             <img src="../img/profile_icon.jpg" alt="profile picture" height="50px">
@@ -43,16 +44,16 @@ if (isset($_SESSION['user_id'])) {
         <!-- Add the profile picture element here -->
 
         <a class="nav <?php echo ($current_file == 'progress.php') ? 'current_page' : ''; ?>"
-           href="progress.php"> Progress <i class="yellow"></i></a>
+           href="progress.php"><p class="yellow">Progress</p></a>
     <?php endif; ?>
 </nav>
 <nav class="two-px-border">
     <h1 class="choose-a-lesson-to-learn">Choose a lesson to learn:</h1>
-    <a class="nav <?php echo ($current_file == 'html.php') ? 'current_page' : ''; ?>" href="html.php">HTML</a>
-    <a class="nav <?php echo ($current_file == 'css.php') ? 'current_page' : ''; ?>" href="css.php">CSS</a>
-    <a class="nav <?php echo ($current_file == 'javascript.php') ? 'current_page' : ''; ?>" href="javascript.php">JAVASCRIPT</a>
-    <a class="nav <?php echo ($current_file == 'php.php') ? 'current_page' : ''; ?>" href="php.php">PHP</a>
-    <a class="nav <?php echo ($current_file == 'python.php') ? 'current_page' : ''; ?>" href="python.php">PYTHON</a>
+    <a class="nav <?php echo ($current_file == 'html.php') ? 'current_page' : ''; ?>" href="html.php"><p class="yellow">HTML</p></a>
+    <a class="nav <?php echo ($current_file == 'css.php') ? 'current_page' : ''; ?>" href="css.php"><p class="yellow">CSS</p></a>
+    <a class="nav <?php echo ($current_file == 'javascript.php') ? 'current_page' : ''; ?>" href="javascript.php"><p class="yellow">JAVASCRIPT</p></a>
+    <a class="nav <?php echo ($current_file == 'php.php') ? 'current_page' : ''; ?>" href="php.php"><p class="yellow">PHP</p></a>
+    <a class="nav <?php echo ($current_file == 'python.php') ? 'current_page' : ''; ?>" href="python.php"><p class="yellow">PYTHON</p></a>
 </nav>
 <script>
     // Add an event listener to the form with the class "form"

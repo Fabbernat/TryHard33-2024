@@ -20,7 +20,7 @@ include_once "inc/navbar.inc.php";
         <h1>Feedback</h1>
     </header>
     <section>
-        <form action="inc/submit_feedback.inc.php" class="white background-form  feedback-form form" method="POST"><!--inc/submit_feedback.inc.php-->
+        <form action="inc/submit_feedback.inc.php" class="white_background background-form  feedback-form form" method="POST"><!--inc/submit_feedback.inc.php-->
             <h2>Rate Us (1-5):</h2>
             <div class="rating">
                 <label>

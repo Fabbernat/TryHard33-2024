@@ -11,7 +11,7 @@ session_start();
 <body>
 <?php
 include_once "inc/navbar.inc.php";?>
-<main class="lesson-container white left-align">
+<main class="lesson-container white_background left-align">
     <h2>PHP tutorial</h2>
     <div class="lesson-content">
         <section class="lesson-content">

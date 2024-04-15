@@ -221,10 +221,9 @@ footer section ul li {
     margin-bottom: 10px;
 }
 
-/* Style for the star icon */
 .yellow {
     margin-left: 5px; /* Some spacing between the text and the icon */
-    color: #ffcc00; /* Change the color to match the text */
+    color: #ffdd00; /* Change the color to match the text */
 }
 
 .star-rating {
@@ -487,7 +486,7 @@ footer section ul li {
     margin-bottom: 10px;
 }
 
-.white {
+.white_background {
     background-color: white;
 }
 

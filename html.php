@@ -27,7 +27,7 @@ $userProgress = getUserProgress($_SESSION['user_id']);
         </ul>
     </section>
 </header>
-<main class="lesson-container white left-align">
+<main class="lesson-container white_background left-align">
     <section id="introduction" <?php if ($userProgress['html_introduction'] == 1) echo 'class="completed"'; ?>>
         <div class="html-intro">
             <hr>

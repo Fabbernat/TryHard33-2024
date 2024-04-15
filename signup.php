@@ -113,7 +113,7 @@ include 'inc/navbar.inc.php';
         <h1 class="signup-and-login-caption">Sign up</h1>
         <a href="login.php">Already registered? Click here to log in!</a>
     </header>
-    <form action="signup.php" class="background-form white form" method="POST"><!--includes/signup.inc.php-->
+    <form action="signup.php" class="background-form white_background form" method="POST"><!--includes/signup.inc.php-->
         <fieldset>
             <legend> Registration</legend>
             <label for="username">Username

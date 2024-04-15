@@ -27,9 +27,9 @@ include_once "inc/navbar.inc.php";?>
         </ul>
     </div>
 </header>
-<main class="lesson-container white left-align">
+<main class="lesson-container white_background left-align">
     <h2>Javascript tutorial</h2>
-    <section class="lesson-content white" id="introduction">
+    <section class="lesson-content white_background" id="introduction">
         <h2>Introduction to JavaScript</h2>
         <p>JavaScript is a high-level programming language that is widely used for creating interactive web pages. It allows
             you to add dynamic behavior to your websites, making them more engaging and user-friendly.</p>
@@ -45,7 +45,7 @@ include_once "inc/navbar.inc.php";?>
         </ul>
     </section>
 
-    <section class="lesson-content white" id="variables">
+    <section class="lesson-content white_background" id="variables">
         <h2>Variables and Data Types</h2>
         <p>In JavaScript, variables are used to store data values. There are several data types in JavaScript:</p>
         <ul>
@@ -70,7 +70,7 @@ var y = null; // Assigning a null value to a variable
     </code></pre>
     </section>
 
-    <div class="lesson-content white" id="operators">
+    <div class="lesson-content white_background" id="operators">
         <article>
             <h2>Operators and Expressions</h2>
             <p>In JavaScript, operators are symbols that perform operations on operands. They can be classified into different
@@ -94,7 +94,7 @@ var z = x + y; // z is assigned the value 30
         </article>
     </div>
 
-    <div class="lesson-content white" id="control-flow">
+    <div class="lesson-content white_background" id="control-flow">
         <article>
             <h2>Control Flow</h2>
             <p>Control flow refers to the order in which statements are executed in a program. JavaScript provides several
@@ -119,7 +119,7 @@ var z = x + y; // z is assigned the value 30
         </article>
     </div>
 
-    <div class="lesson-content white" id="functions">
+    <div class="lesson-content white_background" id="functions">
         <article>
             <h2>Functions</h2>
             <p>A function is a block of reusable code that performs a specific task. Functions allow you to organize your code
@@ -137,7 +137,7 @@ function functionName(parameters) {
         </article>
     </div>
 
-    <div class="lesson-content white" id="objects-arrays">
+    <div class="lesson-content white_background" id="objects-arrays">
         <article>
             <h2>Objects and Arrays</h2>
             <p>Objects and arrays are two fundamental data structures in JavaScript:</p>
@@ -152,7 +152,7 @@ function functionName(parameters) {
         </article>
     </div>
 
-    <div class="lesson-content white" id="dom-manipulation">
+    <div class="lesson-content white_background" id="dom-manipulation">
         <article>
             <h2>DOM Manipulation</h2>
             <p>The Document Object Model (DOM) is a programming interface for web documents. It represents the structure of
@@ -163,7 +163,7 @@ function functionName(parameters) {
         </article>
     </div>
 
-    <div class="lesson-content white" id="event-handling">
+    <div class="lesson-content white_background" id="event-handling">
         <article>
             <h2>Event Handling</h2>
             <p>Event handling is the process of responding to user interactions with a web page, such as clicks, mouse

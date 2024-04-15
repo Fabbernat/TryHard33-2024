@@ -11,7 +11,8 @@ session_start();
 </head>
 <body>
 <?php
-include_once "inc/navbar.inc.php"; ?>
+include_once "inc/navbar.inc.php";
+?>
 <main>
     <header>
         <h1 class="signup-and-login-caption">Profile</h1>
@@ -27,7 +28,7 @@ include_once "inc/navbar.inc.php"; ?>
         }
         ?>
     </header>
-    <section class="interests white background-form-but-wider-for-profile-section left">
+    <section class="interests white_background background-form-but-wider-for-profile-section left">
         <h3>Upload a profile picture</h3>
         <!-- Add a field for uploading profile picture -->
         <form enctype="multipart/form-data" action="inc/upload.inc.php" method="POST">
@@ -81,6 +82,13 @@ include_once "inc/navbar.inc.php"; ?>
             <input id="newsletter_email" name="newsletter_email" placeholder="Email address" required type="email">
         </label>
         <input type="submit" value="Send">
+    </section>
+    <section class="background-form-but-wider-for-profile-section white_background">
+        <h3>Delete Your Data</h3>
+        <form action="delete_data.php" method="POST">
+            <p>Are you sure you want to delete all your data?</p>
+            <button type="submit" name="delete">Delete Data</button>
+        </form>
     </section>
 </main>
 <?php include_once "inc/footer.inc.php"; ?>

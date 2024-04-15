@@ -25,7 +25,7 @@ include_once "inc/navbar.inc.php";?>
         </ul>
     </div>
 </header>
-<main class="lesson-container white left-align">
+<main class="lesson-container white_background left-align">
     <section>
         <h2>Python tutorial</h2>
         <p>Python is a high-level, interpreted programming language known for its simplicity and readability. It is widely used for various purposes, including web development, data analysis, artificial intelligence, and scientific computing.</p>

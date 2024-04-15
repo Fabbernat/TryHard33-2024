@@ -19,7 +19,7 @@ if (isset($_SESSION['admin_id'])) {
 include_once "inc/navbar.inc.php"; 
 ?>
 <main>
-    <form action="#" class="white background-form margin-30-px form" method="post"><!--admin.php-->
+    <form action="#" class="white_background background-form margin-30-px form" method="post"><!--admin.php-->
         <fieldset>
             <legend>Enter the super confidential secret admin password</legend>
             <label for="admin_password">Admin password:</label>
@@ -28,7 +28,7 @@ include_once "inc/navbar.inc.php";
             <button type="submit">Enter</button>
         </fieldset>
     </form>
-    <section class=" interests white background-form-but-wider-for-profile-section">
+    <section class=" interests white_background background-form-but-wider-for-profile-section">
     <?php
     // Check if the form is submitted
     if ($_SERVER["REQUEST_METHOD"] == "POST") {

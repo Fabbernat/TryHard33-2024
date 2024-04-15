@@ -22,7 +22,7 @@ include_once "inc/navbar.inc.php"; ?>
     </ul>
   </div>
 </header>
-<main class="lesson-container white left-align">
+<main class="lesson-container white_background left-align">
   <h2>CSS tutorial</h2>
   <section id="introduction">
     <h2>Introduction to CSS</h2>

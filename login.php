@@ -70,7 +70,7 @@ if (isset($_POST["login"])) {    // miután az űrlapot elküldték...
         <h1 class="signup-and-login-caption">Log in</h1>
         <a href="signup.php">Don't have an account yet? Click here to sign up!</a>
     </header>
-    <form action="login.php" class="background-form white form" method="post"> <!--inc/login.inc.php-->
+    <form action="login.php" class="background-form white_background form" method="post"> <!--inc/login.inc.php-->
         <fieldset>
             <legend> Log in credentials</legend>
             <label for="username"> Username

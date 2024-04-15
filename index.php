@@ -21,7 +21,7 @@ include_once "inc/navbar.inc.php";
 <main>
     <img alt="image of a person learning html js and php" src="img/person_learns_programming.jpg"
          class="seventy-five-percent-width">
-    <section class="white seventy-five-percent-width">
+    <section class="white_background seventy-five-percent-width">
         <!-- main content goes here -->
         <h2>Welcome to the TryHard33 website</h2>
         <p>An interactive website where you can learn HTML, CSS, Javascript, PHP and Python</p>
