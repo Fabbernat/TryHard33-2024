@@ -19,7 +19,7 @@ if (isset($_SESSION['user_id'])) {
     <a class="nav <?php echo ($current_file == 'feedback.php') ? 'current_page' : ''; ?>"
        href="feedback.php"> <p class="yellow">Feedback</p></a>
     <?php
-echo ($current_file == 'admin.php') ? ' <a class="nav current_page" href="admin.php">Admin <p class="yellow"></p></a>' : '';
+echo ($current_file == 'admin.php') ? ' <a class="nav current_page" href="admin.php"><p class="yellow">Admin</p></a>' : '';
 ?>
 </nav>
 <nav class="nav-right">

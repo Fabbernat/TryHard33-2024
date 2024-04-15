@@ -797,3 +797,8 @@ input[type="checkbox"] {
     font-style: italic; /* Italic text */
     font-size: 0.9em; /* Smaller font size */
 }
+
+.no-margin-no-padding{
+    padding: 0;
+    margin: 0;
+}

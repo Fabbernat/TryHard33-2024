@@ -7,7 +7,7 @@ $fiokok = load_users("json/users.json"); // betöltjük a regisztrált felhaszn�
 if(isset($_POST["logout"])) {
     session_unset();          // munkamenet-változók kiürítése ($_SESSION egy üres tömb lesz)
     session_destroy();
-    header("Location: login.php?logout=1");
+    header("Location: login.php?logout=true");
 
 }
 

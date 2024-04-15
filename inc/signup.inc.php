@@ -63,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         save_users("../json/users.json", $fiok);
 
         // Registration successful, redirect back to signup.php with success message
-        header("Location: ../signup.php?success=1");
+        header("Location: ../signup.php?success=true");
     } else {
         // If there are errors, redirect back to signup.php with error messages
         header("Location: ../signup.php?error=" . urlencode(implode('<br>', $errors)));

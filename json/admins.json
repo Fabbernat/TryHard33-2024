@@ -1,0 +1,9 @@
+{
+  "admins": [
+    {
+      "username": "fabbernat",
+      "password": "$2y$10$U4RfLntNT42ODtfuuZVCiueOGaW7NKT9P59m6FS5cM0KsecVEmEAK",
+      "age": 20
+    }
+  ]
+}

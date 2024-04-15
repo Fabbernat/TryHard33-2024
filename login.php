@@ -11,7 +11,6 @@ if (isset($_POST["login"])) {    // miután az űrlapot elküldték...
     if (!isset($_POST["username"]) || trim($_POST["username"]) === "" || !isset($_POST["password"]) || trim($_POST["password"]) === "") {
         // ha a kötelezően kitöltendő űrlapmezők valamelyike üres, akkor hibaüzenetet jelenítünk meg
         $errors[] = "<strong>Error:</strong> Please fill in all fields!";
-        $echo_errors = true;
     } else {
         $username = $_POST["username"];
         $password = $_POST["password"];
@@ -27,33 +26,8 @@ if (isset($_POST["login"])) {    // miután az űrlapot elküldték...
             }
         }
         $errors[] = "Login failed! Check if the username and password you've given are correct!";
-        $echo_errors = true;
     }
-
-//    if (count($errors) === 0) {
-//        // ha megfelelően kitöltötték az űrlapot, lementjük az űrlapadatokat egy-egy változóba
-//        $username = $_POST["username"];
-//        $password = $_POST["password"];
-//
-//        foreach ($accounts as $account) {
-//            if (@$account["username"] === $username)
-//                // végigmegyünk a regisztrált felhasználókon
-//                // a bejelentkezés pontosan akkor sikeres, ha az űrlapon megadott felhasználónév-jelszó páros megegyezik egy regisztrált felhasználó belépési adataival
-//                // a jelszavakat hash alapján, a password_verify() függvénnyel hasonlítjuk össze
-//                if ($account["username"] == $username && password_verify($password, $account["password"])) {
-//                    $_SESSION["username"] = $username;
-//                    header("Location: index.php");
-//                    exit(); // Stop further execution after redirect
-//                }
-//        }
-//
-//    } else {
-//        $_SESSION['username'] = $_POST['username'];
-//
-//        // bejelentkezés sikerességének ellenőrzése
-//        $errors[] = "Login failed! Check if the username and password you've given are correct!";  // alapból azt feltételezzük, hogy a bejelentkezés sikertelen
-//
-//    }
+    $echo_errors = true;
 }
 ?>
 <!DOCTYPE html>
@@ -70,6 +44,11 @@ if (isset($_POST["login"])) {    // miután az űrlapot elküldték...
         <h1 class="signup-and-login-caption">Log in</h1>
         <a href="signup.php">Don't have an account yet? Click here to sign up!</a>
     </header>
+    <header>
+        <h1 class="signup-and-login-caption">Admin Mode</h1>
+        <a href="admin.php">Are you an admin or would you like to become one? Click here to log in or sign up!</a>
+    </header>
+
     <form action="login.php" class="background-form white_background form" method="post"> <!--inc/login.inc.php-->
         <fieldset>
             <legend> Log in credentials</legend>
