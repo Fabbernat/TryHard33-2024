@@ -1,5 +1,6 @@
 <?php
 session_start();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +11,8 @@ session_start();
 </head>
 <body>
 <?php
-include_once "inc/navbar.inc.php"; ?>
+include_once "inc/navbar.inc.php";
+?>
 <header class="yellow-font gray-background">
     <h1 class="yellow-font">HTML Tutorial</h1>
     <section class="html-css-nav">
@@ -149,10 +151,13 @@ include_once "inc/navbar.inc.php"; ?>
         <hr>
         <h2 class="darkcyan">HTML Attributes</h2>
         <p>HTML attributes provide additional information about HTML elements.</p>
-        <!-- more content for HTML attributes -->
     </section>
 
-    <!-- more sections for other topics -->
+    <section>
+        <h2>Track Progress</h2>
+        <label for="trackProgress">I have learned this lesson:</label>
+        <input type="checkbox" id="trackProgress" name="trackProgress">
+    </section>
 </main>
 <div>
     <a class="left btn" href="index.php">&#10094;&#10094; Home</a>
@@ -160,6 +165,6 @@ include_once "inc/navbar.inc.php"; ?>
     <a class="left btn" href="html.php">&#10094; Previous</a>
     <a class="right btn" href="css.php">Next &#10095;</a>
 </div>
-<?php include_once "inc/footer.inc.php"; ?>
+<?php include_once "inc/footer.inc.html"; ?>
 </body>
 </html>
