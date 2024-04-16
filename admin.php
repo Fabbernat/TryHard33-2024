@@ -51,11 +51,19 @@ include_once "inc/navbar.inc.php";
 
                 // Read and display the content of the JSON file
                 $jsonContent = file_get_contents("json/users.json");
-                $userData = json_decode($jsonContent, true);
+                $feedbacks_data = json_decode($jsonContent, true);
 
                 echo "<h3>User Data:</h3>";
                 echo "<pre class='no-margin-no-padding code left'>";
-                print_r($userData);
+                print_r($feedbacks_data);
+                echo "</pre>";
+
+                $jsonContent = file_get_contents("json/feedbacks.json");
+                $feedbacks_data = json_decode($jsonContent, true);
+
+                echo "<h3>User feedback (their star ratings 1-5 and their comments):</h3>";
+                echo "<pre class='no-margin-no-padding code left'>";
+                print_r($feedbacks_data);
                 echo "</pre>";
 
                 // Admin functionalities

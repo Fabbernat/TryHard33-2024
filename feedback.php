@@ -55,7 +55,7 @@ include_once "inc/navbar.inc.php";
                 </label>
             </div>
             <br>
-            <label for="comment">Feel free to leave a comment:
+            <label for="comment">Feel free to leave a comment, or write your opinion:
                 <textarea cols="50" id="comment" name="comment" placeholder="Write your feedback here..." rows="4"></textarea>
             </label>
             <br>

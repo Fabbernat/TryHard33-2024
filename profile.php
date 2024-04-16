@@ -89,11 +89,13 @@ include_once "inc/navbar.inc.php";
         <?php echo "<p>" . $uzenet . "</p>"; ?>
     </section>
     <section class="background-form-but-wider-for-profile-section greendiv display-block">
+        <form action="inc/subscribe.inc.php" method="post">
         <h1>Subscribe for our newsletter!</h1>
         <label for="newsletter_email">Email address:
             <input id="newsletter_email" name="newsletter_email" placeholder="Email address" required type="email">
         </label>
         <input type="submit" value="Send">
+        </form>
     </section>
     <section class="background-form-but-wider-for-profile-section white_background">
         <h3>Delete Your Data</h3>
