@@ -10,16 +10,31 @@ session_start();
 </head>
 <body>
 <?php
-include_once "inc/navbar.inc.php";?>
+include_once "inc/navbar.inc.php"; ?>
+<header class="yellow-font gray-background">
+    <h1>PHP tutorial</h1>
+    <div class="html-css-nav">
+        <ul class="left  black-font">
+            <li><a href="#introduction">Introduction</a></li>
+            <li><a href="#variables">Variables and Data Types</a></li>
+            <li><a href="#conditionals">Conditional Statements</a></li>
+            <li><a href="#loops">Loops</a></li>
+            <li><a href="#functions">Functions</a></li>
+            <li><a href="#arrays">Arrays</a></li>
+            <li><a href="#forms">Forms Handling</a></li>
+        </ul>
+    </div>
+</header>
+
 <main class="lesson-container white_background left-align">
-    <h2>PHP tutorial</h2>
-    <div class="lesson-content">
-        <section class="lesson-content">
-            <h2>PHP Basics</h2>
-            <h3>Introduction</h3>
-            <p>PHP is a server-side scripting language used for web development. It is widely used for creating dynamic web
+    <section class="lesson-content">
+        <h1>PHP Basics</h1>
+        <hr>
+        <section>
+            <h3 id="introduction" class="blue">Introduction</h3>
+            <p>PHP is a server-side scripting language used for web development. It is widely used for creating dynamic
+                web
                 pages and interacting with databases.</p>
-        </section>
         <section>
             <h3>Example 1: Hello World</h3>
             <div class="php-code">
@@ -37,7 +52,6 @@ include_once "inc/navbar.inc.php";?>
             </div>
         </section>
         <section>
-
             <h3>Example 2: Variables and Data Types</h3>
             <div class="php-code">
       <pre class="left-align">
@@ -107,7 +121,90 @@ include_once "inc/navbar.inc.php";?>
     </pre>
             </div>
         </section>
-    </div>
+            <section>
+                <h3 id="functions">Example 5: Functions</h3>
+                <div class="php-code">
+                <pre class="left-align">
+                &lt;?php
+                // PHP code to demonstrate functions
+                function greet($name) {
+                    echo "Hello, $name!";
+                }
+                greet("Alice");
+                ?>
+                </pre>
+                </div>
+                <h4>Output:</h4>
+                <div class="output">
+                <pre class="left-align">
+                Hello, Alice!
+                </pre>
+                </div>
+            </section>
+            <section>
+                <h3 id="arrays">Example 6: Arrays</h3>
+                <div class="php-code">
+                <pre class="left-align">
+                &lt;?php
+                // PHP code to demonstrate arrays
+                $colors = array("Red", "Green", "Blue");
+                echo "Colors: " . implode(", ", $colors);
+                ?>
+                </pre>
+                </div>
+                <h4>Output:</h4>
+                <div class="output">
+                <pre class="left-align">
+                Colors: Red, Green, Blue
+                </pre>
+                </div>
+            </section>
+            <section>
+                <h3 id="forms">Example 7: Forms Handling</h3>
+                <div class="php-code">
+                <pre class="left-align">
+                &lt;?php
+                // PHP code to handle form submission
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $name = $_POST["name"];
+                    echo "Hello, $name!";
+                }
+                ?>
+                </pre>
+                </div>
+                <h4>Output:</h4>
+                <div class="output">
+                <pre class="left-align">
+                (Output will vary based on form input)
+                </pre>
+                </div>
+            </section>
+        </section>
+    </section>
+    <section>
+        <h3 id="variables" class="blue">Variables and Data Types</h3>
+        <p>...</p>
+    </section>
+    <section>
+        <h3 id="conditionals" class="blue">Conditional Statements</h3>
+        <p>...</p>
+    </section>
+    <section>
+        <h3 id="loops" class="blue">Loops</h3>
+        <p>...</p>
+    </section>
+    <section>
+        <h3 id="functions" class="blue">Functions</h3>
+        <p>...</p>
+    </section>
+    <section>
+        <h3 id="arrays" class="blue">Arrays</h3>
+        <p>...</p>
+    </section>
+    <section>
+        <h3 id="forms" class="blue">Forms Handling</h3>
+        <p>...</p>
+    </section>
 </main>
 
 <div>

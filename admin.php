@@ -3,6 +3,7 @@ session_start();
 include_once "inc/functions.inc.php";
 
 $accounts = load_users("json/admins.json"); // betöltjük a regisztrált felhasználók adatait, és eltároljuk őket a $fiokok változóban
+$errors = [];
 
 // Check if the admin is already logged in
 if (isset($_SESSION['admin_id'])) {
@@ -41,7 +42,6 @@ include_once "inc/navbar.inc.php";
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             @$password = $_POST["admin_password"];
 
-            // TODO mf2: replace this with actual authentication logic and hashed password
             if ($password === "meowuwuka") {
                 echo "<h2>Welcome admin!</h2>";
                 echo "<p>You have successfully entered the admin password.</p>";
@@ -83,7 +83,6 @@ include_once "inc/navbar.inc.php";
                         $errors[] = "The username is required! Please fill it!";
                         $echo_errors = true;
                     }
-
                     // Check if username already exists
                     foreach ($accounts as $account) {
                         if ($account["username"] === $username) {
@@ -103,13 +102,13 @@ include_once "inc/navbar.inc.php";
                         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
                         // Create a new user object
-                        $new_user = [
+                        $new_admin = [
                             "username" => $username,
                             "password" => $hashed_password,
                         ];
 
                         // Add the new user to the array of accounts
-                        $accounts["users"][] = $new_user;
+                        $accounts["admins"][] = $new_admin;
 
                         // Save the updated array of accounts to the JSON file
                         save_users("json/admins.json", $accounts);

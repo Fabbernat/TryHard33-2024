@@ -118,6 +118,136 @@
                     "age": 790
                 }
             ]
+        },
+        {
+            "users": [
+                {
+                    "username": "fabbernat",
+                    "password": "$2y$10$U4RfLntNT42ODtfuuZVCiueOGaW7NKT9P59m6FS5cM0KsecVEmEAK",
+                    "age": 20
+                },
+                {
+                    "username": "a",
+                    "password": "$2y$10$Zl.DMnIBu5cWpQxu0orTlesrMo3.HWndBfA1Sdy76jCPtilLzC26K",
+                    "age": 913
+                },
+                {
+                    "username": "a",
+                    "email": "a@a",
+                    "password": "$2y$10$83SNJmZ3nIkzgMClvl4jXefM2o\/X6PooJfVAaasz0g9.V76Aib3cy",
+                    "birthdate": "1111-11-11",
+                    "age": 913
+                },
+                {
+                    "username": "farkaspatrik",
+                    "email": "f@p",
+                    "password": "$2y$10$\/YknamD7dktz5u5A19ydwuCxKVgL\/vQj0VVVZUb1Lj7nBoK4zTYi2",
+                    "birthdate": "2003-01-01",
+                    "age": 21
+                },
+                {
+                    "users": [
+                        {
+                            "username": "fabbernat",
+                            "password": "$2y$10$U4RfLntNT42ODtfuuZVCiueOGaW7NKT9P59m6FS5cM0KsecVEmEAK",
+                            "age": 20
+                        },
+                        {
+                            "username": "a",
+                            "email": "a@a",
+                            "password": "$2y$10$83SNJmZ3nIkzgMClvl4jXefM2o\/X6PooJfVAaasz0g9.V76Aib3cy",
+                            "birthdate": "1111-11-11",
+                            "age": 913
+                        },
+                        {
+                            "username": "farkaspatrik",
+                            "email": "f@p",
+                            "password": "$2y$10$\/YknamD7dktz5u5A19ydwuCxKVgL\/vQj0VVVZUb1Lj7nBoK4zTYi2",
+                            "birthdate": "2003-01-01",
+                            "age": 21
+                        }
+                    ],
+                    "0": {
+                        "username": "12345",
+                        "email": "12345@12345",
+                        "password": "$2y$10$Zgf4OQjBYiEj8\/Mj7ctfCeMDXDRO5yfolFu58tzSWK3mHdELWb37q",
+                        "birthdate": "1234-05-06",
+                        "age": 790
+                    }
+                },
+                {
+                    "users": [
+                        {
+                            "username": "fabbernat",
+                            "password": "$2y$10$U4RfLntNT42ODtfuuZVCiueOGaW7NKT9P59m6FS5cM0KsecVEmEAK",
+                            "age": 20
+                        },
+                        {
+                            "username": "a",
+                            "password": "$2y$10$Zl.DMnIBu5cWpQxu0orTlesrMo3.HWndBfA1Sdy76jCPtilLzC26K",
+                            "age": 913
+                        },
+                        {
+                            "username": "a",
+                            "email": "a@a",
+                            "password": "$2y$10$83SNJmZ3nIkzgMClvl4jXefM2o\/X6PooJfVAaasz0g9.V76Aib3cy",
+                            "birthdate": "1111-11-11",
+                            "age": 913
+                        },
+                        {
+                            "username": "farkaspatrik",
+                            "email": "f@p",
+                            "password": "$2y$10$\/YknamD7dktz5u5A19ydwuCxKVgL\/vQj0VVVZUb1Lj7nBoK4zTYi2",
+                            "birthdate": "2003-01-01",
+                            "age": 21
+                        },
+                        {
+                            "users": [
+                                {
+                                    "username": "fabbernat",
+                                    "password": "$2y$10$U4RfLntNT42ODtfuuZVCiueOGaW7NKT9P59m6FS5cM0KsecVEmEAK",
+                                    "age": 20
+                                },
+                                {
+                                    "username": "a",
+                                    "email": "a@a",
+                                    "password": "$2y$10$83SNJmZ3nIkzgMClvl4jXefM2o\/X6PooJfVAaasz0g9.V76Aib3cy",
+                                    "birthdate": "1111-11-11",
+                                    "age": 913
+                                },
+                                {
+                                    "username": "farkaspatrik",
+                                    "email": "f@p",
+                                    "password": "$2y$10$\/YknamD7dktz5u5A19ydwuCxKVgL\/vQj0VVVZUb1Lj7nBoK4zTYi2",
+                                    "birthdate": "2003-01-01",
+                                    "age": 21
+                                }
+                            ],
+                            "0": {
+                                "username": "12345",
+                                "email": "12345@12345",
+                                "password": "$2y$10$Zgf4OQjBYiEj8\/Mj7ctfCeMDXDRO5yfolFu58tzSWK3mHdELWb37q",
+                                "birthdate": "1234-05-06",
+                                "age": 790
+                            }
+                        },
+                        {
+                            "username": "12345",
+                            "email": "12345@12345",
+                            "password": "$2y$10$Uf4b.L2ctqjQWDviQSkspuJzeNh7sNtRHV2LOu8grokhWffySlNhO",
+                            "birthdate": "1234-05-06",
+                            "age": 790
+                        }
+                    ]
+                },
+                {
+                    "username": "a",
+                    "email": "a@a",
+                    "password": "$2y$10$nkS7vCYorm.fNTo730lx6e14pgoNXRDzX9euk6COJsWiWK8FIBqkq",
+                    "birthdate": "1111-11-11",
+                    "registration_age": 913
+                }
+            ]
         }
     ]
 }

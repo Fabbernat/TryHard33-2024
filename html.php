@@ -10,15 +10,11 @@ session_start();
 </head>
 <body>
 <?php
-include_once "inc/navbar.inc.php";
-
-$userProgress = getUserProgress($_SESSION['user_id']);
-
-?>
+include_once "inc/navbar.inc.php"; ?>
 <header class="yellow-font gray-background">
     <h1 class="yellow-font">HTML Tutorial</h1>
     <section class="html-css-nav">
-        <ul>
+        <ul class="left black-font">
             <li><a href="#introduction">Introduction</a></li>
             <li><a href="#basics">HTML Basics</a></li>
             <li><a href="#elements">HTML Elements</a></li>
@@ -27,8 +23,8 @@ $userProgress = getUserProgress($_SESSION['user_id']);
         </ul>
     </section>
 </header>
-<main class="lesson-container white_background left-align">
-    <section id="introduction" <?php if ($userProgress['html_introduction'] == 1) echo 'class="completed"'; ?>>
+<main class="lesson-container white left-align">
+    <section id="introduction">
         <div class="html-intro">
             <hr>
             <h2 class="darkcyan">Introduction to HTML</h2>
@@ -57,7 +53,7 @@ $userProgress = getUserProgress($_SESSION['user_id']);
         </div>
     </section>
 
-    <section id="basics" <?php if ($userProgress['html_basics'] == 1) echo 'class="completed"'; ?>>
+    <section id="basics" class="html-intro">
         <hr>
         <h2 class="darkcyan">HTML Basics</h2>
         <p>HTML consists of a series of elements that define the structure of a webpage.</p>
@@ -164,6 +160,6 @@ $userProgress = getUserProgress($_SESSION['user_id']);
     <a class="left btn" href="html.php">&#10094; Previous</a>
     <a class="right btn" href="css.php">Next &#10095;</a>
 </div>
-<?php include_once "inc/footer.inc.html"; ?>
+<?php include_once "inc/footer.inc.php"; ?>
 </body>
 </html>

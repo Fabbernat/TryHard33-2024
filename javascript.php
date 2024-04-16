@@ -15,7 +15,7 @@ include_once "inc/navbar.inc.php";?>
     <h1>Javascript tutorial</h1>
     <div class="html-css-nav">
 
-        <ul class="left">
+        <ul class="left  black-font">
             <li><a href="#introduction">Introduction</a></li>
             <li><a href="#variables">Variables and Data Types</a></li>
             <li><a href="#operators">Operators and Expressions</a></li>

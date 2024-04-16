@@ -1,12 +1,6 @@
 <?php
 session_start();
 
-// Check if the user is logged in
-if (!isset($_SESSION['username'])) {
-    header("Location: login.php");
-    exit();
-}
-
 // Check if the delete button is clicked
 if (isset($_POST['delete'])) {
     // Read the JSON file contents
@@ -36,6 +30,6 @@ if (isset($_POST['delete'])) {
     session_destroy();
 
     // Redirect the user to a confirmation page or any other appropriate page
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }

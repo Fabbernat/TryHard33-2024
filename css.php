@@ -14,7 +14,7 @@ include_once "inc/navbar.inc.php"; ?>
 <header class="yellow-font gray-background">
   <h1>CSS Tutorial</h1>
   <div class="html-css-nav">
-    <ul class="left">
+    <ul class="left  black-font">
       <li><a href="#introduction">Introduction to CSS</a></li>
       <li><a href="#examples">Interactive Examples</a></li>
       <li><a href="#challenges">Challenges</a></li>
@@ -71,7 +71,6 @@ include_once "inc/navbar.inc.php"; ?>
     <p>Visualize the CSS box model and its components (content, padding, border, margin) using this interactive
       demo. Adjust the size and spacing of the box to see how it affects the layout.</p>
     <em>Not implemented yet...</em>
-    <!-- TODO mf2 embed a box model demo here -->
     <img alt="A picture showing the css box model." class="display-block seventy-five-percent-width"
          src="img/box_model.png">
 
@@ -79,19 +78,16 @@ include_once "inc/navbar.inc.php"; ?>
     <p>Play around with Flexbox properties to create different layouts and arrangements of elements. Drag and drop
       elements to see how they respond to changes in flex container and flex item properties.</p>
     <em>Not implemented yet...</em>
-    <!-- TODO mf2 embed a Flexbox playground here -->
 
     <h3>4. CSS Grid Builder</h3>
     <p>Build custom grid layouts using CSS Grid Layout with this interactive tool. Specify the number of rows and
       columns, and drag elements into the grid to position them as desired.</p>
     <em>Not implemented yet...</em>
-    <!-- TODO mf2  embed a CSS Grid builder tool here -->
 
     <h3>5. Responsive Design Simulator</h3>
     <p>Test the responsiveness of your website by simulating different screen sizes and orientations. See how your
       layout adjusts to accommodate different devices.</p>
     <em>Not implemented yet...</em>
-    <!-- TODO mf2  embed a responsive design simulator here -->
 
     <p>These interactive examples provide a hands-on way to explore CSS concepts and techniques. Click on the links
       to start experimenting!</p>

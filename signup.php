@@ -13,8 +13,10 @@ $echo_errors = false;
 if (isset($_POST["signup"])) {
     $username = htmlspecialchars(trim($_POST["username"]));
     $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
-    $password = $_POST["password"];
+    $firstname = $_POST["firstname"];
+    $lastname = $_POST["lastname"];
     $birthdate = $_POST["birthdate"];
+    $password = $_POST["password"];
     $confirm_password = $_POST["confirm_password"];
 
     $birthdate_timestamp = strtotime($_POST["birthdate"]);
@@ -35,6 +37,16 @@ if (isset($_POST["signup"])) {
             $echo_errors = true;
             break;// No need to continue checking if username already exists
         }
+    }
+
+    if (!isset($_POST["firstname"]) || trim($_POST["firstname"]) === "") {
+        $errors[] = "The first name is required! Please fill it!";
+        $echo_errors = true;
+    }
+
+    if (!isset($_POST["lastname"]) || trim($_POST["lastname"]) === "") {
+        $errors[] = "The last name is required! Please fill it!";
+        $echo_errors = true;
     }
 
     if (!isset($_POST["password"]) || trim($_POST["password"]) === "" || !isset($_POST["confirm_password"]) || trim($_POST["confirm_password"]) === "") {
@@ -73,8 +85,7 @@ if (isset($_POST["signup"])) {
             "email" => $email,
             "password" => $hashed_password,
             "birthdate" => $birthdate,
-            "age" => $age
-            // Add other fields as needed
+            "registration_age" => $age
         ];
 
         // Add the new user to the array of accounts
