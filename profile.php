@@ -77,16 +77,26 @@ include_once "inc/navbar.inc.php";
                         class="checkmark"></span>PHP Database Support</label>
             <label class="custom-checkbox"><input name="interests" type="checkbox" value="python"><span
                         class="checkmark"></span>Python Programming</label>
-            <label for="submit"><input id="submit" type="submit" value="Save"></label>
+            <label for="submit"><input id="submit" type="submit" value="Save" onclick="saveInterests(event)"></label>
         </form>
         <script>
             function toggleCircle(checkbox) {
-                var circle = document.getElementById('circle');
+                const circle = document.getElementById('circle');
                 if (checkbox.checked) {
                     circle.classList.add('green-circle');
                 } else {
                     circle.classList.remove('green-circle');
                 }
+            }
+            function saveInterests(event) {
+                // Prevent the default form submission behavior
+                event.preventDefault();
+
+                // Get the form element
+                const form = document.getElementById('progressForm');
+
+                // Submit the form using AJAX or perform any other necessary actions
+                // Example: form.submit();
             }
         </script>
         <?php

@@ -4,12 +4,12 @@ include_once "inc/functions.inc.php";
 
 $accounts = load_users("json/admins.json"); // betöltjük a regisztrált felhasználók adatait, és eltároljuk őket a $fiokok változóban
 $errors = [];
+$already_logged_in = false;
 
 // Check if the admin is already logged in
 if (isset($_SESSION['admin_id'])) {
-    // Redirect to the admin panel
-    header("Location: admin_panel.php");
-    exit();
+    $already_logged_in = true;
+
 }
 ?>
 <!DOCTYPE html>
@@ -59,7 +59,7 @@ include_once "inc/navbar.inc.php";
                 isset($animal_name) && ($animal_name == "cat" || $animal_name == "kitten") &&
                 isset($password) && trim($password) !== "" && $password === "meowuwuka";
 
-            if ($everything_is_ok) {
+            if ($already_logged_in || $everything_is_ok) {
                 echo "<h2>Welcome admin!</h2>";
                 echo "<p>You have successfully entered the admin password.</p>";
 
@@ -85,15 +85,17 @@ include_once "inc/navbar.inc.php";
 
                 // Admin functionalities
                 echo "<h3>Admin Panel:</h3>";
-                echo "<form action='admin.php' method='post' class='form'>";
                 echo "Current session ID: <code class='lightgray-background'>" . session_id() . "</code><br><br>";
                 echo "<fieldset>";
-                echo "<legend>Admin Functions</legend>";
+                echo "<legend>People subscribed to the newsletter:</legend>";
+                $jsonContent = file_get_contents("json/subscribed_users.json");
+                // fill out only the usernames from this file
+                $subscribed_users = json_decode($jsonContent, true);
+                print_r($subscribed_users);
                 echo "</fieldset>";
-                echo "</form>";
 
-                // Handle admin registration and login
-                if (isset($_POST["admin_signup"])) {
+                // Handle admin registration and login probably don't need this stuff
+                /*if (isset($_POST["admin_signup"])) {
                     // Process registration logic
                     $username = htmlspecialchars(trim($_POST["username"]));
                     $password = $_POST["password"];
@@ -156,7 +158,7 @@ include_once "inc/navbar.inc.php";
                         $errors[] = "Login failed! Check if the username and password you've given are correct!";
                     }
                     $echo_errors = true;
-                }
+                }*/
             } else {
                 echo "<h2>Something went wrong =( =(</h2>";
                 echo "<p>Please try again.</p>";

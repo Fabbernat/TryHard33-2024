@@ -10,5 +10,9 @@
     {
         "rating": "1",
         "comment": "worst"
+    },
+    {
+        "rating": "5",
+        "comment": ""
     }
 ]

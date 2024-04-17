@@ -17,6 +17,47 @@ if (isset($_POST['trackProgress']) && $_POST['trackProgress'] === 'on') {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+        /* Add your CSS styles here */
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            margin-bottom: 20px;
+        }
+
+        .answers {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .answer {
+            margin-bottom: 10px;
+        }
+
+        .answer input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        .answer label {
+            cursor: pointer;
+        }
+
+        .answer label:hover {
+            background-color: #f5f5f5;
+        }
+
+        .feedback {
+            font-weight: bold;
+        }
+    </style>
     <meta charset="UTF-8">
     <title>HTML Tutorial</title>
     <link rel="stylesheet" href="css/style.css">
@@ -164,9 +205,63 @@ include_once "inc/navbar.inc.php";
         <p>HTML attributes provide additional information about HTML elements.</p>
     </section>
 </main>
+<form class="container" action="save_answers.php" method="post">
+    <h1>HTML Tutorial Quiz</h1>
+
+    <div class="question">
+        <p>What does HTML stand for?</p>
+        <ul class="answers">
+            <li class="answer">
+                <input type="radio" id="html-a" name="html" value="A">
+                <label for="html-a">A) HyperText Markup Language</label>
+            </li>
+            <li class="answer">
+                <input type="radio" id="html-b" name="html" value="B">
+                <label for="html-b">B) Hyperlink Textual Markup Language</label>
+            </li>
+            <li class="answer">
+                <input type="radio" id="html-c" name="html" value="C">
+                <label for="html-c">C) Hyperlink and Text Markup Language</label>
+            </li>
+            <li class="answer">
+                <input type="radio" id="html-d" name="html" value="D">
+                <label for="html-d">D) High-Level Markup Language</label>
+            </li>
+        </ul>
+        <p class="feedback" id="feedback-1" style="display: none;"><strong>Correct Answer:</strong> A) HyperText Markup Language</p>
+        <button type="button" onclick="showCorrectAnswer('feedback-1')">Show Correct Answer!</button>
+    </div>
+
+    <div class="question">
+        <p>Why is learning HTML essential for web development?</p>
+        <ul class="answers">
+            <!-- Add more questions and answers here -->
+            <li class="answer">
+                <input type="radio" id="html-essential-a" name="html-essential" value="A">
+                <label for="html-essential-a">A) It's not essential</label>
+            </li>
+            <li class="answer">
+                <input type="radio" id="html-essential-b" name="html-essential" value="B">
+                <label for="html-essential-b">B) It serves as the foundation for creating web pages</label>
+            </li>
+            <li class="answer">
+                <input type="radio" id="html-essential-c" name="html-essential" value="C">
+                <label for="html-essential-c">C) It's only necessary for designers</label>
+            </li>
+            <li class="answer">
+                <input type="radio" id="html-essential-d" name="html-essential" value="D">
+                <label for="html-essential-d">D) It's required for database management</label>
+            </li>
+        </ul>
+        <p class="feedback" id="feedback-2" style="display: none;"><strong>Correct Answer:</strong> B) It serves as the foundation for creating web pages</p>
+        <button type="button" onclick="showCorrectAnswer('feedback-2')">Show Correct Answer!</button>
+
+    </div>
+</form>
+
 <div>
     <br>
-    <form action="html.php" method="post" class="yellow-font gray-background progress-form">
+    <form action="html.php" method="post" class="gray-background progress-form">
         <h1>Track your progress!</h1>
         <!-- Use a span to create a circle -->
         <label for="trackProgress">
@@ -182,6 +277,7 @@ include_once "inc/navbar.inc.php";
         ?>
     </form>
 </div>
+
 <!-- JavaScript to toggle the circle -->
 <script>
     function toggleCircle(checkbox) {
@@ -203,13 +299,21 @@ include_once "inc/navbar.inc.php";
         // Submit the form using AJAX or perform any other necessary actions
         // Example: form.submit();
     }
+
+    function showCorrectAnswer(id) {
+        var feedback = document.getElementById(id);
+        feedback.style.display = 'block';
+    }
 </script>
+
 <div>
     <a class="left btn" href="index.php">&#10094;&#10094; Home</a>
     <br>
     <a class="left btn" href="html.php">&#10094; Previous</a>
     <a class="right btn" href="css.php">Next &#10095;</a>
 </div>
+
 <?php include_once "inc/footer.inc.html"; ?>
+
 </body>
 </html>
