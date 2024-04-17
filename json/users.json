@@ -37,13 +37,6 @@
                     "password": "$2y$10$83SNJmZ3nIkzgMClvl4jXefM2o\/X6PooJfVAaasz0g9.V76Aib3cy",
                     "birthdate": "1111-11-11",
                     "age": 913
-                },
-                {
-                    "username": "farkaspatrik",
-                    "email": "f@p",
-                    "password": "$2y$10$\/YknamD7dktz5u5A19ydwuCxKVgL\/vQj0VVVZUb1Lj7nBoK4zTYi2",
-                    "birthdate": "2003-01-01",
-                    "age": 21
                 }
             ],
             "0": {

@@ -509,7 +509,7 @@ footer section ul li {
 .interests label {
     display: block;
     margin-bottom: 10px;
-    font-size: 16px;
+    font-size: 32px;
 }
 
 .interests input[type="checkbox"] + label:before {
@@ -875,7 +875,7 @@ input[type="checkbox"] {
 
 /* Custom checkbox */
 .checkmark {
-    position: absolute;
+    margin-right: 20px;
     top: 0;
     left: 0;
     height: 25px;
@@ -888,7 +888,6 @@ input[type="checkbox"] {
 .checkmark:after {
     content: "";
     position: absolute;
-    display: none;
 }
 
 /* Show the checkmark when the checkbox is checked */

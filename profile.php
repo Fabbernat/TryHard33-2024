@@ -52,8 +52,12 @@ include_once "inc/navbar.inc.php";
         }
         ?>
         
-        <form class="choose-your-interests form" action="inc/process_interests.php">Choose Your Interests (only
+        <form class="choose-your-interests form" action="inc/process_interests.php">
+            <h1 class="bigger-letters">
+
+            Choose Your Interests (only
             works when logged in):
+            </h1>
             <label class="custom-checkbox"><input name="interests" type="checkbox" value="frontend"><span
                         class="checkmark"></span>Frontend Development</label>
             <label class="custom-checkbox"><input name="interests" type="checkbox" value="backend"><span
@@ -75,6 +79,16 @@ include_once "inc/navbar.inc.php";
                         class="checkmark"></span>Python Programming</label>
             <label for="submit"><input id="submit" type="submit" value="Save"></label>
         </form>
+        <script>
+            function toggleCircle(checkbox) {
+                var circle = document.getElementById('circle');
+                if (checkbox.checked) {
+                    circle.classList.add('green-circle');
+                } else {
+                    circle.classList.remove('green-circle');
+                }
+            }
+        </script>
         <?php
         $uzenet = "";                    // változó az űrlap alatt megjelenő üzenetnek
 
