@@ -33,6 +33,7 @@ include_once "inc/navbar.inc.php";
             <li><a href="#basics">HTML Basics</a></li>
             <li><a href="#elements">HTML Elements</a></li>
             <li><a href="#attributes">HTML Attributes</a></li>
+            <!-- more navigation links for other sections -->
         </ul>
     </section>
 </header>
