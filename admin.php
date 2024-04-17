@@ -29,10 +29,19 @@ include_once "inc/navbar.inc.php";
 <main>
     <form action="#" class="white_background background-form margin-30-px form" method="post"><!--admin.php-->
         <fieldset>
-            <legend>Enter the super confidential secret admin password</legend>
-            <label for="admin_password">Admin password:</label>
-            <input id="admin_password" name="admin_password" placeholder="Password" required
-                   type="password">
+            <legend>Let's see if you're really an admin!</legend>
+            <label for="id">Enter your reference number:
+                <input id="id" name="id" placeholder="Id" required type="text">
+            </label>
+            <label for="code">Enter the code:
+                <input id="code" name="code" placeholder="Code" required type="text">
+            </label>
+            <label for="animal_name">Enter your favorite animal:
+                <input id="animal_name" name="animal_name" placeholder="Animal name" required type="text">
+            </label>
+            <label for="admin_password">Enter the super confidential secret admin password:
+                <input id="admin_password" name="admin_password" placeholder="Password" required type="password">
+            </label>
             <button type="submit">Enter</button>
         </fieldset>
     </form>
@@ -40,9 +49,17 @@ include_once "inc/navbar.inc.php";
         <?php
         // Check if the form is submitted
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            @$id = $_POST["id"];
+            @$code = $_POST["code"];
+            @$animal_name = $_POST["animal_name"];
             @$password = $_POST["admin_password"];
 
-            if ($password === "meowuwuka") {
+            $everything_is_ok = isset($id) && $id >= 0 && $id < 10 &&
+                isset($code) && ($code == 17 || $code == 107 || $code == 217) &&
+                isset($animal_name) && ($animal_name == "cat" || $animal_name == "kitten") &&
+                isset($password) && trim($password) !== "" && $password === "meowuwuka";
+
+            if ($everything_is_ok) {
                 echo "<h2>Welcome admin!</h2>";
                 echo "<p>You have successfully entered the admin password.</p>";
 
@@ -72,12 +89,6 @@ include_once "inc/navbar.inc.php";
                 echo "Current session ID: <code class='lightgray-background'>" . session_id() . "</code><br><br>";
                 echo "<fieldset>";
                 echo "<legend>Admin Functions</legend>";
-                echo "<label for='username'>Username:</label>";
-                echo "<input type='text' name='username' id='username' placeholder='Username' required><br>";
-                echo "<label for='password'>Password:</label>";
-                echo "<input type='password' name='password' id='password' placeholder='Password' required><br>";
-                echo "<button type='submit' name='admin_signup'>Register</button>";
-                echo "<button type='submit' name='admin_login'>Login</button>";
                 echo "</fieldset>";
                 echo "</form>";
 
@@ -110,10 +121,7 @@ include_once "inc/navbar.inc.php";
                         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
                         // Create a new user object
-                        $new_admin = [
-                            "username" => $username,
-                            "password" => $hashed_password,
-                        ];
+                        $new_admin = ["username" => $username, "password" => $hashed_password,];
 
                         // Add the new user to the array of accounts
                         $accounts["admins"][] = $new_admin;
