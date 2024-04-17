@@ -1,5 +1,20 @@
 <?php
 session_start();
+
+$html_completed = false;
+$css_completed = false;
+$javascript_completed = false;
+$php_completed = false;
+$python_completed = false;
+
+// Check if the checkbox is checked
+if(isset($_POST['trackProgress']) && $_POST['trackProgress'] === 'on') {
+    // Set the progress for HTML to 1 in the session
+    $_SESSION['progress']['html'] = 1;
+} else {
+    // If the checkbox is unchecked, remove the progress for HTML from the session
+    unset($_SESSION['progress']['html']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,6 +76,16 @@ $userProgress = @getUserProgress($_SESSION['user_id']);
             </div>
         </div>
     </section>
+    <section class="white_background two-px-border border-radius-px">
+        <h1>Track Progress</h1>
+        <label for="trackProgress">I have learned all lessons:</label>
+        <input type="checkbox" id="trackProgress" name="trackProgress">
+        <br>
+        <br>
+        <button type="reset" name="reset_progress" class="bigger-letters">Reset progress <br><span class="smaller-letters">(Warning! This action cannot be undone!</span> </button>
+
+    </section>
+
 </main>
 <?php include_once "inc/footer.inc.html"; ?>
 </body>

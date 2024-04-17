@@ -1,5 +1,18 @@
 <?php
 session_start();
+$learned = false;
+if (isset($_POST["save_input"])) {
+    $learned = true;
+}
+
+// Check if the checkbox is checked
+if (isset($_POST['trackProgress']) && $_POST['trackProgress'] === 'on') {
+    // Set the progress for HTML to 1 in the session
+    $_SESSION['progress']['html'] = 1;
+} else {
+    // If the checkbox is unchecked, remove the progress for HTML from the session
+    unset($_SESSION['progress']['html']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +23,8 @@ session_start();
 </head>
 <body>
 <?php
-include_once "inc/navbar.inc.php"; ?>
+include_once "inc/navbar.inc.php";
+?>
 <header class="yellow-font gray-background">
     <h1 class="yellow-font">HTML Tutorial</h1>
     <section class="html-css-nav">
@@ -19,11 +33,10 @@ include_once "inc/navbar.inc.php"; ?>
             <li><a href="#basics">HTML Basics</a></li>
             <li><a href="#elements">HTML Elements</a></li>
             <li><a href="#attributes">HTML Attributes</a></li>
-            <!-- more navigation links for other sections -->
         </ul>
     </section>
 </header>
-<main class="lesson-container white left-align">
+<main class="lesson-container white_background left-align">
     <section id="introduction">
         <div class="html-intro">
             <hr>
@@ -57,7 +70,6 @@ include_once "inc/navbar.inc.php"; ?>
         <hr>
         <h2 class="darkcyan">HTML Basics</h2>
         <p>HTML consists of a series of elements that define the structure of a webpage.</p>
-        <!-- more content for HTML basics -->
     </section>
 
     <section id="elements" class="html-intro">
@@ -149,17 +161,54 @@ include_once "inc/navbar.inc.php"; ?>
         <hr>
         <h2 class="darkcyan">HTML Attributes</h2>
         <p>HTML attributes provide additional information about HTML elements.</p>
-        <!-- more content for HTML attributes -->
     </section>
-
-    <!-- more sections for other topics -->
 </main>
+<div>
+    <br>
+    <form action="html.php" method="post" class="yellow-font gray-background progress-form">
+        <h1>Track your progress!</h1>
+        <!-- Use a span to create a circle -->
+        <label for="trackProgress">
+            <input type="checkbox" id="trackProgress" name="trackProgress" onclick="toggleCircle(this)">
+            <span class="checkmark"></span>
+            I have learned this lesson
+        </label>
+        <button type="submit" name="save_progress" onclick="saveProgress(event)">Save</button>
+        <?php
+        if (isset($_POST["save_progress"])) {
+            $html_completed = true;
+        }
+        ?>
+    </form>
+</div>
+<!-- JavaScript to toggle the circle -->
+<script>
+    function toggleCircle(checkbox) {
+        var circle = document.getElementById('circle');
+        if (checkbox.checked) {
+            circle.classList.add('green-circle');
+        } else {
+            circle.classList.remove('green-circle');
+        }
+    }
+
+    function saveProgress(event) {
+        // Prevent the default form submission behavior
+        event.preventDefault();
+
+        // Get the form element
+        const form = document.getElementById('progressForm');
+
+        // Submit the form using AJAX or perform any other necessary actions
+        // Example: form.submit();
+    }
+</script>
 <div>
     <a class="left btn" href="index.php">&#10094;&#10094; Home</a>
     <br>
     <a class="left btn" href="html.php">&#10094; Previous</a>
     <a class="right btn" href="css.php">Next &#10095;</a>
 </div>
-<?php include_once "inc/footer.inc.php"; ?>
+<?php include_once "inc/footer.inc.html"; ?>
 </body>
 </html>

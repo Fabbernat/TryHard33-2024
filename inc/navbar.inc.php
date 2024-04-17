@@ -37,7 +37,13 @@ echo ($current_file == 'admin.php') ? ' <a class="nav current_page" href="admin.
            href="logout.php"><p class="yellow">Log out</p></a>
         <a class="nav <?php echo ($current_file == 'profile.php') ? 'current_page' : ''; ?>"
            href="profile.php">
-            <img src="../img/profile_icon.jpg" alt="profile picture" height="50px">
+            <?php
+            if (isset($_SESSION['profile_picture'])) {
+            echo "<img src='" . $_SESSION['profile_picture'] . "' alt='Your Current Profile Picture' height='50px'>";
+            } else {
+            echo "<img alt=\"Default profile picture\" src=\"img/profile_icon.jpg\" class=\"code border-radius-px\" height='50px'>";
+            }
+            ?>
              <p class="yellow">Profile</p>
         </a>
 

@@ -19,8 +19,8 @@ include_once "inc/navbar.inc.php";
         <?php
 
         // Check if the user is logged in
-        if (isset($_SESSION["user"]["username"])) {
-            echo "<h1>Welcome " . $_SESSION["user"]["username"] . "! </h1>
+        if (isset($_SESSION["user_id"]) || isset($_SESSION["user"]["username"])) {
+            echo "<h1>Welcome " . $_SESSION["user_id"] . "! </h1>
 ";
         } else {
            header("Location:index.php");
@@ -29,9 +29,10 @@ include_once "inc/navbar.inc.php";
     </header>
     <section class="interests white_background background-form-but-wider-for-profile-section left">
         <h3>Change profile picture</h3>
-        <!-- Update the form action to point to the correct file handling logic -->
+        <!-- File uploading -->
         <form enctype="multipart/form-data" action="inc/upload.inc.php" method="POST">
-            <input type="file" name="profile_picture" accept="image/*">
+            <input type="file" name="profile_picture" accept="img/*">
+            <input type="hidden" name="MAX_FILE_SIZE" value="102400">
             <input type="submit" value="Upload Profile Picture">
         </form>
         <h3>Profile Information</h3>
