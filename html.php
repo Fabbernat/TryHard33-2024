@@ -28,14 +28,8 @@ if (isset($_POST['trackProgress']) && $_POST['trackProgress'] === 'on') {
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
-        .question {
-            margin-bottom: 20px;
-        }
-
         .answers {
             list-style-type: none;
-            margin: 0;
-            padding: 0;
         }
 
         .answer {
@@ -74,7 +68,9 @@ include_once "inc/navbar.inc.php";
             <li><a href="#basics">HTML Basics</a></li>
             <li><a href="#elements">HTML Elements</a></li>
             <li><a href="#attributes">HTML Attributes</a></li>
-            <!-- more navigation links for other sections -->
+            <li><a href="#quiz">Quiz</a></li>
+            <li><a href="#progress_tracker">Progress tracker</a></li>
+            <li><a href="#contact">Contact Us</a></li>
         </ul>
     </section>
 </header>
@@ -205,11 +201,11 @@ include_once "inc/navbar.inc.php";
         <p>HTML attributes provide additional information about HTML elements.</p>
     </section>
 </main>
-<form class="container" action="save_answers.php" method="post">
+<div class="container" id="quiz">
     <h1>HTML Tutorial Quiz</h1>
-
-    <div class="question">
-        <p>What does HTML stand for?</p>
+    <hr>
+    <div class="left">
+        <h2 style="text-align: center">What does HTML stand for?</h2>
         <ul class="answers">
             <li class="answer">
                 <input type="radio" id="html-a" name="html" value="A">
@@ -228,12 +224,13 @@ include_once "inc/navbar.inc.php";
                 <label for="html-d">D) High-Level Markup Language</label>
             </li>
         </ul>
-        <p class="feedback" id="feedback-1" style="display: none;"><strong>Correct Answer:</strong> A) HyperText Markup Language</p>
-        <button type="button" onclick="showCorrectAnswer('feedback-1')">Show Correct Answer!</button>
+        <p class="feedback" id="feedback-1" style="display: none;"><strong>Correct Answer:</strong> A) HyperText Markup
+            Language</p>
+        <button type="button" id="feedback-1-button" onclick="showCorrectAnswer('feedback-1')">Show Correct Answer!</button>
     </div>
 
-    <div class="question">
-        <p>Why is learning HTML essential for web development?</p>
+    <div class="left">
+        <h2 style="text-align: center">Why is learning HTML essential for web development?</h2>
         <ul class="answers">
             <!-- Add more questions and answers here -->
             <li class="answer">
@@ -253,15 +250,72 @@ include_once "inc/navbar.inc.php";
                 <label for="html-essential-d">D) It's required for database management</label>
             </li>
         </ul>
-        <p class="feedback" id="feedback-2" style="display: none;"><strong>Correct Answer:</strong> B) It serves as the foundation for creating web pages</p>
-        <button type="button" onclick="showCorrectAnswer('feedback-2')">Show Correct Answer!</button>
+        <p class="feedback" id="feedback-2" style="display: none;"><strong>Correct Answer:</strong> B) It serves as the
+            foundation for creating web pages</p>
+        <button type="button" id="feedback-2-button" onclick="showCorrectAnswer('feedback-2')">Show Correct Answer!</button>
 
     </div>
-</form>
+    <div class="left">
+        <h2 style="text-align: center">What is the correct output of the following HTML code?</h2>
+        <pre class="code left">
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;Example&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;h1&gt;Hello, World!&lt;/h1&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+    </pre>
+        <ul class="answers">
+            <li class="answer">
+                <input type="radio" id="html-output-a" name="html-output" value="A">
+                <label for="html-output-a">A) It will display "Example"</label>
+            </li>
+            <li class="answer">
+                <input type="radio" id="html-output-b" name="html-output" value="B">
+                <label for="html-output-b">B) It will display "Hello, World!"</label>
+            </li>
+            <li class="answer">
+                <input type="radio" id="html-output-c" name="html-output" value="C">
+                <label for="html-output-c">C) It will display both "Example" and "Hello, World!"</label>
+            </li>
+            <li class="answer">
+                <input type="radio" id="html-output-d" name="html-output" value="D">
+                <label for="html-output-d">D) It will display nothing</label>
+            </li>
+        </ul>
+        <p class="feedback" id="feedback-3" style="display: none;"><strong>Correct Answer:</strong> B) It will display "Hello, World!"</p>
+        <button type="button" id="feedback-3-button" onclick="showCorrectAnswer('feedback-3')">Show Correct Answer!</button>
+    </div>
+    <div class="left">
+        <h2 style="text-align: center">What is HTML?</h2>
+        <ul class="answers">
+            <li class="answer">
+                <input type="radio" id="html-definition-a" name="html-definition" value="A">
+                <label for="html-definition-a">A) programming language</label>
+            </li>
+            <li class="answer">
+                <input type="radio" id="html-definition-b" name="html-definition" value="B">
+                <label for="html-definition-b">B) A framework</label>
+            </li>
+            <li class="answer">
+                <input type="radio" id="html-definition-c" name="html-definition" value="C">
+                <label for="html-definition-c">C) An internet protocol</label>
+            </li>
+            <li class="answer">
+                <input type="radio" id="html-definition-d" name="html-definition" value="D">
+                <label for="html-definition-d">D) A markup language</label>
+            </li>
+        </ul>
+        <p class="feedback" id="feedback-4" style="display: none;"><strong>Correct Answer:</strong> D) A markup language</p>
+        <button type="button" id="feedback-4-button" onclick="showCorrectAnswer('feedback-4')">Show Correct Answer!</button>
+    </div>
+</div>
 
-<div>
+<div id="progress_tracker">
     <br>
-    <form action="html.php" method="post" class="gray-background progress-form">
+    <form action="html.php" method="post" class="progress-form">
         <h1>Track your progress!</h1>
         <!-- Use a span to create a circle -->
         <label for="trackProgress">
@@ -302,7 +356,19 @@ include_once "inc/navbar.inc.php";
 
     function showCorrectAnswer(id) {
         var feedback = document.getElementById(id);
-        feedback.style.display = 'block';
+        var button = document.getElementById(id + '-button');
+        if (feedback.style.display === 'block') {
+            feedback.style.display = 'none';
+            button.textContent = 'Show Correct Answer!';
+        } else {
+            feedback.style.display = 'block';
+            button.textContent = 'Hide Correct Answer!';
+        }
+    }
+
+    function hideCorrectAnswer(id) {
+        var feedback = document.getElementById(id);
+        feedback.style.display = 'none';
     }
 </script>
 

@@ -138,6 +138,10 @@ aside {
     margin: 0 auto; /* Center the content */
 }
 
+.container input{
+    width: unset;
+}
+
 /* Header Styles */
 header {
     background-color: #4CAF50;
