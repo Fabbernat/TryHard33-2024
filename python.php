@@ -377,12 +377,16 @@ print(message)  # Output: Hello, Alice!
     </section>
 </main>
 
-<div>
+<div class="two-px-border" style="border-radius: 20px; width: 30%; margin: 0 auto">
+    <br>
+    <a  class="btn"  href="#">↑ Jump to the top</a>
+    <br>
+    <br>
     <a class="left btn" href="index.php">&#10094;&#10094; Home</a>
     <br>
     <a class="left btn" href="php.php">&#10094; Previous</a>
-    <a class="right btn" href="python.php" aria-disabled="true">Next &#10095;</a>
 </div>
+
 <?php
 include_once "inc/footer.inc.html";
 ?>

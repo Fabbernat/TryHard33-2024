@@ -17,6 +17,7 @@ if (isset($_POST['trackProgress']) && $_POST['trackProgress'] === 'on') {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <title>HTML Tutorial</title>
     <style>
         /* Add your CSS styles here */
         .container {
@@ -52,8 +53,45 @@ if (isset($_POST['trackProgress']) && $_POST['trackProgress'] === 'on') {
             font-weight: bold;
         }
     </style>
+    <script>
+        function toggleCircle(checkbox) {
+            var circle = document.getElementById('circle');
+            if (checkbox.checked) {
+                circle.classList.add('green-circle');
+            } else {
+                circle.classList.remove('green-circle');
+            }
+        }
+
+        function saveProgress(event) {
+            // Prevent the default form submission behavior
+            event.preventDefault();
+
+            // Get the form element
+            const form = document.getElementById('progressForm');
+
+            // Submit the form using AJAX or perform any other necessary actions
+            // Example: form.submit();
+        }
+
+        function showCorrectAnswer(id) {
+            var feedback = document.getElementById(id);
+            var button = document.getElementById(id + '-button');
+            if (feedback.style.display === 'block') {
+                feedback.style.display = 'none';
+                button.textContent = 'Show Correct Answer!';
+            } else {
+                feedback.style.display = 'block';
+                button.textContent = 'Hide Correct Answer!';
+            }
+        }
+
+        function hideCorrectAnswer(id) {
+            var feedback = document.getElementById(id);
+            feedback.style.display = 'none';
+        }
+    </script>
     <meta charset="UTF-8">
-    <title>HTML Tutorial</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -201,6 +239,7 @@ include_once "inc/navbar.inc.php";
         <p>HTML attributes provide additional information about HTML elements.</p>
     </section>
 </main>
+
 <div class="container" id="quiz">
     <h1>HTML Tutorial Quiz</h1>
     <hr>
@@ -224,9 +263,9 @@ include_once "inc/navbar.inc.php";
                 <label for="html-d">D) High-Level Markup Language</label>
             </li>
         </ul>
+        <button type="button" id="feedback-1-button" onclick="showCorrectAnswer('feedback-1')">Show Correct Answer!</button>
         <p class="feedback" id="feedback-1" style="display: none;"><strong>Correct Answer:</strong> A) HyperText Markup
             Language</p>
-        <button type="button" id="feedback-1-button" onclick="showCorrectAnswer('feedback-1')">Show Correct Answer!</button>
     </div>
 
     <div class="left">
@@ -250,9 +289,9 @@ include_once "inc/navbar.inc.php";
                 <label for="html-essential-d">D) It's required for database management</label>
             </li>
         </ul>
+        <button type="button" id="feedback-2-button" onclick="showCorrectAnswer('feedback-2')">Show Correct Answer!</button>
         <p class="feedback" id="feedback-2" style="display: none;"><strong>Correct Answer:</strong> B) It serves as the
             foundation for creating web pages</p>
-        <button type="button" id="feedback-2-button" onclick="showCorrectAnswer('feedback-2')">Show Correct Answer!</button>
 
     </div>
     <div class="left">
@@ -285,8 +324,8 @@ include_once "inc/navbar.inc.php";
                 <label for="html-output-d">D) It will display nothing</label>
             </li>
         </ul>
-        <p class="feedback" id="feedback-3" style="display: none;"><strong>Correct Answer:</strong> B) It will display "Hello, World!"</p>
         <button type="button" id="feedback-3-button" onclick="showCorrectAnswer('feedback-3')">Show Correct Answer!</button>
+        <p class="feedback" id="feedback-3" style="display: none;"><strong>Correct Answer:</strong> B) It will display "Hello, World!"</p>
     </div>
     <div class="left">
         <h2 style="text-align: center">What is HTML?</h2>
@@ -308,8 +347,8 @@ include_once "inc/navbar.inc.php";
                 <label for="html-definition-d">D) A markup language</label>
             </li>
         </ul>
-        <p class="feedback" id="feedback-4" style="display: none;"><strong>Correct Answer:</strong> D) A markup language</p>
         <button type="button" id="feedback-4-button" onclick="showCorrectAnswer('feedback-4')">Show Correct Answer!</button>
+        <p class="feedback" id="feedback-4" style="display: none;"><strong>Correct Answer:</strong> D) A markup language</p>
     </div>
 </div>
 
@@ -332,50 +371,13 @@ include_once "inc/navbar.inc.php";
     </form>
 </div>
 
-<!-- JavaScript to toggle the circle -->
-<script>
-    function toggleCircle(checkbox) {
-        var circle = document.getElementById('circle');
-        if (checkbox.checked) {
-            circle.classList.add('green-circle');
-        } else {
-            circle.classList.remove('green-circle');
-        }
-    }
-
-    function saveProgress(event) {
-        // Prevent the default form submission behavior
-        event.preventDefault();
-
-        // Get the form element
-        const form = document.getElementById('progressForm');
-
-        // Submit the form using AJAX or perform any other necessary actions
-        // Example: form.submit();
-    }
-
-    function showCorrectAnswer(id) {
-        var feedback = document.getElementById(id);
-        var button = document.getElementById(id + '-button');
-        if (feedback.style.display === 'block') {
-            feedback.style.display = 'none';
-            button.textContent = 'Show Correct Answer!';
-        } else {
-            feedback.style.display = 'block';
-            button.textContent = 'Hide Correct Answer!';
-        }
-    }
-
-    function hideCorrectAnswer(id) {
-        var feedback = document.getElementById(id);
-        feedback.style.display = 'none';
-    }
-</script>
-
-<div>
+<div class="two-px-border" style="border-radius: 20px; width: 30%; margin: 0 auto">
+    <br>
+    <a  class="btn"  href="#">↑ Jump to the top</a>
+    <br>
+    <br>
     <a class="left btn" href="index.php">&#10094;&#10094; Home</a>
     <br>
-    <a class="left btn" href="html.php">&#10094; Previous</a>
     <a class="right btn" href="css.php">Next &#10095;</a>
 </div>
 
