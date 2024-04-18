@@ -385,6 +385,7 @@ print(message)  # Output: Hello, Alice!
     <a class="left btn" href="index.php">&#10094;&#10094; Home</a>
     <br>
     <a class="left btn" href="php.php">&#10094; Previous</a>
+    <a class="right btn" href="html.php">Restart Course &#10095;</a>
 </div>
 
 <?php

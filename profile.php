@@ -6,7 +6,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> TryHard - Profile</title>
+    <title> TryHard - Profile and Career</title>
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -15,7 +15,7 @@ include_once "inc/navbar.inc.php";
 ?>
 <main>
     <header>
-        <h1 class="signup-and-login-caption">Profile</h1>
+        <h1 class="signup-and-login-caption">Profile and Career</h1>
         <?php
 
         // Check if the user is logged in
@@ -23,10 +23,28 @@ include_once "inc/navbar.inc.php";
             echo "<h1>Welcome " . $_SESSION["user_id"] . "! </h1>
 ";
         } else {
-           header("Location:index.php");
+            header("Location:index.php");
         }
         ?>
     </header>
+    <section class="background-form-but-wider-for-profile-section greendiv display-block">
+        <form action="inc/subscribe.inc.php" method="post">
+            <h1>Subscribe for our newsletter!</h1>
+            <label for="newsletter_email">Email address:
+                <input id="newsletter_email" name="newsletter_email" placeholder="Email address" required type="email">
+            </label>
+            <input type="submit" value="Send">
+        </form>
+    </section>
+    <section class="background-form-but-wider-for-profile-section greendiv" style="padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-weight: bold;">
+        <h1 style="color: #ffff99; font-size: 48px; text-align: center; text-transform: uppercase; font-weight: bold;">Exciting Career Opportunity</h1>
+        <h2 style="font-size: 36px; text-align: center;">Join the TryHard33 Team, become an Admin Today!</h2>
+        <p style="color: #777; font-size: 24px; text-align: center;">Unlock limitless possibilities and shape the future with us.</p>
+        <div style="text-align: center; margin-top: 20px;">
+            <a href="admin.php" style="background-color: #ff5722; color: #fff; padding: 15px 40px 15px;margin-bottom: 40px; border-radius: 10px; text-decoration: none; font-size: 36px; font-weight: bold;">Apply Now</a>
+        </div>
+    </section>
+
     <section class="interests white_background background-form-but-wider-for-profile-section left">
         <h3>Change profile picture</h3>
         <!-- File uploading -->
@@ -38,7 +56,7 @@ include_once "inc/navbar.inc.php";
         <h3>Profile Information</h3>
         <p>Username: <?php echo @$_SESSION["username"] == "" ? "undefined" : @$_SESSION["username"] ?></p>
         <p>Email: <?php echo @$_SESSION["email"] == "" ? "undefined" : @$_SESSION["email"] ?></p>
-        <p>Birthdate: <?php echo @$_SESSION["birthdate"]  == "" ? "undefined" : @$_SESSION["birthdate"] ?></p>
+        <p>Birthdate: <?php echo @$_SESSION["birthdate"] == "" ? "undefined" : @$_SESSION["birthdate"] ?></p>
         <p>Interests: <?php echo @$_SESSION["interests"] == "" ? "undefined" : @$_SESSION["interests"] ?></p>
 
         <!-- Show current profile picture -->
@@ -51,12 +69,12 @@ include_once "inc/navbar.inc.php";
             echo '<img alt="Default profile picture" src="img/profile_icon.jpg" class="code border-radius-px">';
         }
         ?>
-        
+
         <form class="choose-your-interests form" action="inc/process_interests.php">
             <h1 class="bigger-letters">
 
-            Choose Your Interests (only
-            works when logged in):
+                Choose Your Interests (only
+                works when logged in):
             </h1>
             <label class="custom-checkbox"><input name="interests" type="checkbox" value="frontend"><span
                         class="checkmark"></span>Frontend Development</label>
@@ -88,6 +106,7 @@ include_once "inc/navbar.inc.php";
                     circle.classList.remove('green-circle');
                 }
             }
+
             function saveInterests(event) {
                 // Prevent the default form submission behavior
                 event.preventDefault();
@@ -111,15 +130,6 @@ include_once "inc/navbar.inc.php";
         }
         ?>
         <?php echo "<p>" . $uzenet . "</p>"; ?>
-    </section>
-    <section class="background-form-but-wider-for-profile-section greendiv display-block">
-        <form action="inc/subscribe.inc.php" method="post">
-        <h1>Subscribe for our newsletter!</h1>
-        <label for="newsletter_email">Email address:
-            <input id="newsletter_email" name="newsletter_email" placeholder="Email address" required type="email">
-        </label>
-        <input type="submit" value="Send">
-        </form>
     </section>
     <section class="background-form-but-wider-for-profile-section white_background">
         <h3>Delete Your Data</h3>
