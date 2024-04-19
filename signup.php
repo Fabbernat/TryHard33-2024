@@ -86,11 +86,12 @@ if (isset($_POST["signup"])) {
             "password" => $hashed_password,
             "birthdate" => $birthdate,
             "registration_age" => $age,
-            "solved_tasks" => []
+            "solved_tasks" => [],
+            "subscribed" => false
         ];
 
         // Add the new user to the array of accounts
-        $accounts["users"][] = $new_user;
+        $accounts[] = $new_user;
 
         // Save the updated array of accounts to the JSON file
         save_users("json/users.json", $accounts);
