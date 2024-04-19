@@ -87,8 +87,8 @@ include_once "inc/navbar.inc.php";
                 // Admin functionalities
                 echo "<h3>Admin Panel:</h3>";
                 echo "Current session ID: <code class='lightgray-background'>" . session_id() . "</code><br><br>";
-                echo "<fieldset>";
-                echo "<legend>People subscribed to the newsletter:</legend>";
+                echo "<h1>People subscribed to the newsletter:</h1>";
+                echo "<fieldset class='code'>";
                 $jsonContent = file_get_contents("json/subscribed_users.json");
                 // fill out only the usernames from this file
                 $subscribed_users = json_decode($jsonContent, true);
