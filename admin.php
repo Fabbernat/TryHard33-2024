@@ -30,7 +30,7 @@ include_once "inc/navbar.inc.php";
     <form action="#" class="white_background background-form margin-30-px form" method="post"><!--admin.php-->
         <fieldset>
             <legend>Let's see if you're really an admin!</legend>
-            <p style="font-size: 16px; margin-top: 0;"> If you want to become one, contact us via the links at the bottom of the page.</p>
+            <p style="font-size: 16px; margin-top: 0;"> If you want to become one, contact us through the links at the bottom of the page.</p>
             <label for="id">Enter your reference number:
                 <input id="id" name="id" placeholder="Id" required type="text">
             </label>

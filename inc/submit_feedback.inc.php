@@ -17,16 +17,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $feedbacks[] = $feedback;
 
     // Convert the array back to JSON format
-    $json_feedbacks = json_encode($feedbacks, JSON_PRETTY_PRINT);
+    $json_feedbacks = json_encode($feedbacks, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 
     // Write the JSON data back to the file
     file_put_contents("../json/feedbacks.json", $json_feedbacks);
 
     // Redirect back to the feedback form page
     header("Location: ../feedback.php?success=true");
-    exit();
 } else {
     // If the form is not submitted, redirect back to the feedback form page
     header("Location: ../feedback.php?success=false");
-    exit();
 }
+exit();

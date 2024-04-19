@@ -85,7 +85,8 @@ if (isset($_POST["signup"])) {
             "email" => $email,
             "password" => $hashed_password,
             "birthdate" => $birthdate,
-            "registration_age" => $age
+            "registration_age" => $age,
+            "solved_tasks" => []
         ];
 
         // Add the new user to the array of accounts

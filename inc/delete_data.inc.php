@@ -18,7 +18,7 @@ if (isset($_POST['delete'])) {
     }
 
     // Encode the modified data back to JSON format
-    $new_file_contents = json_encode($data, JSON_PRETTY_PRINT);
+    $new_file_contents = json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 
     // Write the updated JSON data back to the file
     file_put_contents('json/users.json', $new_file_contents);

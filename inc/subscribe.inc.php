@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
     // Convert the array back to JSON format
-    $json_subscribed_users = json_encode($subscribed_users, JSON_PRETTY_PRINT);
+    $json_subscribed_users = json_encode($subscribed_users, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 
     // Write the JSON data back to the file
     file_put_contents("../json/subscribed_users.json", $json_subscribed_users);

@@ -5,13 +5,51 @@ if (isset($_POST["save_input"])) {
     $learned = true;
 }
 
-// Check if the checkbox is checked
-if (isset($_POST['trackProgress']) && $_POST['trackProgress'] === 'on') {
-    // Set the progress for HTML to 1 in the session
-    $_SESSION['progress']['html'] = 1;
+// Check if the user is logged in
+if (isset($_SESSION["user_id"])) {
+    // Get the user ID
+    $userId = $_SESSION["user_id"];
+
+    // Load existing user data from JSON file
+    $userData = json_decode(file_get_contents("json/users.json"), true);
+
+
+    // Check if user data exists for the current user
+    if (!isset($userData[$userId])) {
+        $userData[$userId] = [];
+    }
+
+    // Count the number of correct answers (replace this with your logic)
+    $numCorrectAnswers = 0;
+
+    $answers = $_POST;
+
+    $correctAnswers = [
+        "html" => "A",
+        "html-essential" => "B",
+        "html-output" => "B",
+        "html-definition" => "D"
+    ];
+
+    foreach ($answers as $question => $userAnswer) {
+        if ($userAnswer === $correctAnswers[$question]) {
+            // Increment the number of correct answers if the user's answer is correct
+            $numCorrectAnswers++;
+        }
+    }
+
+    // Save the number of correct answers for the current user
+    $userData[$userId]["correct_answers"] = $numCorrectAnswers;
+
+    // Save updated user data back to the JSON file
+    file_put_contents("json/users.json", json_encode($userData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+
+    // Display success message
+    $learned = true;
+    $quiz_message = "Number of correct answers saved for user $userId: $numCorrectAnswers.";
 } else {
-    // If the checkbox is unchecked, remove the progress for HTML from the session
-    unset($_SESSION['progress']['html']);
+    // Display error message if user is not logged in
+    $quiz_message = "User is not logged in. Sign up or log in to save your progress.";
 }
 ?>
 <!DOCTYPE html>
@@ -107,7 +145,12 @@ include_once "inc/navbar.inc.php";
             <li><a href="#elements">HTML Elements</a></li>
             <li><a href="#attributes">HTML Attributes</a></li>
             <li><a href="#quiz">Quiz</a></li>
-            <li><a href="#progress_tracker">Progress tracker</a></li>
+
+            <?php
+    if($learned) {
+        echo '<li><a href="#progress_tracker">Progress tracker</a></li>';
+    }
+            ?>
             <li><a href="#contact">Contact Us</a></li>
         </ul>
     </section>
@@ -241,6 +284,7 @@ include_once "inc/navbar.inc.php";
 </main>
 
 <div class="container" id="quiz">
+    <form action="html.php" method="post">
     <h1>HTML Tutorial Quiz</h1>
     <hr>
     <div class="left">
@@ -263,7 +307,8 @@ include_once "inc/navbar.inc.php";
                 <label for="html-d">D) High-Level Markup Language</label>
             </li>
         </ul>
-        <button type="button" id="feedback-1-button" onclick="showCorrectAnswer('feedback-1')">Show Correct Answer!</button>
+        <button type="button" id="feedback-1-button" onclick="showCorrectAnswer('feedback-1')">Show Correct Answer!
+        </button>
         <p class="feedback" id="feedback-1" style="display: none;"><strong>Correct Answer:</strong> A) HyperText Markup
             Language</p>
     </div>
@@ -289,7 +334,8 @@ include_once "inc/navbar.inc.php";
                 <label for="html-essential-d">D) It's required for database management</label>
             </li>
         </ul>
-        <button type="button" id="feedback-2-button" onclick="showCorrectAnswer('feedback-2')">Show Correct Answer!</button>
+        <button type="button" id="feedback-2-button" onclick="showCorrectAnswer('feedback-2')">Show Correct Answer!
+        </button>
         <p class="feedback" id="feedback-2" style="display: none;"><strong>Correct Answer:</strong> B) It serves as the
             foundation for creating web pages</p>
 
@@ -324,8 +370,10 @@ include_once "inc/navbar.inc.php";
                 <label for="html-output-d">D) It will display nothing</label>
             </li>
         </ul>
-        <button type="button" id="feedback-3-button" onclick="showCorrectAnswer('feedback-3')">Show Correct Answer!</button>
-        <p class="feedback" id="feedback-3" style="display: none;"><strong>Correct Answer:</strong> B) It will display "Hello, World!"</p>
+        <button type="button" id="feedback-3-button" onclick="showCorrectAnswer('feedback-3')">Show Correct Answer!
+        </button>
+        <p class="feedback" id="feedback-3" style="display: none;"><strong>Correct Answer:</strong> B) It will display
+            "Hello, World!"</p>
     </div>
     <div class="left">
         <h2 style="text-align: center">What is HTML?</h2>
@@ -347,33 +395,43 @@ include_once "inc/navbar.inc.php";
                 <label for="html-definition-d">D) A markup language</label>
             </li>
         </ul>
-        <button type="button" id="feedback-4-button" onclick="showCorrectAnswer('feedback-4')">Show Correct Answer!</button>
-        <p class="feedback" id="feedback-4" style="display: none;"><strong>Correct Answer:</strong> D) A markup language</p>
+        <button type="button" id="feedback-4-button" onclick="showCorrectAnswer('feedback-4')">Show Correct Answer!
+        </button>
+        <p class="feedback" id="feedback-4" style="display: none;"><strong>Correct Answer:</strong> D) A markup language
+        </p>
     </div>
-</div>
-
-<div id="progress_tracker">
-    <br>
-    <form action="html.php" method="post" class="progress-form">
-        <h1>Track your progress!</h1>
-        <!-- Use a span to create a circle -->
-        <label for="trackProgress">
-            <input type="checkbox" id="trackProgress" name="trackProgress" onclick="toggleCircle(this)">
-            <span class="checkmark"></span>
-            I have learned this lesson
-        </label>
-        <button type="submit" name="save_progress" onclick="saveProgress(event)">Save</button>
-        <?php
-        if (isset($_POST["save_progress"])) {
-            $html_completed = true;
+    <button type="submit" name="submit" onclick="saveProgress()">Submit</button>
+        <?php if (isset($quiz_message) && trim($quiz_message) !== ""){
+            echo "<p>$quiz_message</p>";
         }
         ?>
     </form>
+    <?php
+    if($learned){
+        echo '<div id="progress_tracker">
+        <br>
+        <form action="html.php" method="post" class="progress-form">
+            <h1>Your progress:</h1>
+            <!-- Use a span to create a circle -->
+            <label for="trackProgress">
+                <input type="checkbox" id="trackProgress" name="trackProgress" onclick="toggleCircle(this)">
+                <span class="checkmark"></span>
+                I have learned this lesson
+            </label>
+            <?php
+            if (isset($_POST["save_progress"])) {
+                $html_completed = true;
+            }
+            ?>
+        </form>
+    </div>';
+    }
+    ?>
 </div>
 
 <div class="two-px-border" style="border-radius: 20px; width: 30%; margin: 0 auto">
     <br>
-    <a  class="btn"  href="#">↑ Jump to the top</a>
+    <a class="btn" href="#">↑ Jump to the top</a>
     <br>
     <br>
     <a class="left btn" href="index.php">&#10094;&#10094; Home</a>
