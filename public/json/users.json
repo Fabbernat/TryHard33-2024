@@ -28,44 +28,13 @@
             "subscribed": false
         },
         {
-            "users": [
-                {
-                    "username": "bernat",
-                    "email": "f@b",
-                    "password": "$2y$10$e1NVxoD1FQ1oHloieiB6duQvjD.cpCV7DimUueoBnpryJwIHQBQ7q",
-                    "birthdate": "1111-11-11",
-                    "registration_age": 913,
-                    "solved_tasks": [],
-                    "subscribed": true
-                },
-                {
-                    "username": "alfonz",
-                    "email": "alfonz@tryhard.com",
-                    "password": "$2y$10$dyqW4Vqb4JpeUmvuIqRtHOfZGFKicFYJvzGd1sesYc60Og2O3zfeW",
-                    "birthdate": "1111-11-11",
-                    "registration_age": 913,
-                    "solved_tasks": [],
-                    "subscribed": true
-                },
-                {
-                    "username": "a",
-                    "email": "a@a",
-                    "password": "$2y$10$jkd1ShxT0SGCKJkgomULPeLyKFe7XK.G\/AfRCnNUEGx5dr\/EG1yH6",
-                    "birthdate": "1111-11-11",
-                    "registration_age": 913,
-                    "solved_tasks": [],
-                    "subscribed": false
-                }
-            ],
-            "0": {
-                "username": "b",
-                "email": "b@b",
-                "password": "$2y$10$Ctkw6oQrVYjzFSpREbhqQOkEb2XOKtNz8GThC6keXk063PQ.dCQ0i",
-                "birthdate": "1111-11-11",
-                "registration_age": 913,
-                "solved_tasks": [],
-                "subscribed": false
-            }
+            "username": "c",
+            "email": "c@c",
+            "password": "$2y$10$6xZeSKPXmYD5yotqv9HSvOyJqiy\/5veYnwYBv6.RPYHZ7ZcTbexn6",
+            "birthdate": "1111-11-11",
+            "registration_age": 912,
+            "solved_tasks": [],
+            "subscribed": false
         }
     ]
 }

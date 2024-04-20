@@ -54,9 +54,6 @@ session_start();
             // Prevent the default form submission behavior
             event.preventDefault();
 
-            // Get the form element
-            const form = document.getElementById('progressForm');
-
             // Submit the form using AJAX or perform any other necessary actions
             // Example: form.submit();
         }

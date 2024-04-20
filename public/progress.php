@@ -45,9 +45,6 @@ if (isset($_POST['trackProgress']) && $_POST['trackProgress'] === 'on') {
             background-color: #f2f2f2;
         }
 
-        .completed {
-            background-color: green;
-        }
     </style>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">

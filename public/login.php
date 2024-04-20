@@ -5,6 +5,7 @@ include_once "inc/functions.inc.php";
 $accounts = load_users("json/users.json"); // betöltjük a regisztrált felhasználók adatait, és eltároljuk őket a $fiokok változóban
 
 $errors = [];
+$message = "";
 $echo_errors = false;
 
 if (isset($_POST["login"])) {    // miután az űrlapot elküldték...
@@ -17,7 +18,8 @@ if (isset($_POST["login"])) {    // miután az űrlapot elküldték...
 
         $authenticated = false;
         foreach ($accounts["users"] as $account) {
-            if (@$account["username"] === $username && password_verify($password, $account["password"])) {
+            if ($account["username"] === $username && password_verify($password, $account["password"])) {
+                $message = "You have logged in successfully!";
                 $authenticated = true;
                 $_SESSION["username"] = $username;
                 $_SESSION['user_id'] = $username;
@@ -71,6 +73,8 @@ if (isset($_POST["login"])) {    // miután az űrlapot elküldték...
                 echo $error . "<br>";
             }
             echo "</p>";
+        } elseif (isset($message) && trim($message) != ""){
+            echo $message;
         }
         ?>
     </form>
