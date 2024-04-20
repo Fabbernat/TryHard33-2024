@@ -3,7 +3,7 @@ session_start();
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-setcookie("user", "meowuwuka", time() + 3600, "/");
+//setcookie("user", "meowuwuka", time() + 3600, "/");
 include_once "inc/functions.inc.php";              // beágyazzuk a load_users() és save_users() függvényeket tartalmazó PHP fájlt
 $accounts = load_users("json/users.json"); // betöltjük a regisztrált felhasználók adatait, és eltároljuk őket az $accounts változóban
 
@@ -24,7 +24,7 @@ if (isset($_POST["signup"])) {
 
     $age_in_seconds = $current_timestamp - $birthdate_timestamp;
 
-    $age = floor($age_in_seconds / (60 * 60 * 24 * 365));
+    $age = floor($age_in_seconds / (60 * 60 * 24 * 365.26));
 
     if (!isset($_POST["username"]) || trim($_POST["username"]) === "") {
         $errors[] = "The username is required! Please fill it!";
@@ -32,7 +32,7 @@ if (isset($_POST["signup"])) {
     }
     // Check if username already exists
     foreach ($accounts as $account) {
-        if ($account["username"] === $username) {
+        if (isset($account["username"]) && $account["username"] === $username) {
             $errors[] = "The username is already taken!";
             $echo_errors = true;
             break;// No need to continue checking if username already exists
@@ -80,7 +80,7 @@ if (isset($_POST["signup"])) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
         // Create a new user object
-        $new_user = [
+        $new_account = [
             "username" => $username,
             "email" => $email,
             "password" => $hashed_password,
@@ -90,14 +90,11 @@ if (isset($_POST["signup"])) {
             "subscribed" => false
         ];
 
-        // Add the new user to the array of accounts
-        $accounts[] = $new_user;
-
-        // Save the updated array of accounts to the JSON file
-        save_users("json/users.json", $accounts);
+        // Save the account to the JSON file
+        save_users("json/users.json", $new_account);
 
         // Redirect the user to the login page
-        header("Location: login.php");
+        header("Location: login.php?success=true");
         exit();
     }
 } else {
@@ -133,13 +130,18 @@ include_once 'inc/navbar.inc.php';
                 <input id="username" name="username" placeholder="Username" required type="text"
                        value="<?php echo $_SESSION['username'] ?? ''; ?>">
             </label>
+            <p class="note">
+                Please avoid using any special characters, use ASCII characters only, if possible.
+            </p>
             <br>
             <label for="email">Email address
                 <input id="email" name="email" placeholder="Email address" required type="email"
                        value="<?php echo $_SESSION['email'] ?? ''; ?>">
             </label>
             <p class="note">
-                Format: <em>example@domainname.com</em>
+                Format: <em style="    font-family: 'Courier New', Courier, monospace;">example@domainname.com</em>
+                <br>
+                No special characters allowed.
             </p>
             <br>
             <label for="firstname">First name
@@ -147,7 +149,7 @@ include_once 'inc/navbar.inc.php';
                        value="<?php echo $_SESSION['firstname'] ?? ''; ?>">
             </label>
             <p class="note">
-                You may include any UTF-8 characters
+                Please avoid using any special characters, use ASCII characters only, if possible.
             </p>
             <br>
             <label for="lastname">Last name
@@ -155,7 +157,7 @@ include_once 'inc/navbar.inc.php';
                        value="<?php echo $_SESSION['lastname'] ?? ''; ?>">
             </label>
             <p class="note">
-                You may include any UTF-8 characters
+                Please avoid using any special characters, use ASCII characters only, if possible.
             </p>
             <br>
             <label for="birthdate">Birth date
