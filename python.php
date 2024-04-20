@@ -377,8 +377,7 @@ print(message)  # Output: Hello, Alice!
     </section>
 </main>
 
-<div class="two-px-border" style="border-radius: 20px; width: 30%; margin: 0 auto">
-    <br>
+<div class="two-px-border" style="border-radius: 20px; width: 30%; margin: 30px auto 0;">
     <a  class="btn"  href="#">↑ Jump to the top</a>
     <br>
     <br>

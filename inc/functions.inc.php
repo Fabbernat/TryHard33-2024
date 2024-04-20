@@ -20,7 +20,15 @@ function load_users(string $path): array
     return json_decode($json, true);
 }
 
-function getUserProgress(mixed $user_id): array
+function getUserProgress(string $user_id): array
 {
+    $users = load_users("../json/users.json");
+
+    foreach ($users["users"] as $user) {
+        if ($user["username"] === $user_id) {
+            return $user["solved_tasks"];
+        }
+    }
+
     return [];
 }

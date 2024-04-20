@@ -1,6 +1,15 @@
 <?php
 session_start();
 
+include_once "inc/functions.inc.php";
+
+$users = load_users("json/users.json");
+
+$solved_tasks = [];// retrieve data from users
+
+// 4x5 grid to display task
+// white or green color based on whether it is completed or not
+
 $html_completed = false;
 $css_completed = false;
 $javascript_completed = false;
@@ -28,7 +37,10 @@ if(isset($_POST['trackProgress']) && $_POST['trackProgress'] === 'on') {
 <?php
 include_once "inc/navbar.inc.php";
 include_once "inc/functions.inc.php";
-$userProgress = @getUserProgress($_SESSION['user_id']);
+$user_id = @$_SESSION["user_id"];
+if(isset($user_id) && $user_id != null) {
+    $userProgress = @getUserProgress($_SESSION['user_id']);
+} else echo "<p>It seems like something went wrong with signing you in. Please sign in again.</p>"
 ?>
 <main>
     <header>
@@ -82,7 +94,8 @@ $userProgress = @getUserProgress($_SESSION['user_id']);
         <input type="checkbox" id="trackProgress" name="trackProgress">
         <br>
         <br>
-        <button type="reset" name="reset_progress" class="bigger-letters">Reset progress <br><span class="smaller-letters">(Warning! This action cannot be undone!</span> </button>
+        <button type="reset" name="reset_progress" class="bigger-letters">Reset progress <br><span
+                class="smaller-letters">(Warning! This action cannot be undone!</span></button>
 
     </section>
 
