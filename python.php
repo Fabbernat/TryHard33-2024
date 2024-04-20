@@ -2,7 +2,7 @@
 session_start();
 
 // Check if the checkbox is checked
-if(isset($_POST['trackProgress']) && $_POST['trackProgress'] === 'on') {
+if (isset($_POST['trackProgress']) && $_POST['trackProgress'] === 'on') {
     // Set the progress for HTML to 1 in the session
     $_SESSION['progress']['html'] = 1;
 } else {
@@ -378,7 +378,7 @@ print(message)  # Output: Hello, Alice!
 </main>
 
 <div class="two-px-border" style="border-radius: 20px; width: 30%; margin: 30px auto 0;">
-    <a  class="btn"  href="#">↑ Jump to the top</a>
+    <a class="btn" href="#">↑ Jump to the top</a>
     <br>
     <br>
     <a class="left btn" href="index.php">&#10094;&#10094; Home</a>

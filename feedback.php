@@ -20,7 +20,8 @@ include_once "inc/navbar.inc.php";
         <h1>Feedback</h1>
     </header>
     <section>
-        <form action="inc/submit_feedback.inc.php" class="white_background background-form  feedback-form form" method="POST"><!--inc/submit_feedback.inc.php-->
+        <form action="inc/submit_feedback.inc.php" class="white_background background-form  feedback-form form"
+              method="POST"><!--inc/submit_feedback.inc.php-->
             <h2>Rate Us (1-5):</h2>
             <div class="rating">
                 <label>
@@ -56,7 +57,8 @@ include_once "inc/navbar.inc.php";
             </div>
             <br>
             <label for="comment">Feel free to leave a comment, or write your opinion:
-                <textarea cols="50" id="comment" name="comment" placeholder="Write your feedback here..." rows="4"></textarea>
+                <textarea cols="50" id="comment" name="comment" placeholder="Write your feedback here..."
+                          rows="4"></textarea>
             </label>
             <br>
             <button class="button" type="submit">Submit Feedback</button>
@@ -65,6 +67,6 @@ include_once "inc/navbar.inc.php";
 </main>
 
 
-<?php include_once "inc/footer.inc.html";?>
+<?php include_once "inc/footer.inc.html"; ?>
 </body>
 </html>

@@ -38,7 +38,7 @@ if (isset($_POST["login"])) {    // miután az űrlapot elküldték...
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-<?php include 'inc/navbar.inc.php'; ?>
+<?php include_once 'inc/navbar.inc.php'; ?>
 <main>
     <header>
         <h1 class="signup-and-login-caption">Log in</h1>

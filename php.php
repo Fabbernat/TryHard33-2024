@@ -35,25 +35,25 @@ include_once "inc/navbar.inc.php"; ?>
             <p>PHP is a server-side scripting language used for web development. It is widely used for creating dynamic
                 web
                 pages and interacting with databases.</p>
-        <section>
-            <h3>Example 1: Hello World</h3>
-            <div class="php-code">
+            <section>
+                <h3>Example 1: Hello World</h3>
+                <div class="php-code">
       <pre class="left-align">
       &lt;?php
       // PHP code to display "Hello, World!"
       echo "Hello, World!";
       ?></pre>
-            </div>
-            <h4>Output:</h4>
-            <div class="output">
+                </div>
+                <h4>Output:</h4>
+                <div class="output">
       <pre>
       Hello, World!
       </pre>
-            </div>
-        </section>
-        <section>
-            <h3>Example 2: Variables and Data Types</h3>
-            <div class="php-code">
+                </div>
+            </section>
+            <section>
+                <h3>Example 2: Variables and Data Types</h3>
+                <div class="php-code">
       <pre class="left-align">
 
       &lt;?php
@@ -64,18 +64,18 @@ include_once "inc/navbar.inc.php"; ?>
       echo "Age: " . $age;
       ?>
       </pre>
-            </div>
-            <h4>Output:</h4>
-            <div class="output">
+                </div>
+                <h4>Output:</h4>
+                <div class="output">
       <pre class="left-align">
       Name: John
       Age: 25
       </pre>
-            </div>
-        </section>
-        <section>
-            <h3>Example 3: Conditional Statements</h3>
-            <div class="php-code">
+                </div>
+            </section>
+            <section>
+                <h3>Example 3: Conditional Statements</h3>
+                <div class="php-code">
       <pre class="left-align">
 
       &lt;?php
@@ -90,17 +90,17 @@ include_once "inc/navbar.inc.php"; ?>
       }
       ?>
       </pre>
-            </div>
-            <h4>Output:</h4>
-            <div class="output">
+                </div>
+                <h4>Output:</h4>
+                <div class="output">
     <pre class="left-align">
       Positive number
     </pre>
-            </div>
-        </section>
-        <section>
-            <h3>Example 4: Loops</h3>
-            <div class="php-code">
+                </div>
+            </section>
+            <section>
+                <h3>Example 4: Loops</h3>
+                <div class="php-code">
     <pre class="left-align">
       &lt;?php
       // PHP code to demonstrate loops
@@ -109,9 +109,9 @@ include_once "inc/navbar.inc.php"; ?>
       }
       ?&gt;
     </pre>
-            </div>
-            <h4>Output:</h4>
-            <div class="output">
+                </div>
+                <h4>Output:</h4>
+                <div class="output">
     <pre class="left-align">
       1
       2
@@ -119,8 +119,8 @@ include_once "inc/navbar.inc.php"; ?>
       4
       5
     </pre>
-            </div>
-        </section>
+                </div>
+            </section>
             <section>
                 <h3 id="functions">Example 5: Functions</h3>
                 <div class="php-code">
@@ -209,7 +209,7 @@ include_once "inc/navbar.inc.php"; ?>
 
 <div class="two-px-border" style="border-radius: 20px; width: 30%; margin: 0 auto">
     <br>
-    <a  class="btn"  href="#">↑ Jump to the top</a>
+    <a class="btn" href="#">↑ Jump to the top</a>
     <br>
     <br>
     <a class="left btn" href="index.php">&#10094;&#10094; Home</a>

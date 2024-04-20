@@ -137,7 +137,7 @@ aside {
     margin: 0 auto; /* Center the content */
 }
 
-.container input{
+.container input {
     width: unset;
 }
 
@@ -812,7 +812,7 @@ input[type="checkbox"] {
     font-size: 32px;
 }
 
-.smaller-letters{
+.smaller-letters {
     font-size: 16px;
 }
 
@@ -922,4 +922,8 @@ input[type="checkbox"] {
 
 .progress-form button:hover {
     background-color: #45a049;
+}
+
+.fifty-fixel-height{
+    height: 50px;
 }

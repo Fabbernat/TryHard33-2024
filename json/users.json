@@ -21,7 +21,7 @@
         {
             "username": "a",
             "email": "a@a",
-            "password": "$2y$10$jkd1ShxT0SGCKJkgomULPeLyKFe7XK.G/AfRCnNUEGx5dr/EG1yH6",
+            "password": "$2y$10$jkd1ShxT0SGCKJkgomULPeLyKFe7XK.G\/AfRCnNUEGx5dr\/EG1yH6",
             "birthdate": "1111-11-11",
             "registration_age": 913,
             "solved_tasks": [],
@@ -29,6 +29,9 @@
         }
     ],
     "alfonz": {
+        "correct_answers": 0
+    },
+    "bernat": {
         "correct_answers": 0
     }
 }

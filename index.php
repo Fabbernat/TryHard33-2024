@@ -19,8 +19,11 @@ include_once "inc/navbar.inc.php";
 
 <header>
     <h1 style="font-size: 60px">Welcome to TryHard33</h1>
-    <p style="font-size: 28px">An interactive website where you can learn about web development and some of the most important scripting languages.</p>
-    <p class="left black-font">There are 5 lessons: HTML, CSS, Javascript, PHP and Python. There are 20 tasks in quizzes related to them. Make an account and solve all of them to win a prize! You can track your progress in your progress page after signing up.</p>
+    <p style="font-size: 28px">An interactive website where you can learn about web development and some of the most
+        important scripting languages.</p>
+    <p class="left black-font">There are 5 lessons: HTML, CSS, Javascript, PHP and Python. There are 20 tasks in quizzes
+        related to them. Make an account and solve all of them to win a prize! You can track your progress in your
+        progress page after signing up.</p>
 
 </header>
 <main>

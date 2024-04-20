@@ -36,12 +36,17 @@ include_once "inc/navbar.inc.php";
             <input type="submit" value="Send">
         </form>
     </section>
-    <section class="background-form-but-wider-for-profile-section greendiv" style="padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-weight: bold;">
-        <h1 style="color: #ffff99; font-size: 48px; text-align: center; text-transform: uppercase; font-weight: bold;">Exciting Career Opportunity</h1>
+    <section class="background-form-but-wider-for-profile-section greendiv"
+             style="padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-weight: bold;">
+        <h1 style="color: #ffff99; font-size: 48px; text-align: center; text-transform: uppercase; font-weight: bold;">
+            Exciting Career Opportunity</h1>
         <h2 style="font-size: 36px; text-align: center;">Join the TryHard33 Team, become an Admin Today!</h2>
-        <p style="color: #777; font-size: 24px; text-align: center;">Unlock limitless possibilities and shape the future with us.</p>
+        <p style="color: #777; font-size: 24px; text-align: center;">Unlock limitless possibilities and shape the future
+            with us.</p>
         <div style="text-align: center; margin-top: 20px;">
-            <a href="admin.php" style="background-color: #ff5722; color: #fff; padding: 15px 40px 15px;margin-bottom: 40px; border-radius: 10px; text-decoration: none; font-size: 36px; font-weight: bold;">Apply Now</a>
+            <a href="admin.php"
+               style="background-color: #ff5722; color: #fff; padding: 15px 40px 15px;margin-bottom: 40px; border-radius: 10px; text-decoration: none; font-size: 36px; font-weight: bold;">Apply
+                Now</a>
         </div>
     </section>
 

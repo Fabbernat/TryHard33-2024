@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$chosen="";
+$chosen = "";
 if (isset($_POST["submit"])) {  // itt a $_POST szuperglobálist használjuk, hiszen az űrlapunk a method="POST" attribútummal rendelkezik
     if (isset($_POST["interests"])) {
         // ha legalább egy opciót kiválasztottak, akkor eltároljuk a bejelölt értékeket egy változóban

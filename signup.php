@@ -4,7 +4,7 @@ error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 setcookie("user", "meowuwuka", time() + 3600, "/");
-include "inc/functions.inc.php";              // beágyazzuk a load_users() és save_users() függvényeket tartalmazó PHP fájlt
+include_once "inc/functions.inc.php";              // beágyazzuk a load_users() és save_users() függvényeket tartalmazó PHP fájlt
 $accounts = load_users("json/users.json"); // betöltjük a regisztrált felhasználók adatait, és eltároljuk őket az $accounts változóban
 
 $errors = [];
@@ -68,8 +68,8 @@ if (isset($_POST["signup"])) {
         $errors[] = "The password and confirmation password do not match!";
         $echo_errors = true;
     }
-    if ($age < 18) {
-        $errors[] = "You must be at least 18 years old to register!";
+    if ($age < 12) {
+        $errors[] = "You must be at least 12 years old to register!";
         $echo_errors = true;
     }
 
@@ -119,7 +119,7 @@ if (isset($_POST["signup"])) {
 <body>
 <?php
 // File: signup.php
-include 'inc/navbar.inc.php';
+include_once 'inc/navbar.inc.php';
 ?>
 <main class="signup">
     <header>
@@ -162,6 +162,9 @@ include 'inc/navbar.inc.php';
                 <input id="birthdate" name="birthdate" required type="date"
                        value="<?php echo $_SESSION['birthdate'] ?? ''; ?>">
             </label>
+            <p class="note">
+                You must be at least 12 years old to register.
+            </p>
             <br>
             <label for="password">Password
                 <input id="password" name="password" placeholder="Password" required type="password"

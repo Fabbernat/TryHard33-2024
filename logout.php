@@ -4,7 +4,7 @@ include_once "inc/functions.inc.php";
 
 $fiokok = load_users("json/users.json"); // betöltjük a regisztrált felhasználók adatait, és eltároljuk őket a $fiokok változóban
 
-if(isset($_POST["logout"])) {
+if (isset($_POST["logout"])) {
     session_unset();          // munkamenet-változók kiürítése ($_SESSION egy üres tömb lesz)
     session_destroy();
     header("Location: login.php?logout=true");
@@ -20,7 +20,7 @@ if(isset($_POST["logout"])) {
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-<?php include 'inc/navbar.inc.php'; ?>
+<?php include_once 'inc/navbar.inc.php'; ?>
 <main>
     <form action="logout.php" class="white_background form" method="post"> <!--inc/login.inc.php-->
         <br>
