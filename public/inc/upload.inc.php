@@ -38,7 +38,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         echo "No file uploaded or an error occurred.";
     }
 } else {
-    // Redirect the user back to the profile page if they try to access this script directly without submitting the form
+    // Redirect the user back to the profile page if they try to access this js directly without submitting the form
     header("Location: ../profile.php");
     exit(); // Stop further execution
 }

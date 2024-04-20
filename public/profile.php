@@ -27,7 +27,7 @@ include_once "inc/navbar.inc.php";
         }
         ?>
     </header>
-    <section class="background-form-but-wider-for-profile-section greendiv display-block">
+    <section class="background-form-but-wider-that-looks-cool greendiv display-block">
         <form action="inc/subscribe.inc.php" method="post">
             <h1>Subscribe for our newsletter!</h1>
             <label for="newsletter_email">Email address:
@@ -36,7 +36,7 @@ include_once "inc/navbar.inc.php";
             <input type="submit" value="Send">
         </form>
     </section>
-    <section class="background-form-but-wider-for-profile-section greendiv"
+    <section class="background-form-but-wider-that-looks-cool greendiv"
              style="padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-weight: bold;">
         <h1 style="color: #ffff99; font-size: 48px; text-align: center; text-transform: uppercase; font-weight: bold;">
             Exciting Career Opportunity</h1>
@@ -50,7 +50,7 @@ include_once "inc/navbar.inc.php";
         </div>
     </section>
 
-    <section class="interests white_background background-form-but-wider-for-profile-section left">
+    <section class="interests white_background background-form-but-wider-that-looks-cool left">
         <h3>Change profile picture</h3>
         <!-- File uploading -->
         <form enctype="multipart/form-data" action="inc/upload.inc.php" method="POST">
@@ -133,7 +133,7 @@ include_once "inc/navbar.inc.php";
         ?>
         <?php echo "<p>" . $uzenet . "</p>"; ?>
     </section>
-    <section class="background-form-but-wider-for-profile-section white_background">
+    <section class="background-form-but-wider-that-looks-cool white_background">
         <h3>Delete Your Data</h3>
         <form action="inc/delete_data.inc.php" method="POST">
             <p>Are you sure you want to delete all your data?</p>

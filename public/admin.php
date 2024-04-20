@@ -47,7 +47,7 @@ include_once "inc/navbar.inc.php";
             <button type="submit">Enter</button>
         </fieldset>
     </form>
-    <section class=" interests white_background background-form-but-wider-for-profile-section">
+    <section class=" interests white_background background-form-but-wider-that-looks-cool">
         <?php
         // Check if the form is submitted
         if ($_SERVER["REQUEST_METHOD"] == "POST") {

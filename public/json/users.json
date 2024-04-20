@@ -34,7 +34,10 @@
             "birthdate": "1111-11-11",
             "registration_age": 912,
             "solved_tasks": [],
-            "subscribed": false
+            "subscribed": true
         }
-    ]
+    ],
+    "c": {
+        "correct_answers": 0
+    }
 }

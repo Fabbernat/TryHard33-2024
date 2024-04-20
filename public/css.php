@@ -76,6 +76,7 @@ session_start();
         }
     </script>
     <meta charset="UTF-8">
+    <link rel="script" href="js/script.js">
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>

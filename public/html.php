@@ -11,7 +11,7 @@ if (isset($_SESSION["user_id"])) {
     $userId = $_SESSION["user_id"];
 
     // Load existing user data from JSON file
-    $userData = json_decode(file_get_contents("json/users.json"), true);
+    $userData = json_decode(@file_get_contents("json/users.json"), true);
 
 
     // Check if user data exists for the current user
@@ -19,34 +19,36 @@ if (isset($_SESSION["user_id"])) {
         $userData[$userId] = [];
     }
 
-    // Count the number of correct answers (replace this with your logic)
-    $numCorrectAnswers = 0;
+        // Count the number of correct answers (replace this with your logic)
+        $numCorrectAnswers = 0;
 
-    $answers = $_POST;
+        $answers = @$_POST;
 
-    $correctAnswers = [
-        "html" => "A",
-        "html-essential" => "B",
-        "html-output" => "B",
-        "html-definition" => "D"
-    ];
+        $correctAnswers = [
+            "html" => "A",
+            "html-essential" => "B",
+            "html-output" => "B",
+            "html-definition" => "D"
+        ];
 
-    foreach ($answers as $question => $userAnswer) {
-        if ($userAnswer === $correctAnswers[$question]) {
-            // Increment the number of correct answers if the user's answer is correct
-            $numCorrectAnswers++;
+    if (isset($_POST["quiz_submit"])) {
+        foreach ($answers as $question => $userAnswer) {
+            if (isset($_POST[$question]) && isset($userAnswer) && isset($correctAnswers[$question]) && $userAnswer === $correctAnswers[$question]) {
+                // Increment the number of correct answers if the user's answer is correct
+                $numCorrectAnswers++;
+            }
         }
+
+        // Save the number of correct answers for the current user
+        $userData[$userId]["correct_answers"] = $numCorrectAnswers;
+
+        // Save updated user data back to the JSON file
+        file_put_contents("json/users.json", json_encode($userData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+
+        // Display success message
+        $learned = true;
+        $quiz_message = "Number of correct answers saved for user $userId: $numCorrectAnswers.";
     }
-
-    // Save the number of correct answers for the current user
-    $userData[$userId]["correct_answers"] = $numCorrectAnswers;
-
-    // Save updated user data back to the JSON file
-    file_put_contents("json/users.json", json_encode($userData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-
-    // Display success message
-    $learned = true;
-    $quiz_message = "Number of correct answers saved for user $userId: $numCorrectAnswers.";
 } else {
     // Display error message if user is not logged in
     $quiz_message = "User is not logged in. Sign up or log in to save your progress.";
@@ -91,42 +93,8 @@ if (isset($_SESSION["user_id"])) {
             font-weight: bold;
         }
     </style>
-    <script>
-        function toggleCircle(checkbox) {
-            var circle = document.getElementById('circle');
-            if (checkbox.checked) {
-                circle.classList.add('green-circle');
-            } else {
-                circle.classList.remove('green-circle');
-            }
-        }
-
-        function saveProgress(event) {
-            // Prevent the default form submission behavior
-            event.preventDefault();
-
-            // Submit the form using AJAX or perform any other necessary actions
-            // Example: form.submit();
-        }
-
-        function showCorrectAnswer(id) {
-            var feedback = document.getElementById(id);
-            var button = document.getElementById(id + '-button');
-            if (feedback.style.display === 'block') {
-                feedback.style.display = 'none';
-                button.textContent = 'Show Correct Answer!';
-            } else {
-                feedback.style.display = 'block';
-                button.textContent = 'Hide Correct Answer!';
-            }
-        }
-
-        function hideCorrectAnswer(id) {
-            var feedback = document.getElementById(id);
-            feedback.style.display = 'none';
-        }
-    </script>
     <meta charset="UTF-8">
+    <link rel="script" href="js/script.js">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -401,7 +369,7 @@ include_once "inc/navbar.inc.php";
                 language
             </p>
         </div>
-        <button type="submit" name="submit" onclick="saveProgress()">Submit</button>
+        <button type="submit" name="quiz_submit" onclick="saveProgress()">Submit</button>
         <?php if (isset($quiz_message) && trim($quiz_message) !== "") {
             echo "<p>$quiz_message</p>";
         }
