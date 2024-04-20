@@ -24,7 +24,7 @@ if (isset($_POST["logout"])) {
 <main>
     <form action="logout.php" class="white_background form" method="post"> <!--inc/login.inc.php-->
         <br>
-        <button class="button" type="submit" name="logout">Log out</button>
+        <button class="button" type="submit" name="logout">Confirm log out</button>
     </form>
 </main>
 <?php include_once "inc/footer.inc.html"; ?>

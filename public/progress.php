@@ -1,5 +1,6 @@
 <?php
 session_start();
+$max = 20;
 $learned = false;
 if (isset($_POST["save_input"])) {
     $learned = true;
@@ -10,35 +11,28 @@ $users = load_users("json/users.json");
 
 $solved_tasks = []; // retrieve data from users
 
+$userId = $_SESSION["user_id"];
+if (!isset($userData[$userId])) {
+    $userData[$userId] = [];
+}
+
 if (isset($_SESSION["user_id"])) {
     // Get the user ID
-    $userId = $_SESSION["user_id"];
 
     // Load existing user data from JSON file
     $userData = json_decode(@file_get_contents("json/users.json"), true);
 
 
     // Check if user data exists for the current user
-    if (!isset($userData[$userId])) {
-        $userData[$userId] = [];
-    }
 
     // Count the number of correct answers (replace this with your logic)
     $numCorrectAnswers = 0;
 
     $answers = @$_POST;
 
-    $correctAnswers = [
-        "html" => "A",
-        "html-essential" => "B",
-        "html-output" => "B",
-        "html-definition" => "D",
+    $correctAnswers = ["html" => "A", "html-essential" => "B", "html-output" => "B", "html-definition" => "D",
 
-        "css" => "A",
-        "css-bgcolor" => "A",
-        "css-textsize" => "B",
-        "css-border" => "C"
-    ];
+        "css" => "A", "css-bgcolor" => "A", "css-textsize" => "B", "css-border" => "C"];
 
     if (isset($_POST["quiz_submit"])) {
         foreach ($answers as $question => $userAnswer) {
@@ -63,7 +57,7 @@ if (isset($_SESSION["user_id"])) {
     }
 } else {
     // Display error message if user is not logged in
-    $quiz_message = "User is not logged in. Sign up or log in to save your progress.";
+    $quiz_message = "Number of correct answers saved for user $userId: 0";
 }
 // 4x5 grid to display task
 // white or green color based on whether it is completed or not
@@ -104,9 +98,50 @@ if (isset($_POST['trackProgress']) && $_POST['trackProgress'] === 'on') {
         }
 
     </style>
+    <!--    <script>-->
+    <!--        // Get the quiz form element-->
+    <!--        const quizForm = document.querySelector('form');-->
+    <!---->
+    <!--        function toggleCircle(checkbox) {-->
+    <!--            var circle = document.getElementById('circle');-->
+    <!--            if (checkbox.checked) {-->
+    <!--                circle.classList.add('green-circle');-->
+    <!--            } else {-->
+    <!--                circle.classList.remove('green-circle');-->
+    <!--            }-->
+    <!--        }-->
+    <!---->
+    <!--        function saveProgress(event) {-->
+    <!--            // Prevent the default form submission behavior-->
+    <!--            event.preventDefault();-->
+    <!---->
+    <!--            // Get the form element-->
+    <!--            const form = document.getElementById('progressForm');-->
+    <!---->
+    <!--            // Submit the form using AJAX or perform any other necessary actions-->
+    <!--            // Example: form.submit();-->
+    <!--        }-->
+    <!---->
+    <!--        function showCorrectAnswer(id) {-->
+    <!--            var feedback = document.getElementById(id);-->
+    <!--            var button = document.getElementById(id + '-button');-->
+    <!--            if (feedback.style.display === 'block') {-->
+    <!--                feedback.style.display = 'none';-->
+    <!--                button.textContent = 'Show Correct Answer!';-->
+    <!--            } else {-->
+    <!--                feedback.style.display = 'block';-->
+    <!--                button.textContent = 'Hide Correct Answer!';-->
+    <!--            }-->
+    <!--        }-->
+    <!---->
+    <!--        function hideCorrectAnswer(id) {-->
+    <!--            var feedback = document.getElementById(id);-->
+    <!--            feedback.style.display = 'none';-->
+    <!--        }-->
+    <!--    </script>-->
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <link rel="script" href="js/script.js">
+    <!--    <link rel="script" href="js/script.js">-->
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -125,7 +160,6 @@ if (isset($user_id) && $user_id != null) {
     header("Location:index.php?redirected=true&user_id=false");
     exit();
 }
-//    echo "<p>It seems like something went wrong with signing you in. Please sign in again.</p>"
 ?>
 
 <header>
@@ -134,76 +168,83 @@ if (isset($user_id) && $user_id != null) {
 
 
 <main>
+
     <section class="white_background background-form-but-wider-that-looks-cool" id="final-quiz">
-        <h1>Final quiz!</h1>
-        <p>In this final quiz you have to answer 20 questions in total, 4 in each lesson </p>
 
-        <div class="container" id="html-quiz">
-            <form action="progress.php" method="post">
-                <h1>HTML Tutorial Quiz</h1>
-                <hr>
-                <div class="left">
-                    <h2 style="text-align: center">What does HTML stand for?</h2>
-                    <ul class="answers">
-                        <li class="answer">
-                            <input type="radio" id="html-a" name="html" value="A">
-                            <label for="html-a">A) HyperText Markup Language</label>
-                        </li>
-                        <li class="answer">
-                            <input type="radio" id="html-b" name="html" value="B">
-                            <label for="html-b">B) Hyperlink Textual Markup Language</label>
-                        </li>
-                        <li class="answer">
-                            <input type="radio" id="html-c" name="html" value="C">
-                            <label for="html-c">C) Hyperlink and Text Markup Language</label>
-                        </li>
-                        <li class="answer">
-                            <input type="radio" id="html-d" name="html" value="D">
-                            <label for="html-d">D) High-Level Markup Language</label>
-                        </li>
-                    </ul>
-                    <button type="button" id="feedback-1-button" onclick="showCorrectAnswer('feedback-1')">Show Correct
-                        Answer!
-                    </button>
-                    <p class="feedback" id="feedback-1" style="display: none;"><strong>Correct Answer:</strong> A)
-                        HyperText
-                        Markup
-                        Language</p>
-                </div>
+        <form action="progress.php" method="post">
+            <h1>Final quiz!</h1>
+            <p>In this final quiz you have to answer 20 questions in total, 4 in each lesson </p>
 
-                <div class="left">
-                    <h2 style="text-align: center">Why is learning HTML essential for web development?</h2>
-                    <ul class="answers">
-                        <!-- Add more questions and answers here -->
-                        <li class="answer">
-                            <input type="radio" id="html-essential-a" name="html-essential" value="A">
-                            <label for="html-essential-a">A) It's not essential</label>
-                        </li>
-                        <li class="answer">
-                            <input type="radio" id="html-essential-b" name="html-essential" value="B">
-                            <label for="html-essential-b">B) It serves as the foundation for creating web pages</label>
-                        </li>
-                        <li class="answer">
-                            <input type="radio" id="html-essential-c" name="html-essential" value="C">
-                            <label for="html-essential-c">C) It's only necessary for designers</label>
-                        </li>
-                        <li class="answer">
-                            <input type="radio" id="html-essential-d" name="html-essential" value="D">
-                            <label for="html-essential-d">D) It's required for database management</label>
-                        </li>
-                    </ul>
-                    <button type="button" id="feedback-2-button" onclick="showCorrectAnswer('feedback-2')">Show Correct
-                        Answer!
-                    </button>
-                    <p class="feedback" id="feedback-2" style="display: none;"><strong>Correct Answer:</strong> B) It
-                        serves as
-                        the
-                        foundation for creating web pages</p>
+            <div class="container" id="html-quiz">
+                <form action="progress.php" method="post">
+                    <h1>HTML Tutorial Quiz</h1>
+                    <hr>
+                    <div class="left">
+                        <h2 style="text-align: center">What does HTML stand for?</h2>
+                        <ul class="answers">
+                            <li class="answer">
+                                <input type="radio" id="html-a" name="html" value="A">
+                                <label for="html-a">A) HyperText Markup Language</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="html-b" name="html" value="B">
+                                <label for="html-b">B) Hyperlink Textual Markup Language</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="html-c" name="html" value="C">
+                                <label for="html-c">C) Hyperlink and Text Markup Language</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="html-d" name="html" value="D">
+                                <label for="html-d">D) High-Level Markup Language</label>
+                            </li>
+                        </ul>
+                        <button type="button" id="feedback-1-button" onclick="showCorrectAnswer('feedback-1')">Show
+                            Correct
+                            Answer!
+                        </button>
+                        <p class="feedback" id="feedback-1" style="display: none;"><strong>Correct Answer:</strong> A)
+                            HyperText
+                            Markup
+                            Language</p>
+                    </div>
 
-                </div>
-                <div class="left">
-                    <h2 style="text-align: center">What is the correct output of the following HTML code?</h2>
-                    <pre class="code left">
+                    <div class="left">
+                        <h2 style="text-align: center">Why is learning HTML essential for web development?</h2>
+                        <ul class="answers">
+                            <!-- Add more questions and answers here -->
+                            <li class="answer">
+                                <input type="radio" id="html-essential-a" name="html-essential" value="A">
+                                <label for="html-essential-a">A) It's not essential</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="html-essential-b" name="html-essential" value="B">
+                                <label for="html-essential-b">B) It serves as the foundation for creating web
+                                    pages</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="html-essential-c" name="html-essential" value="C">
+                                <label for="html-essential-c">C) It's only necessary for designers</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="html-essential-d" name="html-essential" value="D">
+                                <label for="html-essential-d">D) It's required for database management</label>
+                            </li>
+                        </ul>
+                        <button type="button" id="feedback-2-button" onclick="showCorrectAnswer('feedback-2')">Show
+                            Correct
+                            Answer!
+                        </button>
+                        <p class="feedback" id="feedback-2" style="display: none;"><strong>Correct Answer:</strong> B)
+                            It
+                            serves as
+                            the
+                            foundation for creating web pages</p>
+
+                    </div>
+                    <div class="left">
+                        <h2 style="text-align: center">What is the correct output of the following HTML code?</h2>
+                        <pre class="code left">
 &lt;html&gt;
   &lt;head&gt;
     &lt;title&gt;Example&lt;/title&gt;
@@ -213,64 +254,191 @@ if (isset($user_id) && $user_id != null) {
   &lt;/body&gt;
 &lt;/html&gt;
     </pre>
-                    <ul class="answers">
-                        <li class="answer">
-                            <input type="radio" id="html-output-a" name="html-output" value="A">
-                            <label for="html-output-a">A) It will display "Example"</label>
-                        </li>
-                        <li class="answer">
-                            <input type="radio" id="html-output-b" name="html-output" value="B">
-                            <label for="html-output-b">B) It will display "Hello, World!"</label>
-                        </li>
-                        <li class="answer">
-                            <input type="radio" id="html-output-c" name="html-output" value="C">
-                            <label for="html-output-c">C) It will display both "Example" and "Hello, World!"</label>
-                        </li>
-                        <li class="answer">
-                            <input type="radio" id="html-output-d" name="html-output" value="D">
-                            <label for="html-output-d">D) It will display nothing</label>
-                        </li>
-                    </ul>
-                    <button type="button" id="feedback-3-button" onclick="showCorrectAnswer('feedback-3')">Show Correct
-                        Answer!
-                    </button>
-                    <p class="feedback" id="feedback-3" style="display: none;"><strong>Correct Answer:</strong> B) It
-                        will
-                        display
-                        "Hello, World!"</p>
-                </div>
-                <div class="left">
-                    <h2 style="text-align: center">What is HTML?</h2>
-                    <ul class="answers">
-                        <li class="answer">
-                            <input type="radio" id="html-definition-a" name="html-definition" value="A">
-                            <label for="html-definition-a">A) programming language</label>
-                        </li>
-                        <li class="answer">
-                            <input type="radio" id="html-definition-b" name="html-definition" value="B">
-                            <label for="html-definition-b">B) A framework</label>
-                        </li>
-                        <li class="answer">
-                            <input type="radio" id="html-definition-c" name="html-definition" value="C">
-                            <label for="html-definition-c">C) An internet protocol</label>
-                        </li>
-                        <li class="answer">
-                            <input type="radio" id="html-definition-d" name="html-definition" value="D">
-                            <label for="html-definition-d">D) A markup language</label>
-                        </li>
-                    </ul>
-                    <button type="button" id="feedback-4-button" onclick="showCorrectAnswer('feedback-4')">Show Correct
-                        Answer!
-                    </button>
-                    <p class="feedback" id="feedback-4" style="display: none;"><strong>Correct Answer:</strong> D) A
-                        markup
-                        language
-                    </p>
-                </div>
-            </form>
-            <?php
-            if ($learned) {
-                echo '<div id="progress_tracker">
+                        <ul class="answers">
+                            <li class="answer">
+                                <input type="radio" id="html-output-a" name="html-output" value="A">
+                                <label for="html-output-a">A) It will display "Example"</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="html-output-b" name="html-output" value="B">
+                                <label for="html-output-b">B) It will display "Hello, World!"</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="html-output-c" name="html-output" value="C">
+                                <label for="html-output-c">C) It will display both "Example" and "Hello, World!"</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="html-output-d" name="html-output" value="D">
+                                <label for="html-output-d">D) It will display nothing</label>
+                            </li>
+                        </ul>
+                        <button type="button" id="feedback-3-button" onclick="showCorrectAnswer('feedback-3')">Show
+                            Correct
+                            Answer!
+                        </button>
+                        <p class="feedback" id="feedback-3" style="display: none;"><strong>Correct Answer:</strong> B)
+                            It
+                            will
+                            display
+                            "Hello, World!"</p>
+                    </div>
+                    <div class="left">
+                        <h2 style="text-align: center">What is HTML?</h2>
+                        <ul class="answers">
+                            <li class="answer">
+                                <input type="radio" id="html-definition-a" name="html-definition" value="A">
+                                <label for="html-definition-a">A) programming language</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="html-definition-b" name="html-definition" value="B">
+                                <label for="html-definition-b">B) A framework</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="html-definition-c" name="html-definition" value="C">
+                                <label for="html-definition-c">C) An internet protocol</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="html-definition-d" name="html-definition" value="D">
+                                <label for="html-definition-d">D) A markup language</label>
+                            </li>
+                        </ul>
+                        <button type="button" id="feedback-4-button" onclick="showCorrectAnswer('feedback-4')">Show
+                            Correct
+                            Answer!
+                        </button>
+                        <p class="feedback" id="feedback-4" style="display: none;"><strong>Correct Answer:</strong> D) A
+                            markup
+                            language
+                        </p>
+                    </div>
+                </form>
+
+
+                <div class="container" id="css-quiz">
+                    <h1>CSS Tutorial Quiz</h1>
+                    <hr>
+                    <div class="left">
+                        <h2 style="text-align: center">What does CSS stand for?</h2>
+                        <ul class="answers">
+                            <li class="answer">
+                                <input type="radio" id="css-a" name="css" value="A">
+                                <label for="css-a">A) Cascading Style Sheets</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="css-b" name="css" value="B">
+                                <label for="css-b">B) Computer Style Sheets</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="css-c" name="css" value="C">
+                                <label for="css-c">C) Creative Style Sheets</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="css-d" name="css" value="D">
+                                <label for="css-d">D) Colorful Style Sheets</label>
+                            </li>
+                        </ul>
+                        <button type="button" id="feedback-1-button" onclick="showCorrectAnswer('feedback-1')">Show
+                            Correct
+                            Answer!
+                        </button>
+                        <p class="feedback" id="feedback-1" style="display: none;"><strong>Correct Answer:</strong> A)
+                            Cascading
+                            Style
+                            Sheets</p>
+                    </div>
+
+                    <div class="left">
+                        <h2 style="text-align: center">Which property is used to change the background color of an
+                            element?</h2>
+                        <ul class="answers">
+                            <li class="answer">
+                                <input type="radio" id="css-bgcolor-a" name="css-bgcolor" value="A">
+                                <label for="css-bgcolor-a">A) background-color</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="css-bgcolor-b" name="css-bgcolor" value="B">
+                                <label for="css-bgcolor-b">B) color</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="css-bgcolor-c" name="css-bgcolor" value="C">
+                                <label for="css-bgcolor-c">C) background</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="css-bgcolor-d" name="css-bgcolor" value="D">
+                                <label for="css-bgcolor-d">D) bgcolor</label>
+                            </li>
+                        </ul>
+                        <button type="button" id="feedback-2-button" onclick="showCorrectAnswer('feedback-2')">Show
+                            Correct
+                            Answer!
+                        </button>
+                        <p class="feedback" id="feedback-2" style="display: none;"><strong>Correct Answer:</strong> A)
+                            background-color
+                        </p>
+
+                    </div>
+
+                    <div class="left">
+                        <h2 style="text-align: center">Which CSS property is used to control the text size?</h2>
+                        <ul class="answers">
+                            <li class="answer">
+                                <input type="radio" id="css-textsize-a" name="css-textsize" value="A">
+                                <label for="css-textsize-a">A) text-size</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="css-textsize-b" name="css-textsize" value="B">
+                                <label for="css-textsize-b">B) font-size</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="css-textsize-c" name="css-textsize" value="C">
+                                <label for="css-textsize-c">C) size</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="css-textsize-d" name="css-textsize" value="D">
+                                <label for="css-textsize-d">D) font</label>
+                            </li>
+                        </ul>
+                        <button type="button" id="feedback-3-button" onclick="showCorrectAnswer('feedback-3')">Show
+                            Correct
+                            Answer!
+                        </button>
+                        <p class="feedback" id="feedback-3" style="display: none;"><strong>Correct Answer:</strong> B)
+                            font-size
+                        </p>
+                    </div>
+
+                    <div class="left">
+                        <h2 style="text-align: center">Which CSS property is used to create a border around an
+                            element?</h2>
+                        <ul class="answers">
+                            <li class="answer">
+                                <input type="radio" id="css-border-a" name="css-border" value="A">
+                                <label for="css-border-a">A) border-radius</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="css-border-b" name="css-border" value="B">
+                                <label for="css-border-b">B) border-color</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="css-border-c" name="css-border" value="C">
+                                <label for="css-border-c">C) border</label>
+                            </li>
+                            <li class="answer">
+                                <input type="radio" id="css-border-d" name="css-border" value="D">
+                                <label for="css-border-d">D) border-width</label>
+                            </li>
+                        </ul>
+                        <button type="button" id="feedback-4-button" onclick="showCorrectAnswer('feedback-4')">Show
+                            Correct
+                            Answer!
+                        </button>
+                        <p class="feedback" id="feedback-4" style="display: none;"><strong>Correct Answer:</strong> C)
+                            border
+                        </p>
+                    </div>
+                    <?php
+                    if ($learned) {
+                        echo '<div id="progress_tracker">
         <br>
         <form action="progress.php" method="post" class="progress-form">
             <h1>Your progress:</h1>
@@ -287,128 +455,142 @@ if (isset($user_id) && $user_id != null) {
             ?>
         </form>
     </div>';
-            }
-            ?>
-        </div>
+                    }
+                    ?>
+                </div>
 
-        <div class="container" id="css-quiz">
-            <h1>CSS Tutorial Quiz</h1>
-            <hr>
-            <div class="left">
-                <h2 style="text-align: center">What does CSS stand for?</h2>
-                <ul class="answers">
-                    <li class="answer">
-                        <input type="radio" id="css-a" name="css" value="A">
-                        <label for="css-a">A) Cascading Style Sheets</label>
-                    </li>
-                    <li class="answer">
-                        <input type="radio" id="css-b" name="css" value="B">
-                        <label for="css-b">B) Computer Style Sheets</label>
-                    </li>
-                    <li class="answer">
-                        <input type="radio" id="css-c" name="css" value="C">
-                        <label for="css-c">C) Creative Style Sheets</label>
-                    </li>
-                    <li class="answer">
-                        <input type="radio" id="css-d" name="css" value="D">
-                        <label for="css-d">D) Colorful Style Sheets</label>
-                    </li>
-                </ul>
-                <button type="button" id="feedback-1-button" onclick="showCorrectAnswer('feedback-1')">Show Correct
-                    Answer!
-                </button>
-                <p class="feedback" id="feedback-1" style="display: none;"><strong>Correct Answer:</strong> A) Cascading
-                    Style
-                    Sheets</p>
-            </div>
+                <div class="container" id="javascript-quiz">
+                    <form action="progress.php" method="post">
+                        <h1>JavaScript Tutorial Quiz</h1>
+                        <hr>
+                        <div class="left">
+                            <h2>What does DOM stand for?</h2>
+                            <ul class="answers">
+                                <li class="answer">
+                                    <input type="radio" id="javascript-a" name="javascript" value="A">
+                                    <label for="javascript-a">A) Document Object Model</label>
+                                </li>
+                                <li class="answer">
+                                    <input type="radio" id="javascript-b" name="javascript" value="B">
+                                    <label for="javascript-b">B) Document Oriented Model</label>
+                                </li>
+                                <li class="answer">
+                                    <input type="radio" id="javascript-c" name="javascript" value="C">
+                                    <label for="javascript-c">C) Data Object Model</label>
+                                </li>
+                                <li class="answer">
+                                    <input type="radio" id="javascript-d" name="javascript" value="D">
+                                    <label for="javascript-d">D) Document Order Model</label>
+                                </li>
+                            </ul>
+                            Correct Answer: A) Document Object Model
 
-            <div class="left">
-                <h2 style="text-align: center">Which property is used to change the background color of an element?</h2>
-                <ul class="answers">
-                    <li class="answer">
-                        <input type="radio" id="css-bgcolor-a" name="css-bgcolor" value="A">
-                        <label for="css-bgcolor-a">A) background-color</label>
-                    </li>
-                    <li class="answer">
-                        <input type="radio" id="css-bgcolor-b" name="css-bgcolor" value="B">
-                        <label for="css-bgcolor-b">B) color</label>
-                    </li>
-                    <li class="answer">
-                        <input type="radio" id="css-bgcolor-c" name="css-bgcolor" value="C">
-                        <label for="css-bgcolor-c">C) background</label>
-                    </li>
-                    <li class="answer">
-                        <input type="radio" id="css-bgcolor-d" name="css-bgcolor" value="D">
-                        <label for="css-bgcolor-d">D) bgcolor</label>
-                    </li>
-                </ul>
-                <button type="button" id="feedback-2-button" onclick="showCorrectAnswer('feedback-2')">Show Correct
-                    Answer!
-                </button>
-                <p class="feedback" id="feedback-2" style="display: none;"><strong>Correct Answer:</strong> A)
-                    background-color
-                </p>
+                        </div>
+                        What function is used to schedule a function to run after a certain amount of time?
+                        A) setTimeout()
+                        B) setInterval()
+                        C) sleep()
+                        D) wait()
+                        Correct Answer: A) setTimeout()
+                        Which symbol is used for comments in JavaScript?
+                        A) //
+                        B) #
+                        C) --
+                        D) /* */
+                        Correct Answer: A) //
+                        What method is used to remove the last element of an array in JavaScript?
+                        A) pop()
+                        B) shift()
+                        C) splice()
+                        D) slice()
+                        Correct Answer: A) pop()
+                    </form>
+                </div>
 
-            </div>
+                <div class="container" id="php-quiz">
+                    <form action="progress.php" method="post">
+                        <h1>PHP Tutorial Quiz</h1>
+                        <hr>
+                        <div class="left">
+                            <h2>Which keyword is used to declare a function in PHP?</h2>
+                            <ul class="answers">
+                                <li class="answer">
+                                    <input type="radio" id="php-a" name="php" value="A">
+                                    <label for="php-a">A) func</label>
+                                </li>
+                                B) method
+                                C) function
+                                D) def
+                            </ul>
+                            Correct Answer: C) function
+                        </div>
+                        How do you start a PHP session?
+                        A) session_start()
+                        B) start_session()
+                        C) session()
+                        D) begin_session()
+                        Correct Answer: A) session_start()
+                        What is the correct way to concatenate two strings in PHP?
+                        A) str_concat()
+                        B) concat()
+                        C) .
+                        D) +
+                        Correct Answer: C) .
+                        Which function is used to read a file in PHP?
+                        A) read_file()
+                        B) file_get_contents()
+                        C) readfile()
+                        D) fopen()
+                        Correct Answer: B) file_get_contents()
+                    </form>
+                </div>
 
-            <div class="left">
-                <h2 style="text-align: center">Which CSS property is used to control the text size?</h2>
-                <ul class="answers">
-                    <li class="answer">
-                        <input type="radio" id="css-textsize-a" name="css-textsize" value="A">
-                        <label for="css-textsize-a">A) text-size</label>
-                    </li>
-                    <li class="answer">
-                        <input type="radio" id="css-textsize-b" name="css-textsize" value="B">
-                        <label for="css-textsize-b">B) font-size</label>
-                    </li>
-                    <li class="answer">
-                        <input type="radio" id="css-textsize-c" name="css-textsize" value="C">
-                        <label for="css-textsize-c">C) size</label>
-                    </li>
-                    <li class="answer">
-                        <input type="radio" id="css-textsize-d" name="css-textsize" value="D">
-                        <label for="css-textsize-d">D) font</label>
-                    </li>
-                </ul>
-                <button type="button" id="feedback-3-button" onclick="showCorrectAnswer('feedback-3')">Show Correct
-                    Answer!
-                </button>
-                <p class="feedback" id="feedback-3" style="display: none;"><strong>Correct Answer:</strong> B) font-size
-                </p>
-            </div>
+                <div class="container" id="python-quiz">
+                    <h1>Python Tutorial Quiz</h1>
+                    <hr>
+                    <div class="left">
+                        <h2>Which keyword is used to define a function in Python?</h2>
+                        <ul class="answers">
+                            <li class="answer">
+                                <input type="radio" id="python-a" name="python" value="A">
+                                <label for="python-a">A) func</label>
+                            </li>
+                            B) def
+                            C) define
+                            D) function
+                            Correct Answer: B) def
+                        </ul>
+                        What is the correct syntax to open a file in Python?
+                        A) open_file("filename.txt")
+                        B) file.open("filename.txt")
+                        C) open("filename.txt")
+                        D) fopen("filename.txt")
+                        Correct Answer: C) open("filename.txt")
+                        How do you comment multiple lines in Python?
+                        A) /* */
+                        B) //
+                        C) <!-- -->
+                        D) ''' '''
+                        Correct Answer: D) ''' '''
+                        What does the len() function return in Python?
+                        A) Total lines in a file
+                        B) Total characters in a string
+                        C) Total items in a list
+                        D) Total elements in a tuple
+                        Correct Answer: C) Total items in a list
+                    </div>
+                    <!-- Add more questions and answers following a similar structure -->
 
-            <div class="left">
-                <h2 style="text-align: center">Which CSS property is used to create a border around an element?</h2>
-                <ul class="answers">
-                    <li class="answer">
-                        <input type="radio" id="css-border-a" name="css-border" value="A">
-                        <label for="css-border-a">A) border-radius</label>
-                    </li>
-                    <li class="answer">
-                        <input type="radio" id="css-border-b" name="css-border" value="B">
-                        <label for="css-border-b">B) border-color</label>
-                    </li>
-                    <li class="answer">
-                        <input type="radio" id="css-border-c" name="css-border" value="C">
-                        <label for="css-border-c">C) border</label>
-                    </li>
-                    <li class="answer">
-                        <input type="radio" id="css-border-d" name="css-border" value="D">
-                        <label for="css-border-d">D) border-width</label>
-                    </li>
-                </ul>
-                <button type="button" id="feedback-4-button" onclick="showCorrectAnswer('feedback-4')">Show Correct
-                    Answer!
-                </button>
-                <p class="feedback" id="feedback-4" style="display: none;"><strong>Correct Answer:</strong> C) border
-                </p>
-            </div>
-            <?php
-            if ($learned) {
-                echo '<div id="progress_tracker">
+                    <button type="submit" name="quiz_submit" onclick="saveProgress()">Submit</button>
+                    <?php if (isset($quiz_message) && trim($quiz_message) !== "") {
+                        echo "<p>$quiz_message</p>";
+                    }
+                    ?>
+                    <?php
+                    if ($learned) {
+                        echo '<div id="progress_tracker">
         <br>
-        <form action="progress.php" method="post" class="progress-form">
+        <form action="html.php" method="post" class="progress-form">
             <h1>Your progress:</h1>
             <!-- Use a span to create a circle -->
             <label for="trackProgress">
@@ -423,89 +605,11 @@ if (isset($user_id) && $user_id != null) {
             ?>
         </form>
     </div>';
-            }
-            ?>
-        </div>
-
-        <div class="container" id="javascript-quiz">
-            <form action="progress.php" method="post">
-                <h1>JavaScript Tutorial Quiz</h1>
-                <hr>
-                <div class="left">
-                    <h2>What does DOM stand for?</h2>
-                    <ul class="answers">
-                        <li class="answer">
-                            <input type="radio" id="javascript-a" name="javascript" value="A">
-                            <label for="javascript-a">A) Document Object Model</label>
-                        </li>
-                        <li class="answer">
-                            <input type="radio" id="javascript-b" name="javascript" value="B">
-                            <label for="javascript-b">B) Document Oriented Model</label>
-                        </li>
-                        <li class="answer">
-                            <input type="radio" id="javascript-c" name="javascript" value="C">
-                            <label for="javascript-c">C) Data Object Model</label>
-                        </li>
-                        <li class="answer">
-                            <input type="radio" id="javascript-d" name="javascript" value="D">
-                            <label for="javascript-d">D) Document Order Model</label>
-                        </li>
-                    </ul>
-                    <!-- Add show correct answer button and feedback paragraph -->
+                    }
+                    ?>
                 </div>
-                <!-- Add more questions and answers following a similar structure -->
 
-                <!-- Add quiz message display if necessary -->
-            </form>
-        </div>
-
-        <div class="container" id="php-quiz">
-            <form action="progress.php" method="post">
-                <h1>PHP Tutorial Quiz</h1>
-                <hr>
-                <div class="left">
-                    <h2>Which keyword is used to declare a function in PHP?</h2>
-                    <ul class="answers">
-                        <li class="answer">
-                            <input type="radio" id="php-a" name="php" value="A">
-                            <label for="php-a">A) func</label>
-                        </li>
-                        <!-- Add options B, C, D -->
-                    </ul>
-                    <!-- Add show correct answer button and feedback paragraph -->
-                </div>
-                <!-- Add more questions and answers following a similar structure -->
-
-                <!-- Add quiz message display if necessary -->
-            </form>
-        </div>
-
-        <div class="container" id="python-quiz">
-            <form action="progress.php" method="post">
-                <h1>Python Tutorial Quiz</h1>
-                <hr>
-                <div class="left">
-                    <h2>Which keyword is used to define a function in Python?</h2>
-                    <ul class="answers">
-                        <li class="answer">
-                            <input type="radio" id="python-a" name="python" value="A">
-                            <label for="python-a">A) func</label>
-                        </li>
-                        <!-- Add options B, C, D -->
-                    </ul>
-                    <!-- Add show correct answer button and feedback paragraph -->
-                </div>
-                <!-- Add more questions and answers following a similar structure -->
-
-                <button type="submit" name="quiz_submit" onclick="saveProgress()">Submit</button>
-                <?php if (isset($quiz_message) && trim($quiz_message) !== "") {
-                    echo "<p>$quiz_message</p>";
-                }
-                ?>
-                <!-- Add quiz message display if necessary -->
-            </form>
-        </div>
-
+        </form>
     </section>
     <section class="white_background background-form-but-wider-that-looks-cool">
         <h2>Your Progress in the Quizzes</h2>
@@ -589,16 +693,20 @@ if (isset($user_id) && $user_id != null) {
             </div>
         </div>
     </section>
-    <section class="white_background two-px-border border-radius-px">
-        <h1>Track Progress</h1>
-        <label for="trackProgress">I have learned all lessons:</label>
-        <input type="checkbox" id="trackProgress" name="trackProgress">
+    <form class="white_background two-px-border border-radius-px" action="progress.php" method="post">
+        <h1>Reset progress</h1>
+        <label for="reset_progress"
         <br>
-        <br>
-        <button type="reset" name="reset_progress" class="bigger-letters">Reset progress <br><span
-                    class="smaller-letters">(Warning! This action cannot be undone!</span></button>
-
-    </section>
+        <button type="reset" name="reset_progress" class="bigger-letters" style="width: 50%">Warning! This action cannot
+            be undone!
+        </button>
+        </label>
+    </form>
+    <?php
+    if (isset($_POST["reset_progress"])) {
+        //
+    }
+    ?>
 
 </main>
 

@@ -40,41 +40,6 @@ session_start();
             font-weight: bold;
         }
     </style>
-    <script>
-        function toggleCircle(checkbox) {
-            var circle = document.getElementById('circle');
-            if (checkbox.checked) {
-                circle.classList.add('green-circle');
-            } else {
-                circle.classList.remove('green-circle');
-            }
-        }
-
-        function saveProgress(event) {
-            // Prevent the default form submission behavior
-            event.preventDefault();
-
-            // Submit the form using AJAX or perform any other necessary actions
-            // Example: form.submit();
-        }
-
-        function showCorrectAnswer(id) {
-            var feedback = document.getElementById(id);
-            var button = document.getElementById(id + '-button');
-            if (feedback.style.display === 'block') {
-                feedback.style.display = 'none';
-                button.textContent = 'Show Correct Answer!';
-            } else {
-                feedback.style.display = 'block';
-                button.textContent = 'Hide Correct Answer!';
-            }
-        }
-
-        function hideCorrectAnswer(id) {
-            var feedback = document.getElementById(id);
-            feedback.style.display = 'none';
-        }
-    </script>
     <meta charset="UTF-8">
     <link rel="script" href="js/script.js">
     <link href="css/style.css" rel="stylesheet">
@@ -289,6 +254,7 @@ include_once "inc/navbar.inc.php"; ?>
         </button>
         <p class="feedback" id="feedback-2" style="display: none;"><strong>Correct Answer:</strong> A) background-color
         </p>
+        <button type="submit" name="quiz_submit" onclick="saveProgress()">Submit</button>
 
     </div>
 

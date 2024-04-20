@@ -1,5 +1,8 @@
+// Get the quiz form element
+const quizForm = document.querySelector('form');
+
 function toggleCircle(checkbox) {
-    const circle = document.getElementById('circle');
+    var circle = document.getElementById('circle');
     if (checkbox.checked) {
         circle.classList.add('green-circle');
     } else {
@@ -8,35 +11,29 @@ function toggleCircle(checkbox) {
 }
 
 function saveProgress(event) {
-    // Check if the form submission should be prevented
-    if (!conditionMet) { // Replace 'conditionMet' with your condition
-        // Prevent the default form submission behavior
-        event.preventDefault();
-    }
+    // Prevent the default form submission behavior
+    event.preventDefault();
+
+    // Get the form element
+    const form = document.getElementById('progressForm');
 
     // Submit the form using AJAX or perform any other necessary actions
     // Example: form.submit();
 }
 
 function showCorrectAnswer(id) {
-    const feedback = document.getElementById(id);
-    const button = document.getElementById(id + '-button');
-    const computedStyle = window.getComputedStyle(feedback);
-
-    if (computedStyle.display === 'block') {
+    var feedback = document.getElementById(id);
+    var button = document.getElementById(id + '-button');
+    if (feedback.style.display === 'block') {
         feedback.style.display = 'none';
-        button.textContent = 'Show Correct Answer';
+        button.textContent = 'Show Correct Answer!';
     } else {
         feedback.style.display = 'block';
-        button.textContent = 'Hide Correct Answer';
+        button.textContent = 'Hide Correct Answer!';
     }
 }
 
 function hideCorrectAnswer(id) {
-    const feedback = document.getElementById(id);
+    var feedback = document.getElementById(id);
     feedback.style.display = 'none';
 }
-
-// Get the quiz form element
-const quizForm = document.querySelector('form');
-

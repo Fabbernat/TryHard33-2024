@@ -39,6 +39,15 @@ if (isset($_POST["signup"])) {
         }
     }
 
+    // Check if email already exists
+    foreach ($accounts as $account) {
+        if (isset($account["email"]) && $account["email"] === $email) {
+            $errors[] = "The email is already taken!";
+            $echo_errors = true;
+            break;// No need to continue checking if email already exists
+        }
+    }
+
     if (!isset($_POST["firstname"]) || trim($_POST["firstname"]) === "") {
         $errors[] = "The first name is required! Please fill it!";
         $echo_errors = true;
