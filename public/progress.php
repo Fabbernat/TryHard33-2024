@@ -124,7 +124,7 @@ if (isset($_POST['trackProgress']) && $_POST['trackProgress'] === 'on') {
     </style>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<!--    <script src="js/script.js"></script>-->
+        <script src="js/script.js"></script>
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -181,11 +181,12 @@ if (isset($user_id) && $user_id != null) {
                             <label for="html-d">D) High-Level Markup Language</label>
                         </li>
                     </ul>
-                    <button type="button" id="feedback-1-button" onclick="showCorrectAnswer('feedback-1')">Show
+                    <button type="button" id="html-feedback-1-button" onclick="showCorrectAnswer('html-feedback-1')">
+                        Show
                         Correct
                         Answer!
                     </button>
-                    <p class="feedback" id="feedback-1" style="display: none;"><strong>Correct Answer:</strong> A)
+                    <p class="feedback" id="html-feedback-1" style="display: none;"><strong>Correct Answer:</strong> A)
                         HyperText
                         Markup
                         Language</p>
@@ -213,11 +214,12 @@ if (isset($user_id) && $user_id != null) {
                             <label for="html-essential-d">D) It's required for database management</label>
                         </li>
                     </ul>
-                    <button type="button" id="feedback-2-button" onclick="showCorrectAnswer('feedback-2')">Show
+                    <button type="button" id="html-feedback-2-button" onclick="showCorrectAnswer('html-feedback-2')">
+                        Show
                         Correct
                         Answer!
                     </button>
-                    <p class="feedback" id="feedback-2" style="display: none;"><strong>Correct Answer:</strong> B)
+                    <p class="feedback" id="html-feedback-2" style="display: none;"><strong>Correct Answer:</strong> B)
                         It
                         serves as
                         the
@@ -254,11 +256,12 @@ if (isset($user_id) && $user_id != null) {
                             <label for="html-output-d">D) It will display nothing</label>
                         </li>
                     </ul>
-                    <button type="button" id="feedback-3-button" onclick="showCorrectAnswer('feedback-3')">Show
+                    <button type="button" id="html-feedback-3-button" onclick="showCorrectAnswer('html-feedback-3')">
+                        Show
                         Correct
                         Answer!
                     </button>
-                    <p class="feedback" id="feedback-3" style="display: none;"><strong>Correct Answer:</strong> B)
+                    <p class="feedback" id="html-feedback-3" style="display: none;"><strong>Correct Answer:</strong> B)
                         It
                         will
                         display
@@ -284,11 +287,13 @@ if (isset($user_id) && $user_id != null) {
                             <label for="html-definition-d">D) A markup language</label>
                         </li>
                     </ul>
-                    <button type="button" id="feedback-4-button" onclick="showCorrectAnswer('feedback-4')">Show
+                    <button type="button" id="html-feedback-4-button" onclick="showCorrectAnswer('html-feedback-4')">
+                        Show
                         Correct
                         Answer!
                     </button>
-                    <p class="feedback" id="feedback-4" style="display: none;"><strong>Correct Answer:</strong> D) A
+                    <p class="feedback" id="html-feedback-4" style="display: none;"><strong>Correct Answer:</strong> D)
+                        A
                         markup
                         language
                     </p>
@@ -319,11 +324,11 @@ if (isset($user_id) && $user_id != null) {
                             <label for="css-d">D) Colorful Style Sheets</label>
                         </li>
                     </ul>
-                    <button type="button" id="feedback-1-button" onclick="showCorrectAnswer('feedback-1')">Show
+                    <button type="button" id="css-feedback-1-button" onclick="showCorrectAnswer('css-feedback-1')">Show
                         Correct
                         Answer!
                     </button>
-                    <p class="feedback" id="feedback-1" style="display: none;"><strong>Correct Answer:</strong> A)
+                    <p class="feedback" id="css-feedback-1" style="display: none;"><strong>Correct Answer:</strong> A)
                         Cascading
                         Style
                         Sheets</p>
@@ -350,11 +355,11 @@ if (isset($user_id) && $user_id != null) {
                             <label for="css-bgcolor-d">D) bgcolor</label>
                         </li>
                     </ul>
-                    <button type="button" id="feedback-2-button" onclick="showCorrectAnswer('feedback-2')">Show
+                    <button type="button" id="css-feedback-2-button" onclick="showCorrectAnswer('css-feedback-2')">Show
                         Correct
                         Answer!
                     </button>
-                    <p class="feedback" id="feedback-2" style="display: none;"><strong>Correct Answer:</strong> A)
+                    <p class="feedback" id="css-feedback-2" style="display: none;"><strong>Correct Answer:</strong> A)
                         background-color
                     </p>
 
@@ -380,11 +385,11 @@ if (isset($user_id) && $user_id != null) {
                             <label for="css-textsize-d">D) font</label>
                         </li>
                     </ul>
-                    <button type="button" id="feedback-3-button" onclick="showCorrectAnswer('feedback-3')">Show
+                    <button type="button" id="css-feedback-3-button" onclick="showCorrectAnswer('css-feedback-3')">Show
                         Correct
                         Answer!
                     </button>
-                    <p class="feedback" id="feedback-3" style="display: none;"><strong>Correct Answer:</strong> B)
+                    <p class="feedback" id="css-feedback-3" style="display: none;"><strong>Correct Answer:</strong> B)
                         font-size
                     </p>
                 </div>
@@ -410,43 +415,53 @@ if (isset($user_id) && $user_id != null) {
                             <label for="css-border-d">D) border-width</label>
                         </li>
                     </ul>
-                    <button type="button" id="feedback-4-button" onclick="showCorrectAnswer('feedback-4')">Show
+                    <button type="button" id="css-feedback-4-button" onclick="showCorrectAnswer('css-feedback-4')">Show
                         Correct
                         Answer!
+
                     </button>
-                    <p class="feedback" id="feedback-4" style="display: none;"><strong>Correct Answer:</strong> C)
+                    <p class="feedback" id="css-feedback-4" style="display: none;"><strong>Correct Answer:</strong> C)
                         border
                     </p>
                 </div>
             </div>
 
             <div class="container" id="javascript-quiz">
-                <form action="progress.php" method="post">
-                    <h1>JavaScript Tutorial Quiz</h1>
-                    <hr>
-                    <div class="left">
-                        <h2>What does DOM stand for?</h2>
-                        <ul class="answers">
-                            <li class="answer">
-                                <input type="radio" id="javascript-a" name="javascript" value="A">
-                                <label for="javascript-a">A) Document Object Model</label>
-                            </li>
-                            <li class="answer">
-                                <input type="radio" id="javascript-b" name="javascript" value="B">
-                                <label for="javascript-b">B) Document Oriented Model</label>
-                            </li>
-                            <li class="answer">
-                                <input type="radio" id="javascript-c" name="javascript" value="C">
-                                <label for="javascript-c">C) Data Object Model</label>
-                            </li>
-                            <li class="answer">
-                                <input type="radio" id="javascript-d" name="javascript" value="D">
-                                <label for="javascript-d">D) Document Order Model</label>
-                            </li>
-                        </ul>
-                        Correct Answer: A) Document Object Model
+                <h1>JavaScript Tutorial Quiz</h1>
+                <hr>
+                <div class="left">
+                    <h2>What does DOM stand for?</h2>
+                    <ul class="answers">
+                        <li class="answer">
+                            <input type="radio" id="javascript-a" name="javascript" value="A">
+                            <label for="javascript-a">A) Document Object Model</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="javascript-b" name="javascript" value="B">
+                            <label for="javascript-b">B) Document Oriented Model</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="javascript-c" name="javascript" value="C">
+                            <label for="javascript-c">C) Data Object Model</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="javascript-d" name="javascript" value="D">
+                            <label for="javascript-d">D) Document Order Model</label>
+                        </li>
+                    </ul>
 
-                    </div>
+                    <button type="button" id="js-feedback-1-button" onclick="showCorrectAnswer('js-feedback-1')">
+                        Show Correct Answer!
+                    </button>
+
+                    <p class="feedback" id="js-feedback-1" style="display: none;"><strong>Correct Answer:</strong>
+                        Correct Answer: A) Document Object Model
+                    </p>
+
+
+                </div>
+                <pre class="left" style="margin: 0; padding: 0">
+
                     What function is used to schedule a function to run after a certain amount of time?
                     A) setTimeout()
                     B) setInterval()
@@ -465,26 +480,43 @@ if (isset($user_id) && $user_id != null) {
                     C) splice()
                     D) slice()
                     Correct Answer: A) pop()
-                </form>
+                    </pre>
             </div>
 
             <div class="container" id="php-quiz">
-                <form action="progress.php" method="post">
-                    <h1>PHP Tutorial Quiz</h1>
-                    <hr>
-                    <div class="left">
-                        <h2>Which keyword is used to declare a function in PHP?</h2>
-                        <ul class="answers">
-                            <li class="answer">
-                                <input type="radio" id="php-a" name="php" value="A">
-                                <label for="php-a">A) func</label>
-                            </li>
-                            B) method
-                            C) function
-                            D) def
-                        </ul>
+                <h1>PHP Tutorial Quiz</h1>
+                <hr>
+                <div class="left">
+                    <h2>Which keyword is used to declare a function in PHP?</h2>
+                    <ul class="answers">
+                        <li class="answer">
+                            <input type="radio" id="php-a" name="php" value="A">
+                            <label for="php-a">A) func</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="php-b" name="php" value="B">
+                            <label for="php-b">B) method</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="php-c" name="php" value="C">
+                            <label for="php-c">C) function</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="php-d" name="php" value="D">
+                            <label for="php-d">D) def</label>
+                        </li>
+
+
+                    </ul>
+                    <button type="button" id="php-feedback-1-button" onclick="showCorrectAnswer('php-feedback-1')">
+                        Show Correct Answer!
+                    </button>
+                    <p class="feedback" id="php-feedback-1" style="display: none;"><strong>Correct Answer:</strong>
                         Correct Answer: C) function
-                    </div>
+                    </p>
+                </div>
+                <pre class="left" style="margin: 0; padding: 0">
+
                     How do you start a PHP session?
                     A) session_start()
                     B) start_session()
@@ -503,7 +535,7 @@ if (isset($user_id) && $user_id != null) {
                     C) readfile()
                     D) fopen()
                     Correct Answer: B) file_get_contents()
-                </form>
+                    </pre>
             </div>
 
             <div class="container" id="python-quiz">
@@ -516,11 +548,27 @@ if (isset($user_id) && $user_id != null) {
                             <input type="radio" id="python-a" name="python" value="A">
                             <label for="python-a">A) func</label>
                         </li>
-                        B) def
-                        C) define
-                        D) function
-                        Correct Answer: B) def
+                        <li class="answer">
+                            <input type="radio" id="python-b" name="python" value="B">
+                            <label for="python-b">B) def</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="python-c" name="python" value="C">
+                            <label for="python-c">C) define</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="python-d" name="python" value="D">
+                            <label for="python-d">D) function</label>
+                        </li>
                     </ul>
+                    <button type="button" id="python-feedback-1-button" onclick="showCorrectAnswer('python-feedback-1')">
+                        Show Correct Answer!
+                    </button>
+                    <p class="feedback" id="python-feedback-1" style="display: none;"><strong>Correct Answer:</strong>
+                        Correct Answer: B) def
+                    </p>
+                    <pre class="left" style="margin: 0; padding: 0">
+
                     What is the correct syntax to open a file in Python?
                     A) open_file("filename.txt")
                     B) file.open("filename.txt")
@@ -539,6 +587,7 @@ if (isset($user_id) && $user_id != null) {
                     C) Total items in a list
                     D) Total elements in a tuple
                     Correct Answer: C) Total items in a list
+                    </pre>
                 </div>
                 <!-- Add more questions and answers following a similar structure -->
 
@@ -546,41 +595,26 @@ if (isset($user_id) && $user_id != null) {
                     echo "<p>$quiz_message</p>";
                 }
                 ?>
-                <?php
-                if ($learned) {
-                    echo '<div id="progress_tracker">
-        <br>
-        <form action="html.php" method="post" class="progress-form">
-            <h1>Your progress:</h1>
-            <!-- Use a span to create a circle -->
-            <label for="trackProgress">
-                <input type="checkbox" id="trackProgress" name="trackProgress" onclick="toggleCircle(this)">
-                <span class="checkmark"></span>
-                I have learned this lesson
-            </label>
-            <?php
-            if (isset($_POST["save_progress"])) {
-                $html_completed = true;
-            }
-            ?>
-        ';
-                }
-                ?>
                 <button type="submit" name="quiz_submit" onclick="saveProgress()">Submit</button>
             </div>
         </form>
         <?php
-        echo '<div id="progress_tracker">
-        <br>
-        <form action="progress.php" method="post" class="progress-form">
-            <h1>Your progress:</h1>
-            <!-- Use a span to create a circle -->
-            <label for="trackProgress">
-                <input type="checkbox" id="trackProgress" name="trackProgress" onclick="toggleCircle(this)">
-                <span class="checkmark"></span>
-                <button type="submit">I have learned this lesson</button>
+        echo '
+<div id="progress_tracker">
+    <br>
+    <form action="progress.php" class="progress-form" method="post">
+        <h1>Your progress:</h1>
+        <!-- Use a span to create a circle -->
+        <label for="trackProgress">
+            <input id="trackProgress" name="trackProgress" onclick="toggleCircle(this)" type="checkbox">
             </label>
-            ';
+            <span class="checkmark"></span>
+            <label for="submit-progress">
+            <button id="submit-progress" type="submit">I have learned this lesson</button>
+        </label>
+    </form>
+</div>
+';
         if (isset($_POST["save_progress"])) {
             $html_completed = true;
             $css_completed = true;
@@ -589,9 +623,7 @@ if (isset($user_id) && $user_id != null) {
             $python_completed = true;
 
         }
-
         ?>
-
     </section>
     <section class="white_background background-form-but-wider-that-looks-cool">
         <h2>Your Progress in the Quizzes</h2>
@@ -844,9 +876,9 @@ if (isset($user_id) && $user_id != null) {
     </section>
     <form class="white_background two-px-border border-radius-px" action="progress.php" method="post">
         <h1>Reset progress</h1>
+        <br>
         <label for="reset_progress">
-            <br>
-            <button type="reset" name="reset_progress" class="bigger-letters" style="width: 80%">Warning! This action
+            <button type="reset" name="reset_progress" id="reset_progress" class="bigger-letters" style="width: 80%">Warning! This action
                 cannot be undone!
             </button>
         </label>
