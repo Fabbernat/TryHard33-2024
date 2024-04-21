@@ -121,64 +121,6 @@ include_once "inc/navbar.inc.php"; ?>
     </pre>
                 </div>
             </section>
-            <section>
-                <h3 id="functions">Example 5: Functions</h3>
-                <div class="php-code">
-                <pre class="left-align">
-                &lt;?php
-                // PHP code to demonstrate functions
-                function greet($name) {
-                    echo "Hello, $name!";
-                }
-                greet("Alice");
-                ?>
-                </pre>
-                </div>
-                <h4>Output:</h4>
-                <div class="output">
-                <pre class="left-align">
-                Hello, Alice!
-                </pre>
-                </div>
-            </section>
-            <section>
-                <h3 id="arrays">Example 6: Arrays</h3>
-                <div class="php-code">
-                <pre class="left-align">
-                &lt;?php
-                // PHP code to demonstrate arrays
-                $colors = array("Red", "Green", "Blue");
-                echo "Colors: " . implode(", ", $colors);
-                ?>
-                </pre>
-                </div>
-                <h4>Output:</h4>
-                <div class="output">
-                <pre class="left-align">
-                Colors: Red, Green, Blue
-                </pre>
-                </div>
-            </section>
-            <section>
-                <h3 id="forms">Example 7: Forms Handling</h3>
-                <div class="php-code">
-                <pre class="left-align">
-                &lt;?php
-                // PHP code to handle form submission
-                if ($_SERVER["REQUEST_METHOD"] == "POST") {
-                    $name = $_POST["name"];
-                    echo "Hello, $name!";
-                }
-                ?>
-                </pre>
-                </div>
-                <h4>Output:</h4>
-                <div class="output">
-                <pre class="left-align">
-                (Output will vary based on form input)
-                </pre>
-                </div>
-            </section>
         </section>
     </section>
     <section>
@@ -194,17 +136,66 @@ include_once "inc/navbar.inc.php"; ?>
         <p>...</p>
     </section>
     <section>
-        <h3 id="functions" class="blue">Functions</h3>
-        <p>...</p>
+        <h3 id="functions">Example 5: Functions</h3>
+        <div class="php-code">
+                <pre class="left-align">
+                &lt;?php
+                // PHP code to demonstrate functions
+                function greet($name) {
+                    echo "Hello, $name!";
+                }
+                greet("Alice");
+                ?>
+                </pre>
+        </div>
+        <h4>Output:</h4>
+        <div class="output">
+                <pre class="left-align">
+                Hello, Alice!
+                </pre>
+        </div>
     </section>
+
     <section>
-        <h3 id="arrays" class="blue">Arrays</h3>
-        <p>...</p>
+        <h3 id="arrays">Example 6: Arrays</h3>
+        <div class="php-code">
+                <pre class="left-align">
+                &lt;?php
+                // PHP code to demonstrate arrays
+                $colors = array("Red", "Green", "Blue");
+                echo "Colors: " . implode(", ", $colors);
+                ?>
+                </pre>
+        </div>
+        <h4>Output:</h4>
+        <div class="output">
+                <pre class="left-align">
+                Colors: Red, Green, Blue
+                </pre>
+        </div>
     </section>
+
     <section>
-        <h3 id="forms" class="blue">Forms Handling</h3>
-        <p>...</p>
+        <h3 id="forms">Example 7: Forms Handling</h3>
+        <div class="php-code">
+                <pre class="left-align">
+                &lt;?php
+                // PHP code to handle form submission
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $name = $_POST["name"];
+                    echo "Hello, $name!";
+                }
+                ?>
+                </pre>
+        </div>
+        <h4>Output:</h4>
+        <div class="output">
+                <pre class="left-align">
+                (Output will vary based on form input)
+                </pre>
+        </div>
     </section>
+
 </main>
 
 <div class="two-px-border" style="border-radius: 20px; width: 30%; margin: 0 auto">

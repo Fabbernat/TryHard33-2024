@@ -39,9 +39,26 @@ if (isset($_SESSION["user_id"])) {
         "css" => "A",
         "css-bgcolor" => "A",
         "css-textsize" => "B",
-        "css-border" => "C"];
+        "css-border" => "C",
 
-    if (isset($_POST["quiz_submit"])) {
+        "js1" => "A",
+        "js2" => "B",
+        "js3" => "C",
+        "js4" => "D",
+
+        "php1" => "A",
+        "php2" => "B",
+        "php3" => "C",
+        "php4" => "D",
+
+        "python1" => "A",
+        "python2" => "B",
+        "python3" => "C",
+        "python4" => "D",
+
+    ];
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["quiz_submit"])) {
         foreach ($answers as $question => $userAnswer) {
             if (isset($_POST[$question]) && isset($userAnswer) && isset($correctAnswers[$question]) && $userAnswer === $correctAnswers[$question]) {
                 // Increment the number of correct answers if the user's answer is correct
@@ -835,7 +852,7 @@ if (isset($user_id) && $user_id != null) {
         </label>
     </form>
     <?php
-    if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["reset_progress"])) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["reset_progress"])) {
         resetUserProgress($user_id);
         header("Location: progress.php?successful_delete=true");
         exit();
