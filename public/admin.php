@@ -25,6 +25,14 @@ include_once "inc/navbar.inc.php";
 ?>
 <header>
     <h1 class="signup-and-login-caption">Admin (secret website)</h1>
+    <?php
+    if (isset($_SESSION["user_id"]) || isset($_SESSION["user"]["username"])) {
+        echo "<h1>Welcome " . $_SESSION["user_id"] . "! </h1>
+";
+    } else {
+        header("Location:index.php");
+    }
+    ?>
 </header>
 <main>
     <form action="#" class="white_background background-form margin-30-px form" method="post"><!--admin.php-->

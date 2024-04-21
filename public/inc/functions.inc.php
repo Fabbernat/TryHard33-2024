@@ -59,3 +59,14 @@ function resetUserProgress(string $user_id): void
     $json_data = json_encode($users, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
     file_put_contents("../json/users.json", $json_data);
 }
+
+function delete_user(string $user_id): void
+{
+    $users = load_users("../json/users.json");
+    foreach ($users["users"] as &$user) {
+        if($user["user_id"] === $user_id) {
+            $user["user_id"] = "";
+            return;
+        }
+    }
+}

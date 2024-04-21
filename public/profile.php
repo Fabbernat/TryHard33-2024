@@ -135,6 +135,10 @@ include_once "inc/navbar.inc.php";
         <h3>Delete Your Data</h3>
         <form action="inc/delete_data.inc.php" method="POST">
             <p>Are you sure you want to delete all your data?</p>
+            <label>To delete your data, type your username in the input box.
+                <input type="text" name="user_id">
+            </label>
+            <?php $_POST["user_id"] = $_SESSION["user_id"];?>
             <button type="submit" name="delete">Delete Data</button>
         </form>
     </section>

@@ -38,16 +38,6 @@
         },
         {
             "username": "d",
-            "email": "f@b",
-            "password": "$2y$10$5VcJHJH2TbDYGUKyGmF2IekYbiFQ7ofRUbVk9o3QA\/Mn2wUlj1tQ.",
-            "birthdate": "2003-10-10",
-            "registration_age": 20,
-            "solved_tasks": [],
-            "correct_answers": 0,
-            "subscribed": false
-        },
-        {
-            "username": "d",
             "email": "d@d",
             "password": "$2y$10$Sez2MO\/jULvM8PZiEw3gDuD0..YOOqvjv9E\/D5vVbQcPPD8kI76pO",
             "birthdate": "1111-11-11",

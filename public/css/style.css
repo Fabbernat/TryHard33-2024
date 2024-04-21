@@ -314,12 +314,14 @@ input[type="submit"]:hover {
 
 .choose-a-lesson-to-learn {
     border: 5px white; /* not working for some reason*/
-    font-size: 30px; /* Adjust the font size to match the star labels */
+    font-size: 40px; /* Adjust the font size to match the star labels */
     text-align: left; /* Align the text to the right */
     font-family: sans, serif;
     color: yellow;
-    margin-left: 10px;
+    margin-left: 120px;
     margin-right: 10px; /* Some margin for spacing */
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 .yellow-font {
