@@ -19,7 +19,7 @@ if (isset($_SESSION["user_id"])) {
         $userData[$userId] = [];
     }
 
-        // Count the number of correct answers (replace this with your logic)
+        // Count the number of correct answers
         $numCorrectAnswers = 0;
 
         $answers = @$_POST;
