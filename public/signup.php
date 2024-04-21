@@ -1,7 +1,5 @@
 <?php
 session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
 
 //setcookie("user", "meowuwuka", time() + 3600, "/");
 include_once "inc/functions.inc.php";              // beágyazzuk a load_users() és save_users() függvényeket tartalmazó PHP fájlt

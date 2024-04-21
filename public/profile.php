@@ -113,8 +113,6 @@ include_once "inc/navbar.inc.php";
             }
 
             function saveInterests(event) {
-                // Prevent the default form submission behavior
-                event.preventDefault();
 
                 // Submit the form using AJAX or perform any other necessary actions
                 // Example: form.submit();

@@ -370,11 +370,24 @@ print(message)  # Output: Hello, Alice!
             ensuring a better user experience and facilitating easier debugging and maintenance.</p>
 
     </section>
-    <section>
-        <h2>Track Progress</h2>
-        <label for="trackProgress">I have learned this lesson:</label>
-        <input type="checkbox" id="trackProgress" name="trackProgress">
-    </section>
+    <div id="progress_tracker">
+        <br>
+        <form action="python.php" method="post" class="progress-form">
+            <h1>Track your progress!</h1>
+            <!-- Use a span to create a circle -->
+            <label for="trackProgress">
+                <input type="checkbox" id="trackProgress" name="trackProgress" onclick="toggleCircle(this)">
+                <span class="checkmark"></span>
+                I have learned this lesson
+            </label>
+            <button type="submit" name="save_progress" onclick="saveProgress(event)">Save</button>
+            <?php
+            if (isset($_POST["save_progress"])) {
+                $html_completed = true;
+            }
+            ?>
+        </form>
+    </div>
 </main>
 
 <div class="two-px-border" style="border-radius: 20px; width: 30%; margin: 30px auto 0;">

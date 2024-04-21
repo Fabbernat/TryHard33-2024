@@ -49,6 +49,10 @@
     animation: loadLowerBar 1s ease-out forwards; /* Apply the animation */
 }
 
+.bar--lowest {
+    animation: loadLowestBar 1s ease-out forwards; /* Apply the animation */
+}
+
 @keyframes loadHigherBar {
     from {
         width: 0; /* Start with width 0 */
@@ -91,6 +95,15 @@
     }
     to {
         width: 20%; /* End with the desired width */
+    }
+}
+
+@keyframes loadLowestBar {
+    from {
+        width: 0; /* Start with width 0 */
+    }
+    to {
+        width: 5%; /* End with the desired width */
     }
 }
 
@@ -649,10 +662,6 @@ fieldset {
 
 .black-font {
     color: black;
-}
-
-input[type="checkbox"] {
-    display: none;
 }
 
 /* Style for custom checkbox */

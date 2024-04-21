@@ -375,27 +375,24 @@ include_once "inc/navbar.inc.php";
         }
         ?>
     </form>
-    <?php
-    if ($learned) {
-        echo '<div id="progress_tracker">
+    <div id="progress_tracker">
         <br>
         <form action="html.php" method="post" class="progress-form">
-            <h1>Your progress:</h1>
+            <h1>Track your progress!</h1>
             <!-- Use a span to create a circle -->
             <label for="trackProgress">
                 <input type="checkbox" id="trackProgress" name="trackProgress" onclick="toggleCircle(this)">
                 <span class="checkmark"></span>
                 I have learned this lesson
             </label>
+            <button type="submit" name="save_progress" onclick="saveProgress(event)">Save</button>
             <?php
             if (isset($_POST["save_progress"])) {
                 $html_completed = true;
             }
             ?>
         </form>
-    </div>';
-    }
-    ?>
+    </div>
 </div>
 
 <div class="two-px-border" style="border-radius: 20px; width: 30%; margin: 0 auto">

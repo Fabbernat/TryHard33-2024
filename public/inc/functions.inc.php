@@ -42,3 +42,20 @@ function getUserProgress(string $user_id): array
 
     return [];
 }
+
+function resetUserProgress(string $user_id): void
+{
+    $users = load_users("../json/users.json");
+
+    foreach ($users["users"] as &$user) {
+        if ($user["username"] === $user_id) {
+            $user["solved_tasks"] = [];
+            $user["correct_answers"] = 0;
+            break;
+        }
+    }
+
+    // Save updated user data
+    $json_data = json_encode($users, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
+    file_put_contents("../json/users.json", $json_data);
+}

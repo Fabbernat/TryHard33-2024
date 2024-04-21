@@ -67,7 +67,7 @@ if (isset($_SESSION["user_id"])) {
     $quiz_message = "Number of correct answers saved for user $userId: 0";
 }
 // 4x5 grid to display task
-// white or green color based on whether it is completed or not
+// x or green circle based on whether it is completed or not
 
 $html_completed = false;
 $css_completed = false;
@@ -107,7 +107,7 @@ if (isset($_POST['trackProgress']) && $_POST['trackProgress'] === 'on') {
     </style>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-<!--    <script src="js/script.js"></script>-->
+    <script src="js/script.js"></script>
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
@@ -201,23 +201,12 @@ if (isset($user_id) && $user_id != null) {
                         Answer!
                     </button>
                     <p class="feedback" id="feedback-2" style="display: none;"><strong>Correct Answer:</strong> B)
-                        It
-                        serves as
-                        the
-                        foundation for creating web pages</p>
 
                 </div>
                 <div class="left">
                     <h2 style="text-align: center">What is the correct output of the following HTML code?</h2>
                     <pre class="code left">
-&lt;html&gt;
-  &lt;head&gt;
-    &lt;title&gt;Example&lt;/title&gt;
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;h1&gt;Hello, World!&lt;/h1&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
+
     </pre>
                     <ul class="answers">
                         <li class="answer">
@@ -241,11 +230,7 @@ if (isset($user_id) && $user_id != null) {
                         Correct
                         Answer!
                     </button>
-                    <p class="feedback" id="feedback-3" style="display: none;"><strong>Correct Answer:</strong> B)
-                        It
-                        will
-                        display
-                        "Hello, World!"</p>
+                    <p class="feedback" id="feedback-3" style="display: none;"><strong>Correct Answer:</strong> B)</p>
                 </div>
                 <div class="left">
                     <h2 style="text-align: center">What is HTML?</h2>
@@ -430,24 +415,7 @@ if (isset($user_id) && $user_id != null) {
                         Correct Answer: A) Document Object Model
 
                     </div>
-                    What function is used to schedule a function to run after a certain amount of time?
-                    A) setTimeout()
-                    B) setInterval()
-                    C) sleep()
-                    D) wait()
-                    Correct Answer: A) setTimeout()
-                    Which symbol is used for comments in JavaScript?
-                    A) //
-                    B) #
-                    C) --
-                    D) /* */
-                    Correct Answer: A) //
-                    What method is used to remove the last element of an array in JavaScript?
-                    A) pop()
-                    B) shift()
-                    C) splice()
-                    D) slice()
-                    Correct Answer: A) pop()
+
                 </form>
             </div>
 
@@ -468,24 +436,7 @@ if (isset($user_id) && $user_id != null) {
                         </ul>
                         Correct Answer: C) function
                     </div>
-                    How do you start a PHP session?
-                    A) session_start()
-                    B) start_session()
-                    C) session()
-                    D) begin_session()
-                    Correct Answer: A) session_start()
-                    What is the correct way to concatenate two strings in PHP?
-                    A) str_concat()
-                    B) concat()
-                    C) .
-                    D) +
-                    Correct Answer: C) .
-                    Which function is used to read a file in PHP?
-                    A) read_file()
-                    B) file_get_contents()
-                    C) readfile()
-                    D) fopen()
-                    Correct Answer: B) file_get_contents()
+
                 </form>
             </div>
 
@@ -504,24 +455,7 @@ if (isset($user_id) && $user_id != null) {
                         D) function
                         Correct Answer: B) def
                     </ul>
-                    What is the correct syntax to open a file in Python?
-                    A) open_file("filename.txt")
-                    B) file.open("filename.txt")
-                    C) open("filename.txt")
-                    D) fopen("filename.txt")
-                    Correct Answer: C) open("filename.txt")
-                    How do you comment multiple lines in Python?
-                    A) /* */
-                    B) //
-                    C) <!-- -->
-                    D) ''' '''
-                    Correct Answer: D) ''' '''
-                    What does the len() function return in Python?
-                    A) Total lines in a file
-                    B) Total characters in a string
-                    C) Total items in a list
-                    D) Total elements in a tuple
-                    Correct Answer: C) Total items in a list
+
                 </div>
                 <!-- Add more questions and answers following a similar structure -->
 
@@ -580,208 +514,202 @@ if (isset($user_id) && $user_id != null) {
         <h2>Your Progress in the Quizzes</h2>
 
         <table>
-            <tr>
-                <th></th>
-                <th>Task 1</th>
-                <th>Task 2</th>
-                <th>Task 3</th>
-                <th>Task 4</th>
-            </tr>
-            <tr>
-                <td>HTML</td>
-                <td>
-                    <?php
-                    if ($html_completed) {
-                        echo "🟢";
-                    } else {
-                        echo "❌";
-                    }
-                    ?>
-                </td>
-                <td>
-                    <?php
-                    if ($html_completed) {
-                        echo "🟢";
-                    } else {
-                        echo "❌";
-                    }
-                    ?>
-                </td>
-                <td>
-                    <?php
-                    if ($html_completed) {
-                        echo "🟢";
-                    } else {
-                        echo "❌";
-                    }
-                    ?>
-                </td>
-                <td>
-                    <?php
-                    if ($html_completed) {
-                        echo "🟢";
-                    } else {
-                        echo "❌";
-                    }
-                    ?>
-                </td>
-            </tr>
-            <tr>
-                <td>CSS</td>
-                <td>
-                    <?php
-                    if ($css_completed) {
-                        echo "🟢";
-                    } else {
-                        echo "❌";
-                    }
-                    ?>
-                </td>
-                <td>
-                    <?php
-                    if ($css_completed) {
-                        echo "🟢";
-                    } else {
-                        echo "❌";
-                    }
-                    ?>
-                </td>
-                <td>
-                    <?php
-                    if ($css_completed) {
-                        echo "🟢";
-                    } else {
-                        echo "❌";
-                    }
-                    ?>
-                </td>
-                <td>
-                    <?php
-                    if ($css_completed) {
-                        echo "🟢";
-                    } else {
-                        echo "❌";
-                    }
-                    ?>
-                </td>
-            </tr>
-            <tr>
-                <td>Javascript</td>
-                <td>
-                    <?php
-                    if ($javascript_completed) {
-                        echo "🟢";
-                    } else {
-                        echo "❌";
-                    }
-                    ?>
-                </td>
-                <td>
-                    <?php
-                    if ($javascript_completed) {
-                        echo "🟢";
-                    } else {
-                        echo "❌";
-                    }
-                    ?>
-                </td>
-                <td>
-                    <?php
-                    if ($javascript_completed) {
-                        echo "🟢";
-                    } else {
-                        echo "❌";
-                    }
-                    ?>
-                </td>
-                <td>
-                    <?php
-                    if ($javascript_completed) {
-                        echo "🟢";
-                    } else {
-                        echo "❌";
-                    }
-                    ?>
-                </td>
-            </tr>
-            <tr>
-                <td>PHP</td>
-                <td>
-                    <?php
-                    if ($php_completed) {
-                        echo "🟢";
-                    } else {
-                        echo "❌";
-                    }
-                    ?>
-                </td>
-                <td>
-                    <?php
-                    if ($php_completed) {
-                        echo "🟢";
-                    } else {
-                        echo "❌";
-                    }
-                    ?>
-                </td>
-                <td>
-                    <?php
-                    if ($php_completed) {
-                        echo "🟢";
-                    } else {
-                        echo "❌";
-                    }
-                    ?>
-                </td>
-                <td>
-                    <?php
-                    if ($php_completed) {
-                        echo "🟢";
-                    } else {
-                        echo "❌";
-                    }
-                    ?>
-                </td>
-            </tr>
-            <tr>
-                <td>Python</td>
-                <td>
-                    <?php
-                    if ($python_completed) {
-                        echo "🟢";
-                    } else {
-                        echo "❌";
-                    }
-                    ?>
-                </td>
-                <td>
-                    <?php
-                    if ($python_completed) {
-                        echo "🟢";
-                    } else {
-                        echo "❌";
-                    }
-                    ?>
-                </td>
-                <td>
-                    <?php
-                    if ($python_completed) {
-                        echo "🟢";
-                    } else {
-                        echo "❌";
-                    }
-                    ?>
-                </td>
-                <td>
-                    <?php
-                    if ($python_completed) {
-                        echo "🟢";
-                    } else {
-                        echo "❌";
-                    }
-                    ?>
-                </td>
-            </tr>
+            <tr...>
+                <tr>
+                    <td>HTML</td>
+                    <td>
+                        <?php
+                        if ($html_completed) {
+                            echo "🟢";
+                        } else {
+                            echo "❌";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        if ($html_completed) {
+                            echo "🟢";
+                        } else {
+                            echo "❌";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        if ($html_completed) {
+                            echo "🟢";
+                        } else {
+                            echo "❌";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        if ($html_completed) {
+                            echo "🟢";
+                        } else {
+                            echo "❌";
+                        }
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>CSS</td>
+                    <td>
+                        <?php
+                        if ($css_completed) {
+                            echo "🟢";
+                        } else {
+                            echo "❌";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        if ($css_completed) {
+                            echo "🟢";
+                        } else {
+                            echo "❌";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        if ($css_completed) {
+                            echo "🟢";
+                        } else {
+                            echo "❌";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        if ($css_completed) {
+                            echo "🟢";
+                        } else {
+                            echo "❌";
+                        }
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Javascript</td>
+                    <td>
+                        <?php
+                        if ($javascript_completed) {
+                            echo "🟢";
+                        } else {
+                            echo "❌";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        if ($javascript_completed) {
+                            echo "🟢";
+                        } else {
+                            echo "❌";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        if ($javascript_completed) {
+                            echo "🟢";
+                        } else {
+                            echo "❌";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        if ($javascript_completed) {
+                            echo "🟢";
+                        } else {
+                            echo "❌";
+                        }
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>PHP</td>
+                    <td>
+                        <?php
+                        if ($php_completed) {
+                            echo "🟢";
+                        } else {
+                            echo "❌";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        if ($php_completed) {
+                            echo "🟢";
+                        } else {
+                            echo "❌";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        if ($php_completed) {
+                            echo "🟢";
+                        } else {
+                            echo "❌";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        if ($php_completed) {
+                            echo "🟢";
+                        } else {
+                            echo "❌";
+                        }
+                        ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Python</td>
+                    <td>
+                        <?php
+                        if ($python_completed) {
+                            echo "🟢";
+                        } else {
+                            echo "❌";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        if ($python_completed) {
+                            echo "🟢";
+                        } else {
+                            echo "❌";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        if ($python_completed) {
+                            echo "🟢";
+                        } else {
+                            echo "❌";
+                        }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                        if ($python_completed) {
+                            echo "🟢";
+                        } else {
+                            echo "❌";
+                        }
+                        ?>
+                    </td>
+                </tr>
         </table>
         <?php
         if (isset($_SESSION["user_id"])) {

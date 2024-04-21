@@ -12,7 +12,6 @@ function toggleCircle(checkbox) {
 
 function saveProgress(event) {
     // Prevent the default form submission behavior
-    event.preventDefault();
 
     // Get the form element
     const form = document.getElementById('progressForm');
