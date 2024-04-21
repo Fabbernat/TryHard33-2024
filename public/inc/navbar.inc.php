@@ -41,7 +41,8 @@ if (isset($_SESSION['user_id'])) {
             if (isset($_SESSION['profile_picture'])) {
                 echo "<img src='" . $_SESSION['profile_picture'] . "' alt='Your Current Profile Picture' class=\"code border-radius-px fifty-fixel-height\">";
             } else {
-                echo "<img alt=\"Default profile picture\" src=\"img/profile_icon.jpg\" class=\"code border-radius-px fifty-fixel-height\">";
+                echo "<img alt=\"Default profile picture\" class=\"code border-radius-px 
+fifty-fixel-height\" src=\"img/profile_icon.jpg\">";
             }
             ?>
             <p class="yellow">Profile</p>

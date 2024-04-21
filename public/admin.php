@@ -93,7 +93,9 @@ include_once "inc/navbar.inc.php";
                 $jsonContent = file_get_contents("json/subscribed_users.json");
                 // fill out only the usernames from this file
                 $subscribed_users = json_decode($jsonContent, true);
+                echo "<pre class='no-margin-no-padding code left'>";
                 print_r($subscribed_users);
+                echo "</pre>";
                 echo "</fieldset>";
 
                 // Handle admin registration and login probably don't need this stuff

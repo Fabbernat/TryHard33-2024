@@ -111,18 +111,13 @@ if (isset($_POST["signup"])) {
 
         // Save the account to the JSON file
         save_users("json/users.json", $new_account);
-
+//        $success = true; // unnecessary because the user is redirected
         // Redirect the user to the login page
         header("Location: login.php?success=true");
         exit();
     }
 } else {
-    // Store input values in session variables
-    $_SESSION['username'] = @$_POST['username'];
-    $_SESSION['email'] = @$_POST['email'];
-    $_SESSION['firstname'] = @$_POST['firstname'];
-    $_SESSION['lastname'] = @$_POST['lastname'];
-    $_SESSION['birthdate'] = @$_POST['birthdate'];
+    $success = false;
 }
 ?>
 <!DOCTYPE html>
@@ -214,6 +209,8 @@ include_once 'inc/navbar.inc.php';
                     echo "<li>" . $error . "</li>"; // Display each error as a list item
                 }
                 echo "</ul>"; // End unordered list
+            } elseif (isset($success) && !$success){
+                echo "<p>Fill all input boxes with your information to sign up!</p>";
             }
             ?>
         </div>
