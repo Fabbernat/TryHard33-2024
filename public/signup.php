@@ -30,22 +30,30 @@ if (isset($_POST["signup"])) {
         $errors[] = "The username is required! Please fill it!";
         $echo_errors = true;
     }
-    // Check if username already exists
-    foreach ($accounts as $account) {
+
+    // Check if username or email already exists
+    $usernameExists = false;
+    $emailExists = false;
+    foreach ($accounts["users"] as $account) {
         if (isset($account["username"]) && $account["username"] === $username) {
-            $errors[] = "The username is already taken!";
+            $usernameExists = true;
             $echo_errors = true;
-            break;// No need to continue checking if username already exists
+            break; // No need to continue checking if username already exists
+        }
+
+        if (isset($account["email"]) && $account["email"] === $email) {
+            $emailExists = true;
+            $echo_errors = true;
+            break; // No need to continue checking if email already exists
         }
     }
 
-    // Check if email already exists
-    foreach ($accounts as $account) {
-        if (isset($account["email"]) && $account["email"] === $email) {
-            $errors[] = "The email is already taken!";
-            $echo_errors = true;
-            break;// No need to continue checking if email already exists
-        }
+    if ($usernameExists) {
+        $errors[] = "The username is already taken!";
+    }
+
+    if ($emailExists) {
+        $errors[] = "The email is already taken!";
     }
 
     if (!isset($_POST["firstname"]) || trim($_POST["firstname"]) === "") {
@@ -85,6 +93,7 @@ if (isset($_POST["signup"])) {
 // If no errors, add the new user
 
     if (count($errors) === 0) { // Successful registration
+
         // Hash the password
         $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -96,8 +105,11 @@ if (isset($_POST["signup"])) {
             "birthdate" => $birthdate,
             "registration_age" => $age,
             "solved_tasks" => [],
+            "correct_answers" => 0,
             "subscribed" => false
         ];
+
+        $accounts["users"][] = $new_account;
 
         // Save the account to the JSON file
         save_users("json/users.json", $new_account);
