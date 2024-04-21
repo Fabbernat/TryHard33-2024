@@ -22,7 +22,7 @@ if (isset($_POST["login"])) {    // miután az űrlapot elküldték...
                 $message = "You have logged in successfully!";
                 $authenticated = true;
                 $_SESSION["username"] = $username;
-                $_SESSION['user_id'] = $username;
+                $_SESSION['user_id'] = $username; // ezt használja a kód inkább
                 header("Location: index.php");
                 exit(); // Stop further execution after redirect
             }

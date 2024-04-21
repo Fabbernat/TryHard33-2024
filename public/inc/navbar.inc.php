@@ -39,7 +39,11 @@ if (isset($_SESSION['user_id'])) {
            href="profile.php">
             <?php
             if (isset($_SESSION['profile_picture'])) {
-                echo "<img src='" . $_SESSION['profile_picture'] . "' alt='Your Current Profile Picture' class=\"code border-radius-px fifty-fixel-height\">";
+                $profile_picture = $_SESSION['profile_picture'];
+                if (str_starts_with($profile_picture, '../')) {
+                    $profile_picture = substr($profile_picture, 3);
+                }
+                echo "<img src='" . $profile_picture . "' alt='Your Current Profile Picture' class=\"code border-radius-px fifty-fixel-height\">";
             } else {
                 echo "<img alt=\"Default profile picture\" class=\"code border-radius-px 
 fifty-fixel-height\" src=\"img/profile_icon.jpg\">";

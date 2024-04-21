@@ -69,7 +69,11 @@ include_once "inc/navbar.inc.php";
         <?php
         // Check if the user has a profile picture
         if (isset($_SESSION['profile_picture'])) {
-            echo "<img src='" . $_SESSION['profile_picture'] . "' alt='Your Current Profile Picture'>";
+            $profile_picture = $_SESSION['profile_picture'];
+            if (str_starts_with($profile_picture, '../')) {
+                $profile_picture = substr($profile_picture, 3);
+            }
+            echo "<img src='" . $profile_picture . "' alt='Your Current Profile Picture' class=\"code border-radius-px fifty-fixel-height\">";
         } else {
             echo '<img alt="Default profile picture" src="img/profile_icon.jpg" class="code border-radius-px">';
         }
