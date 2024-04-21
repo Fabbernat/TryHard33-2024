@@ -29,8 +29,6 @@ include_once "inc/navbar.inc.php";
     if (isset($_SESSION["user_id"]) || isset($_SESSION["user"]["username"])) {
         echo "<h1>Welcome " . $_SESSION["user_id"] . "! </h1>
 ";
-    } else {
-        header("Location:index.php");
     }
     ?>
 </header>
@@ -104,73 +102,18 @@ include_once "inc/navbar.inc.php";
                 echo "<pre class='no-margin-no-padding code left'>";
                 print_r($subscribed_users);
                 echo "</pre>";
+                echo '
+                    <section class="background-form-but-wider-that-looks-cool white_background">
+        <h3>Delete Every User Data</h3>
+        <form action="inc/delete_every_data.inc.php" method="POST">
+            <p>Are you sure you want to delete every user data?</p>
+            <?php $_POST["user_id"] = $_SESSION["user_id"];?>
+            <button type="submit" name="delete">Delete Data</button>
+        </form>
+    </section>
+
+                ';
                 echo "</fieldset>";
-
-                // Handle admin registration and login probably don't need this stuff
-                /*if (isset($_POST["admin_signup"])) {
-                    // Process registration logic
-                    $username = htmlspecialchars(trim($_POST["username"]));
-                    $password = $_POST["password"];
-
-                    if (!isset($_POST["username"]) || trim($_POST["username"]) === "") {
-                        $errors[] = "The username is required! Please fill it!";
-                        $echo_errors = true;
-                    }
-                    // Check if username already exists
-                    foreach ($accounts as $account) {
-                        if ($account["username"] === $username) {
-                            $errors[] = "The username is already taken!";
-                            $echo_errors = true;
-                            break;// No need to continue checking if username already exists
-                        }
-                    }
-
-                    if (!isset($_POST["password"]) || trim($_POST["password"]) === "") {
-                        $errors[] = "The password and password confirmation are required! Please fill it!";
-                        $echo_errors = true;
-                    }
-
-                    if (count($errors) === 0) { // Successful registration
-                        // Hash the password
-                        $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-                        // Create a new user object
-                        $new_admin = ["username" => $username, "password" => $hashed_password,];
-
-                        // Add the new user to the array of accounts
-                        $accounts["admins"][] = $new_admin;
-
-                        // Save the updated array of accounts to the JSON file
-                        save_users("json/admins.json", $accounts);
-
-                        // Redirect the user to the login page
-//                        header("Location: admin.php?signup=true");
-                        exit();
-                    }
-                }
-                if (isset($_POST["admin_login"])) {
-                    // Process login logic
-                    if (!isset($_POST["username"]) || trim($_POST["username"]) === "" || !isset($_POST["password"]) || trim($_POST["password"]) === "") {
-                        // ha a kötelezően kitöltendő űrlapmezők valamelyike üres, akkor hibaüzenetet jelenítünk meg
-                        $errors[] = "<strong>Error:</strong> Please fill in all fields!";
-                    } else {
-                        $username = $_POST["username"];
-                        $password = $_POST["password"];
-
-                        $authenticated = false;
-                        foreach ($accounts["admins"] as $account) {
-                            if (@$account["username"] === $username && password_verify($password, $account["password"])) {
-                                $authenticated = true;
-                                $_SESSION["username"] = $username;
-                                $_SESSION['user_id'] = $username;
-//                                header("Location: admin.php?login=true");
-                                exit(); // Stop further execution after redirect
-                            }
-                        }
-                        $errors[] = "Login failed! Check if the username and password you've given are correct!";
-                    }
-                    $echo_errors = true;
-                }*/
             } else {
                 echo "<h2>Something went wrong =( =(</h2>";
                 echo "<p>Please try again.</p>";

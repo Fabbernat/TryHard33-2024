@@ -73,7 +73,7 @@ include_once "inc/navbar.inc.php";
             if (str_starts_with($profile_picture, '../')) {
                 $profile_picture = substr($profile_picture, 3);
             }
-            echo "<img src='" . $profile_picture . "' alt='Your Current Profile Picture' class=\"code border-radius-px fifty-fixel-height\">";
+            echo "<img src='" . $profile_picture . "' alt='Your Current Profile Picture' class=\"code border-radius-px\">";
         } else {
             echo '<img alt="Default profile picture" src="img/profile_icon.jpg" class="code border-radius-px">';
         }
@@ -137,7 +137,7 @@ include_once "inc/navbar.inc.php";
     </section>
     <section class="background-form-but-wider-that-looks-cool white_background">
         <h3>Delete Your Data</h3>
-        <form action="inc/delete_data.inc.php" method="POST">
+        <form action="inc/delete_user_data.inc.php" method="POST">
             <p>Are you sure you want to delete all your data?</p>
             <label>To delete your data, type your username in the input box.
                 <input type="text" name="user_id">

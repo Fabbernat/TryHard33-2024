@@ -111,12 +111,14 @@ if (isset($_POST['trackProgress']) && $_POST['trackProgress'] === 'on') {
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-<?php
+<header>
+    <h1 class="signup-and-login-caption">Progress</h1>
+</header><?php
 $progress = null;
 include_once "inc/navbar.inc.php";
 $user_id = @$_SESSION["user_id"];
 if (isset($user_id) && $user_id != null) {
-    foreach ($users as $user) {
+    foreach ($user as $user) {
         if ($user["user_id"] = $user_id) {
             $progress = @$user["solved_tasks"];
             break;
@@ -126,14 +128,7 @@ if (isset($user_id) && $user_id != null) {
     header("Location:index.php?redirected=true&user_id=false");
     exit();
 }
-?>
-
-<header>
-    <h1 class="signup-and-login-caption">Progress</h1>
-</header>
-
-
-<main>
+?><main>
 
     <section class="white_background background-form-but-wider-that-looks-cool" id="final-quiz">
 

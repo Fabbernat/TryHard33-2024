@@ -55,7 +55,6 @@ if (isset($_SESSION["user_id"])) {
         "python2" => "B",
         "python3" => "C",
         "python4" => "D",
-
     ];
 
     if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["quiz_submit"])) {
@@ -124,16 +123,18 @@ if (isset($_POST['trackProgress']) && $_POST['trackProgress'] === 'on') {
     </style>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <script src="js/script.js"></script>
+    <script src="js/script.js"></script>
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-<?php
+<header>
+    <h1 class="signup-and-login-caption">Progress</h1>
+</header><?php
 $progress = null;
 include_once "inc/navbar.inc.php";
 $user_id = @$_SESSION["user_id"];
 if (isset($user_id) && $user_id != null) {
-    foreach ($users as $user) {
+    foreach ($user as $user) {
         if ($user["user_id"] = $user_id) {
             $progress = @$user["solved_tasks"];
             break;
@@ -143,14 +144,7 @@ if (isset($user_id) && $user_id != null) {
     header("Location:index.php?redirected=true&user_id=false");
     exit();
 }
-?>
-
-<header>
-    <h1 class="signup-and-login-caption">Progress</h1>
-</header>
-
-
-<main>
+?><main>
 
     <section class="white_background background-form-but-wider-that-looks-cool" id="final-quiz">
 
@@ -215,9 +209,7 @@ if (isset($user_id) && $user_id != null) {
                         </li>
                     </ul>
                     <button type="button" id="html-feedback-2-button" onclick="showCorrectAnswer('html-feedback-2')">
-                        Show
-                        Correct
-                        Answer!
+                        Show Correct Answer!
                     </button>
                     <p class="feedback" id="html-feedback-2" style="display: none;"><strong>Correct Answer:</strong> B)
                         It
@@ -433,20 +425,20 @@ if (isset($user_id) && $user_id != null) {
                     <h2>What does DOM stand for?</h2>
                     <ul class="answers">
                         <li class="answer">
-                            <input type="radio" id="javascript-a" name="javascript" value="A">
-                            <label for="javascript-a">A) Document Object Model</label>
+                            <input type="radio" id="javascript-1-a" name="javascript" value="A">
+                            <label for="javascript-1-a">A) Document Object Model</label>
                         </li>
                         <li class="answer">
-                            <input type="radio" id="javascript-b" name="javascript" value="B">
-                            <label for="javascript-b">B) Document Oriented Model</label>
+                            <input type="radio" id="javascript-1-b" name="javascript" value="B">
+                            <label for="javascript-1-b">B) Document Oriented Model</label>
                         </li>
                         <li class="answer">
-                            <input type="radio" id="javascript-c" name="javascript" value="C">
-                            <label for="javascript-c">C) Data Object Model</label>
+                            <input type="radio" id="javascript-1-c" name="javascript" value="C">
+                            <label for="javascript-1-c">C) Data Object Model</label>
                         </li>
                         <li class="answer">
-                            <input type="radio" id="javascript-d" name="javascript" value="D">
-                            <label for="javascript-d">D) Document Order Model</label>
+                            <input type="radio" id="javascript-1-d" name="javascript" value="D">
+                            <label for="javascript-1-d">D) Document Order Model</label>
                         </li>
                     </ul>
 
@@ -460,27 +452,35 @@ if (isset($user_id) && $user_id != null) {
 
 
                 </div>
-                <pre class="left" style="margin: 0; padding: 0">
+                <div class="left">
+                    <h2>What function is used to schedule a function to run after a certain amount of time?</h2>
+                    <ul class="answers">
+                        <li class="answer">
+                            <input type="radio" id="javascript-2-a" name="javascript" value="A">
+                            <label for="javascript-2-a">A) setTimeout()</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="javascript-2-b" name="javascript" value="B">
+                            <label for="javascript-2-b">B) setInterval()</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="javascript-2-c" name="javascript" value="C">
+                            <label for="javascript-2-c">C) sleep()</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="javascript-2-d" name="javascript" value="D">
+                            <label for="javascript-2-d">D) wait()</label>
+                        </li>
+                    </ul>
 
-                    What function is used to schedule a function to run after a certain amount of time?
-                    A) setTimeout()
-                    B) setInterval()
-                    C) sleep()
-                    D) wait()
-                    Correct Answer: A) setTimeout()
-                    Which symbol is used for comments in JavaScript?
-                    A) //
-                    B) #
-                    C) --
-                    D) /* */
-                    Correct Answer: A) //
-                    What method is used to remove the last element of an array in JavaScript?
-                    A) pop()
-                    B) shift()
-                    C) splice()
-                    D) slice()
-                    Correct Answer: A) pop()
-                    </pre>
+                    <button type="button" id="js-feedback-2-button" onclick="showCorrectAnswer('js-feedback-2')">
+                        Show Correct Answer!
+                    </button>
+
+                    <p class="feedback" id="js-feedback-2" style="display: none;"><strong>Correct Answer:</strong>
+                        Correct Answer: A) setTimeout()
+                    </p>
+                </div>
             </div>
 
             <div class="container" id="php-quiz">
@@ -490,20 +490,20 @@ if (isset($user_id) && $user_id != null) {
                     <h2>Which keyword is used to declare a function in PHP?</h2>
                     <ul class="answers">
                         <li class="answer">
-                            <input type="radio" id="php-a" name="php" value="A">
-                            <label for="php-a">A) func</label>
+                            <input type="radio" id="php-1-a" name="php" value="A">
+                            <label for="php-1-a">A) func</label>
                         </li>
                         <li class="answer">
-                            <input type="radio" id="php-b" name="php" value="B">
-                            <label for="php-b">B) method</label>
+                            <input type="radio" id="php-1-b" name="php" value="B">
+                            <label for="php-1-b">B) method</label>
                         </li>
                         <li class="answer">
-                            <input type="radio" id="php-c" name="php" value="C">
-                            <label for="php-c">C) function</label>
+                            <input type="radio" id="php-1-c" name="php" value="C">
+                            <label for="php-1-c">C) function</label>
                         </li>
                         <li class="answer">
-                            <input type="radio" id="php-d" name="php" value="D">
-                            <label for="php-d">D) def</label>
+                            <input type="radio" id="php-1-d" name="php" value="D">
+                            <label for="php-1-d">D) def</label>
                         </li>
 
 
@@ -515,14 +515,43 @@ if (isset($user_id) && $user_id != null) {
                         Correct Answer: C) function
                     </p>
                 </div>
+                <div class="left">
+                    <h2>How do you start a PHP session?</h2>
+                    <ul class="answers">
+                        <li class="answer">
+                            <input type="radio" id="php-2-a" name="php" value="A">
+                            <label for="php-2-a">A) session_start()</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="php-2-b" name="php" value="B">
+                            <label for="php-2-b">B) start_session()</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="php-2-c" name="php" value="C">
+                            <label for="php-2-c"> C) session()</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="php-2-d" name="php" value="D">
+                            <label for="php-2-d">D) begin_session()</label>
+                        </li>
+
+
+                    </ul>
+                    <button type="button" id="php-feedback-2-button" onclick="showCorrectAnswer('php-feedback-2')">
+                        Show Correct Answer!
+                    </button>
+                    <p class="feedback" id="php-feedback-2" style="display: none;"><strong>Correct Answer:</strong>
+                        Correct Answer: A) session_start()
+                    </p>
+                </div>
                 <pre class="left" style="margin: 0; padding: 0">
 
-                    How do you start a PHP session?
-                    A) session_start()
-                    B) start_session()
-                    C) session()
-                    D) begin_session()
-                    Correct Answer: A) session_start()
+
+
+
+
+
+                    Correct Answer:
                     What is the correct way to concatenate two strings in PHP?
                     A) str_concat()
                     B) concat()
@@ -561,7 +590,8 @@ if (isset($user_id) && $user_id != null) {
                             <label for="python-d">D) function</label>
                         </li>
                     </ul>
-                    <button type="button" id="python-feedback-1-button" onclick="showCorrectAnswer('python-feedback-1')">
+                    <button type="button" id="python-feedback-1-button"
+                            onclick="showCorrectAnswer('python-feedback-1')">
                         Show Correct Answer!
                     </button>
                     <p class="feedback" id="python-feedback-1" style="display: none;"><strong>Correct Answer:</strong>
@@ -578,7 +608,7 @@ if (isset($user_id) && $user_id != null) {
                     How do you comment multiple lines in Python?
                     A) /* */
                     B) //
-                    C) <!-- -->
+                    C) &lt;!-- --&gt;
                     D) ''' '''
                     Correct Answer: D) ''' '''
                     What does the len() function return in Python?
@@ -591,11 +621,13 @@ if (isset($user_id) && $user_id != null) {
                 </div>
                 <!-- Add more questions and answers following a similar structure -->
 
-                <?php if (isset($quiz_message) && trim($quiz_message) !== "") {
+
+                <button type="submit" name="quiz_submit" onclick="saveProgress()">Submit</button>
+                <?php
+                if (isset($quiz_message) && trim($quiz_message) !== "") {
                     echo "<p>$quiz_message</p>";
                 }
                 ?>
-                <button type="submit" name="quiz_submit" onclick="saveProgress()">Submit</button>
             </div>
         </form>
         <?php
@@ -878,7 +910,8 @@ if (isset($user_id) && $user_id != null) {
         <h1>Reset progress</h1>
         <br>
         <label for="reset_progress">
-            <button type="reset" name="reset_progress" id="reset_progress" class="bigger-letters" style="width: 80%">Warning! This action
+            <button type="reset" name="reset_progress" id="reset_progress" class="bigger-letters" style="width: 80%">
+                Warning! This action
                 cannot be undone!
             </button>
         </label>
