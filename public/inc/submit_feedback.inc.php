@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     );
 
     // Read the existing feedbacks from the JSON file
-    $feedbacks = json_decode(file_get_contents("../json/feedbacks.json"), true);
+    $feedbacks = json_decode(file_get_contents("../json/feedback.json"), true);
 
     // Append the new feedback to the array
     $feedbacks[] = $feedback;
@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $json_feedbacks = json_encode($feedbacks, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE);
 
     // Write the JSON data back to the file
-    file_put_contents("../json/feedbacks.json", $json_feedbacks);
+    file_put_contents("../json/feedback.json", $json_feedbacks);
 
     // Redirect back to the feedback form page
     header("Location: ../feedback.php?success=true");

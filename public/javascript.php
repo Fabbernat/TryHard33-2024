@@ -24,6 +24,8 @@ include_once "inc/navbar.inc.php"; ?>
             <li><a href="#objects-arrays">Objects and Arrays</a></li>
             <li><a href="#dom-manipulation">DOM Manipulation</a></li>
             <li><a href="#event-handling">Event Handling</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+
         </ul>
     </div>
 </header>
@@ -192,9 +194,140 @@ function functionName(parameters) {
                 real-time.</p>
         </article>
     </div>
+
+
+    <div class="container" id="quiz">
+        <h1>Javascript Tutorial Quiz</h1>
+
+        <div class="left">
+            <h2 style="text-align: center">What does CSS stand for?</h2>
+            <ul class="answers">
+                <li class="answer">
+                    <input type="radio" id="js-a" name="js" value="A">
+                    <label for="js-a">A) Cascading Style Sheets</label>
+                </li>
+                <li class="answer">
+                    <input type="radio" id="js-b" name="js" value="B">
+                    <label for="js-b">B) Computer Style Sheets</label>
+                </li>
+                <li class="answer">
+                    <input type="radio" id="js-c" name="js" value="C">
+                    <label for="js-c">C) Creative Style Sheets</label>
+                </li>
+                <li class="answer">
+                    <input type="radio" id="js-d" name="js" value="D">
+                    <label for="js-d">D) Colorful Style Sheets</label>
+                </li>
+            </ul>
+            <button type="button" id="feedback-1-button" onclick="showCorrectAnswer('feedback-1')">Show Correct Answer!
+            </button>
+            <p class="feedback" id="feedback-1" style="display: none;"><strong>Correct Answer:</strong> A) Cascading
+                Style
+                Sheets</p>
+        </div>
+
+        <div class="left">
+            <h2 style="text-align: center">Which property is used to change the background color of an element?</h2>
+            <ul class="answers">
+                <li class="answer">
+                    <input type="radio" id="js-bgcolor-a" name="js-bgcolor" value="A">
+                    <label for="js-bgcolor-a">A) background-color</label>
+                </li>
+                <li class="answer">
+                    <input type="radio" id="js-bgcolor-b" name="js-bgcolor" value="B">
+                    <label for="js-bgcolor-b">B) color</label>
+                </li>
+                <li class="answer">
+                    <input type="radio" id="js-bgcolor-c" name="js-bgcolor" value="C">
+                    <label for="js-bgcolor-c">C) background</label>
+                </li>
+                <li class="answer">
+                    <input type="radio" id="js-bgcolor-d" name="js-bgcolor" value="D">
+                    <label for="js-bgcolor-d">D) bgcolor</label>
+                </li>
+            </ul>
+            <button type="button" id="feedback-2-button" onclick="showCorrectAnswer('feedback-2')">Show Correct Answer!
+            </button>
+            <p class="feedback" id="feedback-2" style="display: none;"><strong>Correct Answer:</strong> A)
+                background-color
+            </p>
+
+        </div>
+
+        <div class="left">
+            <h2 style="text-align: center">Which CSS property is used to control the text size?</h2>
+            <ul class="answers">
+                <li class="answer">
+                    <input type="radio" id="js-textsize-a" name="js-textsize" value="A">
+                    <label for="js-textsize-a">A) text-size</label>
+                </li>
+                <li class="answer">
+                    <input type="radio" id="js-textsize-b" name="js-textsize" value="B">
+                    <label for="js-textsize-b">B) font-size</label>
+                </li>
+                <li class="answer">
+                    <input type="radio" id="js-textsize-c" name="js-textsize" value="C">
+                    <label for="js-textsize-c">C) size</label>
+                </li>
+                <li class="answer">
+                    <input type="radio" id="js-textsize-d" name="js-textsize" value="D">
+                    <label for="js-textsize-d">D) font</label>
+                </li>
+            </ul>
+            <button type="button" id="feedback-3-button" onclick="showCorrectAnswer('feedback-3')">Show Correct Answer!
+            </button>
+            <p class="feedback" id="feedback-3" style="display: none;"><strong>Correct Answer:</strong> B) font-size</p>
+        </div>
+
+        <div class="left">
+            <h2 style="text-align: center">Which CSS property is used to create a border around an element?</h2>
+            <ul class="answers">
+                <li class="answer">
+                    <input type="radio" id="js-border-a" name="js-border" value="A">
+                    <label for="js-border-a">A) border-radius</label>
+                </li>
+                <li class="answer">
+                    <input type="radio" id="js-border-b" name="js-border" value="B">
+                    <label for="js-border-b">B) border-color</label>
+                </li>
+                <li class="answer">
+                    <input type="radio" id="js-border-c" name="js-border" value="C">
+                    <label for="js-border-c">C) border</label>
+                </li>
+                <li class="answer">
+                    <input type="radio" id="js-border-d" name="js-border" value="D">
+                    <label for="js-border-d">D) border-width</label>
+                </li>
+            </ul>
+            <button type="button" id="feedback-4-button" onclick="showCorrectAnswer('feedback-4')">Show Correct Answer!
+            </button>
+            <button type="submit" name="quiz_submit" onclick="saveProgress()">Submit</button>
+
+            <p class="feedback" id="feedback-4" style="display: none;"><strong>Correct Answer:</strong> C) border</p>
+        </div>
+        <div id="progress_tracker">
+            <br>
+            <form action="css.php" method="post" class="progress-form">
+                <h1>Track your progress!</h1>
+                <!-- Use a span to create a circle -->
+                <label for="trackProgress">
+                    <input type="checkbox" id="trackProgress" name="trackProgress" onclick="toggleCircle(this)">
+                    <span class="checkmark"></span>
+                    I have learned this lesson
+                </label>
+                <button type="submit" name="save_progress" onclick="saveProgress(event)">Save</button>
+                <?php
+                if (isset($_POST["save_progress"])) {
+                    $javascript_completed = true;
+                }
+                ?>
+            </form>
+        </div>
+    </div>
 </main>
 
-<div class="two-px-border" style="border-radius: 20px; width: 30%; margin: 0 auto">
+
+<div class="two-px-border white_background" style="border-radius: 20px; width: 30%; margin: 0 auto">
     <br>
     <a class="btn" href="#">↑ Jump to the top</a>
     <br>
@@ -204,7 +337,6 @@ function functionName(parameters) {
     <a class="left btn" href="css.php">&#10094; Previous</a>
     <a class="right btn" href="php.php">Next &#10095;</a>
 </div>
-
 <?php include_once "inc/footer.inc.html"; ?>
 </body>
 </html>

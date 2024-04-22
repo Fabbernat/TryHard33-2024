@@ -64,7 +64,7 @@ function delete_user(string $user_id): void
 {
     $users = load_users("../json/users.json");
     foreach ($users["users"] as &$user) {
-        if($user["user_id"] === $user_id) {
+        if ($user["user_id"] === $user_id) {
             $user["user_id"] = "";
             return;
         }

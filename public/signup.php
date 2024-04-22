@@ -104,7 +104,8 @@ if (isset($_POST["signup"])) {
             "registration_age" => $age,
             "solved_tasks" => [],
             "correct_answers" => 0,
-            "subscribed" => false
+            "subscribed" => false,
+            "profile_picture" => "default"
         ];
 
         $accounts["users"][] = $new_account;
@@ -209,7 +210,7 @@ include_once 'inc/navbar.inc.php';
                     echo "<li>" . $error . "</li>"; // Display each error as a list item
                 }
                 echo "</ul>"; // End unordered list
-            } elseif (isset($success) && !$success){
+            } elseif (isset($success) && !$success) {
                 echo "<p>Fill all input boxes with your information to sign up!</p>";
             }
             ?>

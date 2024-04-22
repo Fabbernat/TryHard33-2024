@@ -22,8 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || isset($_POST['delete'])) {
     file_put_contents('../json/feedback.json', $empty_json2);
 
 
-    header("Location: ../index.php");
+    header("Location: ../admin.php");
 } else {
-    header("Location: ../profile.php?delete=false");
+    header("Location: ../admin.php?delete=false");
 }
 exit();

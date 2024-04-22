@@ -1,3 +1,51 @@
 {
-    "users": []
+    "users": [
+        {
+            "username": "bernat",
+            "email": "bernat@tryhard.com",
+            "password": "$2y$10$e1NVxoD1FQ1oHloieiB6duQvjD.cpCV7DimUueoBnpryJwIHQBQ7q",
+            "birthdate": "1111-11-11",
+            "registration_age": 913,
+            "solved_tasks": [],
+            "correct_answers": 0,
+            "subscribed": true,
+            "profile_picture": "default"
+        },
+        {
+            "username": "alfonz",
+            "email": "alfonz@tryhard.com",
+            "password": "$2y$10$dyqW4Vqb4JpeUmvuIqRtHOfZGFKicFYJvzGd1sesYc60Og2O3zfeW",
+            "birthdate": "1111-11-11",
+            "registration_age": 913,
+            "solved_tasks": [],
+            "correct_answers": 0,
+            "subscribed": true,
+            "profile_picture": "default"
+        },
+        {
+            "username": "a",
+            "email": "a@a",
+            "password": "$2y$10$jkd1ShxT0SGCKJkgomULPeLyKFe7XK.G\/AfRCnNUEGx5dr\/EG1yH6",
+            "birthdate": "1111-11-11",
+            "registration_age": 913,
+            "solved_tasks": [],
+            "correct_answers": 0,
+            "subscribed": false,
+            "profile_picture": "default"
+        },
+        {
+            "username": "b",
+            "email": "b@b",
+            "password": "$2y$10$2St8KXHJKt1lb64GIZ8UTOPYUTmG2ICS9mNMcqeEolu.XxeApad0O",
+            "birthdate": "1111-11-11",
+            "registration_age": 912,
+            "solved_tasks": [],
+            "correct_answers": 0,
+            "subscribed": false,
+            "profile_picture": "default"
+        }
+    ],
+    "b": {
+        "correct_answers": 4
+    }
 }

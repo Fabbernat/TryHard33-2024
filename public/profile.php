@@ -13,9 +13,15 @@ session_start();
 <?php
 include_once "inc/navbar.inc.php";
 ?>
-<main>
-    <header>
-        <h1 class="signup-and-login-caption">Profile and Career</h1>
+<header class="yellow-font gray-background">
+    <h1 class="signup-and-login-caption">Profile and Career</h1>
+    <div class="html-css-nav">
+        <ul class="left black-font">
+            <li><a href="#subscribe">Subscribe to our newsletter!</a></li>
+            <li><a href="#become_admin">Become an Admin Today!</a></li>
+            <li><a href="#change_profile_picture">Change profile picture</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
         <?php
 
         // Check if the user is logged in
@@ -26,21 +32,27 @@ include_once "inc/navbar.inc.php";
             header("Location:index.php");
         }
         ?>
-    </header>
-    <section class="background-form-but-wider-that-looks-cool greendiv display-block">
+
+    </div>
+</header>
+<main>
+
+    <section class="background-form-but-wider-that-looks-cool greendiv display-block" id="subscribe">
         <form action="inc/subscribe.inc.php" method="post">
-            <h1>Subscribe for our newsletter!</h1>
+            <h1>Subscribe to our newsletter!</h1>
             <label for="newsletter_email">Email address:
                 <input id="newsletter_email" name="newsletter_email" placeholder="Email address" required type="email">
             </label>
             <input type="submit" value="Send">
         </form>
     </section>
+
     <section class="background-form-but-wider-that-looks-cool greendiv"
-             style="padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-weight: bold;">
+             style="padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); font-weight: bold;"
+             id="become_admin">
         <h1 style="color: #ffff99; font-size: 48px; text-align: center; text-transform: uppercase; font-weight: bold;">
             Exciting Career Opportunity</h1>
-        <h2 style="font-size: 36px; text-align: center;">Join the TryHard33 Team, become an Admin Today!</h2>
+        <h2 style="font-size: 36px; text-align: center;">Join the TryHard33 Team, Become an Admin Today!</h2>
         <p style="color: #777; font-size: 24px; text-align: center;">Unlock limitless possibilities and shape the future
             with us.</p>
         <div style="text-align: center; margin-top: 20px;">
@@ -50,14 +62,25 @@ include_once "inc/navbar.inc.php";
         </div>
     </section>
 
-    <section class="interests white_background background-form-but-wider-that-looks-cool left">
+    <section class="interests white_background background-form-but-wider-that-looks-cool left"
+             id="change_profile_picture">
         <h3>Change profile picture</h3>
         <!-- File uploading -->
         <form enctype="multipart/form-data" action="inc/upload.inc.php" method="POST">
-            <input type="file" name="profile_picture" accept="img/*">
+            <label for="file-upload">profile-picture</label>
+            <input type="file" name="profile_picture" accept="img/*" id="file-upload">
             <input type="hidden" name="MAX_FILE_SIZE" value="102400">
-            <input type="submit" value="Upload Profile Picture">
+            <input type="submit" value="Upload Profile Picture" name="upload-btn">
         </form>
+        <?php
+        if (isset($success)) {
+            echo "File name: " . $_FILES["profile_picture"]["name"] . "<br/>";
+            echo "Temporary name: " . $_FILES["profile_picture"]["tmp_name"] . "<br/>";
+            echo "File size (in bytes): " . $_FILES["profile_picture"]["size"] . "<br/>";
+            echo "File type: " . $_FILES["profile_picture"]["type"] . "<br/>";
+            echo "Error code: " . $_FILES["profile_picture"]["error"] . "<br/>";
+        }
+        ?>
         <h3>Profile Information</h3>
         <p>Username: <?php echo @$_SESSION["username"] == "" ? "undefined" : @$_SESSION["username"] ?></p>
         <p>Email: <?php echo @$_SESSION["email"] == "" ? "undefined" : @$_SESSION["email"] ?></p>
@@ -142,7 +165,7 @@ include_once "inc/navbar.inc.php";
             <label>To delete your data, type your username in the input box.
                 <input type="text" name="user_id">
             </label>
-            <?php $_POST["user_id"] = $_SESSION["user_id"];?>
+            <?php $_POST["user_id"] = $_SESSION["user_id"]; ?>
             <button type="submit" name="delete">Delete Data</button>
         </form>
     </section>

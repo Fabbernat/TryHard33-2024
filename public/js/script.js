@@ -2,7 +2,7 @@
 const quizForm = document.querySelector('form');
 
 function toggleCircle(checkbox) {
-    var circle = document.getElementById('circle');
+    const circle = document.getElementById('circle');
     if (checkbox.checked) {
         circle.classList.add('green-circle');
     } else {
@@ -21,8 +21,8 @@ function saveProgress(event) {
 }
 
 function showCorrectAnswer(id) {
-    var feedback = document.getElementById(id);
-    var button = document.getElementById(id + '-button');
+    const feedback = document.getElementById(id);
+    const button = document.getElementById(id + '-button');
     if (feedback.style.display === 'block') {
         feedback.style.display = 'none';
         button.textContent = 'Show Correct Answer!';
@@ -30,9 +30,4 @@ function showCorrectAnswer(id) {
         feedback.style.display = 'block';
         button.textContent = 'Hide Correct Answer!';
     }
-}
-
-function hideCorrectAnswer(id) {
-    var feedback = document.getElementById(id);
-    feedback.style.display = 'none';
 }

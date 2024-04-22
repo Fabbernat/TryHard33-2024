@@ -22,8 +22,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Set the session variable to the path of the uploaded profile picture
                 $_SESSION['profile_picture'] = $profile_picture_path;
 
-                // Redirect the user back to the profile page or wherever you want
-                header("Location: ../profile.php");
+                // Redirect the user back to the profile page
+                header("Location: ../profile.php?success=true");
                 exit(); // Stop further execution
             } else {
                 // Failed to move the uploaded file

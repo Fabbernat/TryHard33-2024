@@ -329,7 +329,6 @@ include_once "inc/navbar.inc.php"; ?>
 </div>
 
 
-
 <div class="two-px-border" style="border-radius: 20px; width: 30%; margin: 0 auto">
     <br>
     <a class="btn" href="#">↑ Jump to the top</a>

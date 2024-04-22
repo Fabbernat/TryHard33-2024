@@ -2,33 +2,24 @@
 session_start();
 $max = 20;
 $learned = false;
-if (isset($_POST["save_input"])) {
-    $learned = true;
-}
 include_once "inc/functions.inc.php";
 
+// var init
 $users = load_users("json/users.json");
-
 $solved_tasks = []; // retrieve data from users
 $numCorrectAnswers = 0; // Count the number of correct answers
+$quiz_message = "Submit after you answered the questions to see how many questions you got right.";
+global $html_completed, $css_completed, $javascript_completed, $php_completed, $python_completed;
 
-
-$userId = $_SESSION["user_id"];
-if (!isset($userData[$userId])) {
-    $userData[$userId] = [];
-}
-
-if (isset($_SESSION["user_id"])) {
-    // Get the user ID
-
-    // Load existing user data from JSON file
-    $userData = json_decode(@file_get_contents("json/users.json"), true);
-
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["quiz_submit"]) && isset($_SESSION["user_id"])) {
+//    echo "awofjoawoaawf";
+    $userId = $_SESSION["user_id"];
+    $userData = json_decode(file_get_contents("json/users.json"), true);
 
     // Check if user data exists for the current user
 
 
-    $answers = @$_POST;
+    $answers = $_POST;
 
     $correctAnswers = [
         "html" => "A",
@@ -41,55 +32,53 @@ if (isset($_SESSION["user_id"])) {
         "css-textsize" => "B",
         "css-border" => "C",
 
-        "js1" => "A",
-        "js2" => "B",
-        "js3" => "C",
-        "js4" => "D",
+        "javascript" => "A",
+        "javascript-2" => "A",
+        "javascript-3" => "C",
+        "javascript-4" => "D",
 
-        "php1" => "A",
-        "php2" => "B",
-        "php3" => "C",
-        "php4" => "D",
+        "php" => "C",
+        "php-2" => "A",
+        "php-3" => "C",
+        "php-4" => "D",
 
-        "python1" => "A",
-        "python2" => "B",
-        "python3" => "C",
-        "python4" => "D",
+        "python" => "B",
+        "python-2" => "C",
+        "python-3" => "C",
+        "python-4" => "D",
     ];
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["quiz_submit"])) {
-        foreach ($answers as $question => $userAnswer) {
-            if (isset($_POST[$question]) && isset($userAnswer) && isset($correctAnswers[$question]) && $userAnswer === $correctAnswers[$question]) {
-                // Increment the number of correct answers if the user's answer is correct
-                $numCorrectAnswers++;
-            }
+    foreach ($_POST as $question => $userAnswer) {
+        if (isset($correctAnswers[$question]) && $userAnswer === $correctAnswers[$question]) {
+            $numCorrectAnswers++;
         }
-
-        // Save the number of correct answers for the current user
-        $userData[$userId]["correct_answers"] = $numCorrectAnswers;
-
-        // Save updated user data back to the JSON file
-        file_put_contents("json/users.json", json_encode($userData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-
-        // Display success message
-        $learned = true;
-        $quiz_message = "Number of correct answers saved for user $userId: $numCorrectAnswers.";
-
-        header("Location: " . $_SERVER['PHP_SELF']);
-        exit();
     }
-} else {
-    // Display error message if user is not logged in
-    $quiz_message = "Number of correct answers saved for user $userId: 0";
+
+    // Save the number of correct answers for the current user
+    $userData[$userId]["correct_answers"] = $numCorrectAnswers;
+    file_put_contents("json/users.json", json_encode($userData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+
+    // Display success message
+    $quiz_message = "Number of correct answers saved for user $userId: $numCorrectAnswers.";
+
+    if ($numCorrectAnswers > 2) {
+        $learned = true;
+        $html_completed = true;
+        $css_completed = true;
+        $javascript_completed = true;
+        $php_completed = true;
+        $python_completed = true;
+        $quiz_message .= " Congratulations! You did a great job!";
+    }
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+} elseif (!isset($_SESSION["user_id"])) {
+    header("Location:index.php");
+    exit();
 }
 // 4x5 grid to display task
 // white or green color based on whether it is completed or not
 
-$html_completed = false;
-$css_completed = false;
-$javascript_completed = false;
-$php_completed = false;
-$python_completed = false;
 
 // Check if the checkbox is checked
 if (isset($_POST['trackProgress']) && $_POST['trackProgress'] === 'on') {
@@ -127,28 +116,39 @@ if (isset($_POST['trackProgress']) && $_POST['trackProgress'] === 'on') {
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-<header>
-    <h1 class="signup-and-login-caption">Progress</h1>
-</header><?php
+<?php
 $progress = null;
 include_once "inc/navbar.inc.php";
 $user_id = @$_SESSION["user_id"];
 if (isset($user_id) && $user_id != null) {
-    foreach ($user as $user) {
-        if ($user["user_id"] = $user_id) {
-            $progress = @$user["solved_tasks"];
-            break;
-        }
+    if ($user["user_id"] = $user_id) {
+        $progress = @$user["solved_tasks"];
     }
 } else {
     header("Location:index.php?redirected=true&user_id=false");
     exit();
 }
-?><main>
+?>
+<header class="yellow-font gray-background">
+    <h1 class="signup-and-login-caption">Progress and Quiz</h1>
+    <div class="html-css-nav">
+        <ul class="left black-font">
+            <li><a href="#quiz">Quiz</a></li>
+            <li><a href="#end_of_quiz">Quiz submit button and results</a></li>
+            <li><a href="#progress_in_quizzes">Your Progress in the Quizzes</a></li>
+            <li><a href="#progress_in_lessons">Your progress in lessons</a></li>
+            <li><a href="#progress_in_lessons">Reset Progress</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+
+        </ul>
+    </div>
+</header>
+
+<main>
 
     <section class="white_background background-form-but-wider-that-looks-cool" id="final-quiz">
 
-        <form action="progress.php" method="post">
+        <form action="progress.php" method="post" id="quiz">
             <h1>Final quiz!</h1>
             <p>In this final quiz you have to answer 20 questions in total, 4 in each lesson </p>
 
@@ -218,6 +218,7 @@ if (isset($user_id) && $user_id != null) {
                         foundation for creating web pages</p>
 
                 </div>
+
                 <div class="left">
                     <h2 style="text-align: center">What is the correct output of the following HTML code?</h2>
                     <pre class="code left">
@@ -259,6 +260,7 @@ if (isset($user_id) && $user_id != null) {
                         display
                         "Hello, World!"</p>
                 </div>
+
                 <div class="left">
                     <h2 style="text-align: center">What is HTML?</h2>
                     <ul class="answers">
@@ -452,23 +454,24 @@ if (isset($user_id) && $user_id != null) {
 
 
                 </div>
+
                 <div class="left">
                     <h2>What function is used to schedule a function to run after a certain amount of time?</h2>
                     <ul class="answers">
                         <li class="answer">
-                            <input type="radio" id="javascript-2-a" name="javascript" value="A">
+                            <input type="radio" id="javascript-2-a" name="javascript-2" value="A">
                             <label for="javascript-2-a">A) setTimeout()</label>
                         </li>
                         <li class="answer">
-                            <input type="radio" id="javascript-2-b" name="javascript" value="B">
+                            <input type="radio" id="javascript-2-b" name="javascript-2" value="B">
                             <label for="javascript-2-b">B) setInterval()</label>
                         </li>
                         <li class="answer">
-                            <input type="radio" id="javascript-2-c" name="javascript" value="C">
+                            <input type="radio" id="javascript-2-c" name="javascript-2" value="C">
                             <label for="javascript-2-c">C) sleep()</label>
                         </li>
                         <li class="answer">
-                            <input type="radio" id="javascript-2-d" name="javascript" value="D">
+                            <input type="radio" id="javascript-2-d" name="javascript-2" value="D">
                             <label for="javascript-2-d">D) wait()</label>
                         </li>
                     </ul>
@@ -481,6 +484,67 @@ if (isset($user_id) && $user_id != null) {
                         Correct Answer: A) setTimeout()
                     </p>
                 </div>
+
+                <div class="left">
+                    <h2>What does the method Array.prototype.map() do?</h2>
+                    <ul class="answers">
+                        <li class="answer">
+                            <input type="radio" id="javascript-3-a" name="javascript-3" value="A">
+                            <label for="javascript-3-a">A) Modifies the original array</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="javascript-3-b" name="javascript-3" value="B">
+                            <label for="javascript-3-b">B) Creates a new array with the results of calling a provided function on every element in the calling array</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="javascript-3-c" name="javascript-3" value="C">
+                            <label for="javascript-3-c">C) Sorts the elements of the array in place and returns the sorted array</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="javascript-3-d" name="javascript-3" value="D">
+                            <label for="javascript-3-d">D) Removes the first element from the array and returns that removed element</label>
+                        </li>
+                    </ul>
+
+                    <button type="button" id="js-feedback-3-button" onclick="showCorrectAnswer('js-feedback-3')">
+                        Show Correct Answer!
+                    </button>
+
+                    <p class="feedback" id="js-feedback-3" style="display: none;"><strong>Correct Answer:</strong>
+                        Correct Answer: B) Creates a new array with the results of calling a provided function on every element in the calling array
+                    </p>
+                </div>
+
+                <div class="left">
+                    <h2>What does the keyword 'let' do in JavaScript?</h2>
+                    <ul class="answers">
+                        <li class="answer">
+                            <input type="radio" id="javascript-4-a" name="javascript-4" value="A">
+                            <label for="javascript-4-a">A) Declares a variable with block scope</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="javascript-4-b" name="javascript-4" value="B">
+                            <label for="javascript-4-b">B) Declares a variable with global scope</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="javascript-4-c" name="javascript-4" value="C">
+                            <label for="javascript-4-c">C) Declares a constant variable</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="javascript-4-d" name="javascript-4" value="D">
+                            <label for="javascript-4-d">D) Declares a variable that cannot be reassigned</label>
+                        </li>
+                    </ul>
+
+                    <button type="button" id="js-feedback-4-button" onclick="showCorrectAnswer('js-feedback-4')">
+                        Show Correct Answer!
+                    </button>
+
+                    <p class="feedback" id="js-feedback-4" style="display: none;"><strong>Correct Answer:</strong>
+                        Correct Answer: A) Declares a variable with block scope
+                    </p>
+                </div>
+
             </div>
 
             <div class="container" id="php-quiz">
@@ -519,19 +583,19 @@ if (isset($user_id) && $user_id != null) {
                     <h2>How do you start a PHP session?</h2>
                     <ul class="answers">
                         <li class="answer">
-                            <input type="radio" id="php-2-a" name="php" value="A">
+                            <input type="radio" id="php-2-a" name="php-2" value="A">
                             <label for="php-2-a">A) session_start()</label>
                         </li>
                         <li class="answer">
-                            <input type="radio" id="php-2-b" name="php" value="B">
+                            <input type="radio" id="php-2-b" name="php-2" value="B">
                             <label for="php-2-b">B) start_session()</label>
                         </li>
                         <li class="answer">
-                            <input type="radio" id="php-2-c" name="php" value="C">
+                            <input type="radio" id="php-2-c" name="php-2" value="C">
                             <label for="php-2-c"> C) session()</label>
                         </li>
                         <li class="answer">
-                            <input type="radio" id="php-2-d" name="php" value="D">
+                            <input type="radio" id="php-2-d" name="php-2" value="D">
                             <label for="php-2-d">D) begin_session()</label>
                         </li>
 
@@ -544,27 +608,64 @@ if (isset($user_id) && $user_id != null) {
                         Correct Answer: A) session_start()
                     </p>
                 </div>
-                <pre class="left" style="margin: 0; padding: 0">
+                <div class="left">
+                    <h2> What is the correct way to concatenate two strings in PHP?</h2>
+                    <ul class="answers">
+                        <li class="answer">
+                            <input type="radio" id="php-3-a" name="php-3" value="A">
+                            <label for="php-3-a">A) str_concat()</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="php-3-b" name="php-3" value="B">
+                            <label for="php-3-b">B) concat()</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="php-3-c" name="php-3" value="C">
+                            <label for="php-3-c"> C) .</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="php-3-d" name="php-3" value="D">
+                            <label for="php-3-d">D) +</label>
+                        </li>
 
 
+                    </ul>
+                    <button type="button" id="php-feedback-3-button" onclick="showCorrectAnswer('php-feedback-3')">
+                        Show Correct Answer!
+                    </button>
+                    <p class="feedback" id="php-feedback-3" style="display: none;"><strong>Correct Answer:</strong>
+                        Correct Answer: C) .
+                    </p>
+                </div>
+                <div class="left">
+                    <h2>Which function is used to read a file in PHP?</h2>
+                    <ul class="answers">
+                        <li class="answer">
+                            <input type="radio" id="php-4-a" name="php-4" value="A">
+                            <label for="php-4-a">A) read_file()</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="php-4-b" name="php-4" value="B">
+                            <label for="php-4-b">B) file_get_contents()</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="php-4-c" name="php-4" value="C">
+                            <label for="php-4-c">C) readfile()</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="php-4-d" name="php-4" value="D">
+                            <label for="php-4-d">D) fopen()</label>
+                        </li>
 
 
-
-
-                    Correct Answer:
-                    What is the correct way to concatenate two strings in PHP?
-                    A) str_concat()
-                    B) concat()
-                    C) .
-                    D) +
-                    Correct Answer: C) .
-                    Which function is used to read a file in PHP?
-                    A) read_file()
-                    B) file_get_contents()
-                    C) readfile()
-                    D) fopen()
-                    Correct Answer: B) file_get_contents()
-                    </pre>
+                    </ul>
+                    <button type="button" id="php-feedback-4-button" onclick="showCorrectAnswer('php-feedback-4')">
+                        Show Correct Answer!
+                    </button>
+                    <p class="feedback" id="php-feedback-4" style="display: none;"><strong>Correct Answer:</strong>
+                        Correct Answer: B) file_get_contents()
+                    </p>
+                </div>
             </div>
 
             <div class="container" id="python-quiz">
@@ -597,67 +698,106 @@ if (isset($user_id) && $user_id != null) {
                     <p class="feedback" id="python-feedback-1" style="display: none;"><strong>Correct Answer:</strong>
                         Correct Answer: B) def
                     </p>
-                    <pre class="left" style="margin: 0; padding: 0">
-
-                    What is the correct syntax to open a file in Python?
-                    A) open_file("filename.txt")
-                    B) file.open("filename.txt")
-                    C) open("filename.txt")
-                    D) fopen("filename.txt")
-                    Correct Answer: C) open("filename.txt")
-                    How do you comment multiple lines in Python?
-                    A) /* */
-                    B) //
-                    C) &lt;!-- --&gt;
-                    D) ''' '''
-                    Correct Answer: D) ''' '''
-                    What does the len() function return in Python?
-                    A) Total lines in a file
-                    B) Total characters in a string
-                    C) Total items in a list
-                    D) Total elements in a tuple
-                    Correct Answer: C) Total items in a list
-                    </pre>
                 </div>
-                <!-- Add more questions and answers following a similar structure -->
 
+                <div class="left">
+                    <h2>What is the correct syntax to open a file in Python?</h2>
+                    <ul class="answers">
+                        <li class="answer">
+                            <input type="radio" id="python-2-a" name="python-2" value="A">
+                            <label for="python-2-a">A) open_file("filename.txt")</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="python-2-b" name="python-2" value="B">
+                            <label for="python-2-b">B) file.open("filename.txt")</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="python-2-c" name="python-2" value="C">
+                            <label for="python-2-c">C) open("filename.txt")</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="python-2-d" name="python-2" value="D">
+                            <label for="python-2-d">D) fopen("filename.txt")</label>
+                        </li>
+                    </ul>
+                    <button type="button" id="python-feedback-2-button" onclick="showCorrectAnswer('python-feedback-2')">
+                        Show Correct Answer!
+                    </button>
+                    <p class="feedback" id="python-feedback-2" style="display: none;"><strong>Correct Answer:</strong>
+                        Correct Answer: C) open("filename.txt")
+                    </p>
+                </div>
 
-                <button type="submit" name="quiz_submit" onclick="saveProgress()">Submit</button>
-                <?php
-                if (isset($quiz_message) && trim($quiz_message) !== "") {
+                <div class="left">
+                    <h2>How do you comment multiple lines in Python?</h2>
+                    <ul class="answers">
+                        <li class="answer">
+                            <input type="radio" id="python-3-a" name="python-3" value="A">
+                            <label for="python-3-a">A) /* */</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="python-3-b" name="python-3" value="B">
+                            <label for="python-3-b">B) //</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="python-3-c" name="python-3" value="C">
+                            <label for="python-3-c">C) &lt;!-- --&gt;</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="python-3-d" name="python-3" value="D">
+                            <label for="python-3-d">D) ''' '''</label>
+                        </li>
+                    </ul>
+                    <button type="button" id="python-feedback-3-button" onclick="showCorrectAnswer('python-feedback-3')">
+                        Show Correct Answer!
+                    </button>
+                    <p class="feedback" id="python-feedback-3" style="display: none;"><strong>Correct Answer:</strong>
+                        Correct Answer: D) ''' '''
+                    </p>
+                </div>
+
+                <div class="left">
+                    <h2>What does the len() function return in Python?</h2>
+                    <ul class="answers">
+                        <li class="answer">
+                            <input type="radio" id="python-4a" name="python-4" value="A">
+                            <label for="python-4-a">A) Total lines in a file</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="python-4-b" name="python-4" value="B">
+                            <label for="python-4-b">B) Total characters in a string</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="python-4-c" name="python-4" value="C">
+                            <label for="python-4-c">C) Total items in a list</label>
+                        </li>
+                        <li class="answer">
+                            <input type="radio" id="python-4-d" name="python-4" value="D">
+                            <label for="python-4-d">D) Total elements in a tuple</label>
+                        </li>
+                    </ul>
+                    <button type="button" id="python-feedback-4-button" onclick="showCorrectAnswer('python-feedback-4')">
+                        Show Correct Answer!
+                    </button>
+                    <p class="feedback" id="python-feedback-4" style="display: none;"><strong>Correct Answer:</strong>
+                        Correct Answer: C) Total items in a list
+                    </p>
+                </div>
+
+                <button type="submit" name="quiz_submit" onclick="saveProgress()" id="end_of_quiz">Submit</button>
+                <?php if (isset($quiz_message) && trim($quiz_message) !== "") {
                     echo "<p>$quiz_message</p>";
                 }
+                echo "Number of correct answers: $numCorrectAnswers" . "<br>";
+                //                echo "REQUEST_METHOD: " . $_SERVER["REQUEST_METHOD"] . "<br>";
+                //                echo "quiz_submit isset: " . isset($_POST["quiz_submit"]) . "<br>";
+                //                echo "user_id isset: " . isset($_SESSION["user_id"]) . "<br>";
                 ?>
             </div>
         </form>
-        <?php
-        echo '
-<div id="progress_tracker">
-    <br>
-    <form action="progress.php" class="progress-form" method="post">
-        <h1>Your progress:</h1>
-        <!-- Use a span to create a circle -->
-        <label for="trackProgress">
-            <input id="trackProgress" name="trackProgress" onclick="toggleCircle(this)" type="checkbox">
-            </label>
-            <span class="checkmark"></span>
-            <label for="submit-progress">
-            <button id="submit-progress" type="submit">I have learned this lesson</button>
-        </label>
-    </form>
-</div>
-';
-        if (isset($_POST["save_progress"])) {
-            $html_completed = true;
-            $css_completed = true;
-            $javascript_completed = true;
-            $php_completed = true;
-            $python_completed = true;
 
-        }
-        ?>
     </section>
-    <section class="white_background background-form-but-wider-that-looks-cool">
+    <section class="white_background background-form-but-wider-that-looks-cool" id="progress_in_quizzes">
         <h2>Your Progress in the Quizzes</h2>
 
         <table>
@@ -672,7 +812,7 @@ if (isset($user_id) && $user_id != null) {
                 <td>HTML</td>
                 <td>
                     <?php
-                    if ($html_completed) {
+                    if (!$html_completed) {
                         echo "🟢";
                     } else {
                         echo "❌";
@@ -681,7 +821,7 @@ if (isset($user_id) && $user_id != null) {
                 </td>
                 <td>
                     <?php
-                    if ($html_completed) {
+                    if (!$html_completed) {
                         echo "🟢";
                     } else {
                         echo "❌";
@@ -690,7 +830,7 @@ if (isset($user_id) && $user_id != null) {
                 </td>
                 <td>
                     <?php
-                    if ($html_completed) {
+                    if (!$html_completed) {
                         echo "🟢";
                     } else {
                         echo "❌";
@@ -699,7 +839,7 @@ if (isset($user_id) && $user_id != null) {
                 </td>
                 <td>
                     <?php
-                    if ($html_completed) {
+                    if (!$html_completed) {
                         echo "🟢";
                     } else {
                         echo "❌";
@@ -711,7 +851,7 @@ if (isset($user_id) && $user_id != null) {
                 <td>CSS</td>
                 <td>
                     <?php
-                    if ($css_completed) {
+                    if (!$css_completed) {
                         echo "🟢";
                     } else {
                         echo "❌";
@@ -720,7 +860,7 @@ if (isset($user_id) && $user_id != null) {
                 </td>
                 <td>
                     <?php
-                    if ($css_completed) {
+                    if (!$css_completed) {
                         echo "🟢";
                     } else {
                         echo "❌";
@@ -729,7 +869,7 @@ if (isset($user_id) && $user_id != null) {
                 </td>
                 <td>
                     <?php
-                    if ($css_completed) {
+                    if (!$css_completed) {
                         echo "🟢";
                     } else {
                         echo "❌";
@@ -750,7 +890,7 @@ if (isset($user_id) && $user_id != null) {
                 <td>Javascript</td>
                 <td>
                     <?php
-                    if ($javascript_completed) {
+                    if (!$javascript_completed) {
                         echo "🟢";
                     } else {
                         echo "❌";
@@ -759,7 +899,7 @@ if (isset($user_id) && $user_id != null) {
                 </td>
                 <td>
                     <?php
-                    if ($javascript_completed) {
+                    if (!$javascript_completed) {
                         echo "🟢";
                     } else {
                         echo "❌";
@@ -789,7 +929,7 @@ if (isset($user_id) && $user_id != null) {
                 <td>PHP</td>
                 <td>
                     <?php
-                    if ($php_completed) {
+                    if (!$php_completed) {
                         echo "🟢";
                     } else {
                         echo "❌";
@@ -873,41 +1013,64 @@ if (isset($user_id) && $user_id != null) {
         ?>
 
     </section>
-    <section class="progress-tracker">
+    <section class="progress-tracker" id="progress_in_lessons">
         <h2>Your progress in lessons:</h2>
         <div class="progress-item">
             <div class="progress-label">HTML</div>
             <div class="progress-bar">
-                <div class="progress-bar-inner bar--lowest"></div>
+                <div class="progress-bar-inner <?php echo isset($_POST['html_completed']) ? 'bar--higher' : 'bar--lowest'; ?>"></div>
             </div>
         </div>
         <div class="progress-item">
             <div class="progress-label">CSS</div>
             <div class="progress-bar">
-                <div class="progress-bar-inner bar--lowest"></div>
+                <div class="progress-bar-inner <?php echo isset($_POST['css_completed']) ? 'bar--higher' : 'bar--lowest'; ?>"></div>
             </div>
         </div>
         <div class="progress-item">
             <div class="progress-label">JavaScript</div>
             <div class="progress-bar">
-                <div class="progress-bar-inner  bar--lowest"></div>
+                <div class="progress-bar-inner <?php echo isset($_POST['javascript_completed']) ? 'bar--higher' : 'bar--lowest'; ?>"></div>
             </div>
         </div>
         <div class="progress-item">
             <div class="progress-label">PHP</div>
             <div class="progress-bar">
-                <div class="progress-bar-inner bar--lowest"></div>
+                <div class="progress-bar-inner <?php echo isset($_POST['php_completed']) ? 'bar--higher' : 'bar--lowest'; ?>"></div>
             </div>
         </div>
         <div class="progress-item">
             <div class="progress-label">Python</div>
             <div class="progress-bar">
-                <div class="progress-bar-inner bar--lowest"></div>
+                <div class="progress-bar-inner <?php echo isset($_POST['python_completed']) ? 'bar--higher' : 'bar--lowest'; ?>"></div>
             </div>
         </div>
+        <form action="progress.php" method="post">
+            <label>I have completed HTML
+                <input type="checkbox" name="html_completed">
+            </label>
+            <label>I have completed CSS
+                <input type="checkbox" name="css_completed">
+            </label>
+            <label>I have completed Javascript
+                <input type="checkbox" name="javascript_completed">
+            </label>
+            <label>I have completed PHP
+                <input type="checkbox" name="php_completed">
+            </label>
+            <label>I have completed Python
+                <input type="checkbox" name="python_completed">
+            </label>
+            <input type="submit" name="progress" value="Submit">
+        </form>
+        <?php
+        if (isset($_POST["progress"])) {
+            echo "<p>Saved!</p>";
+        }
+        ?>
     </section>
     <form class="white_background two-px-border border-radius-px" action="progress.php" method="post">
-        <h1>Reset progress</h1>
+        <h1>Reset Progress</h1>
         <br>
         <label for="reset_progress">
             <button type="reset" name="reset_progress" id="reset_progress" class="bigger-letters" style="width: 80%">

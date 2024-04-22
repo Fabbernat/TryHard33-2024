@@ -73,7 +73,7 @@ if (isset($_POST["login"])) {    // miután az űrlapot elküldték...
                 echo $error . "<br>";
             }
             echo "</p>";
-        } elseif (isset($message) && trim($message) != ""){
+        } elseif (isset($message) && trim($message) != "") {
             echo $message;
         }
         ?>

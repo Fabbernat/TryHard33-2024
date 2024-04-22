@@ -83,7 +83,7 @@ include_once "inc/navbar.inc.php";
                 print_r($feedbacks_data);
                 echo "</pre>";
 
-                $jsonContent = file_get_contents("json/feedbacks.json");
+                $jsonContent = file_get_contents("json/feedback.json");
                 $feedbacks_data = json_decode($jsonContent, true);
 
                 echo "<h3>User feedback (their star ratings 1-5 and their comments):</h3>";
@@ -93,6 +93,9 @@ include_once "inc/navbar.inc.php";
 
                 // Admin functionalities
                 echo "<h3>Admin Panel:</h3>";
+                echo "REQUEST_METHOD: " . $_SERVER["REQUEST_METHOD"] . "<br>";
+                echo "quiz_submit isset: " . (isset($_POST["quiz_submit"]) ? 'true' : 'false') . "<br>";
+                echo "user_id isset: " . (isset($_SESSION["user_id"]) ? 'true' : 'false') . "<br>";
                 echo "Current session ID: <code class='lightgray-background'>" . session_id() . "</code><br><br>";
                 echo "<h1>People subscribed to the newsletter:</h1>";
                 echo "<fieldset class='code'>";
@@ -102,6 +105,7 @@ include_once "inc/navbar.inc.php";
                 echo "<pre class='no-margin-no-padding code left'>";
                 print_r($subscribed_users);
                 echo "</pre>";
+                echo "</fieldset>";
                 echo '
                     <section class="background-form-but-wider-that-looks-cool white_background">
         <h3>Delete Every User Data</h3>
@@ -113,7 +117,6 @@ include_once "inc/navbar.inc.php";
     </section>
 
                 ';
-                echo "</fieldset>";
             } else {
                 echo "<h2>Something went wrong =( =(</h2>";
                 echo "<p>Please try again.</p>";

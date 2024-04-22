@@ -22,6 +22,8 @@ include_once "inc/navbar.inc.php"; ?>
             <li><a href="#functions">Functions</a></li>
             <li><a href="#arrays">Arrays</a></li>
             <li><a href="#forms">Forms Handling</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+
         </ul>
     </div>
 </header>
@@ -198,7 +200,7 @@ include_once "inc/navbar.inc.php"; ?>
 
 </main>
 
-<div class="two-px-border" style="border-radius: 20px; width: 30%; margin: 0 auto">
+<div class="two-px-border white_background" style="border-radius: 20px; width: 30%; margin: 0 auto">
     <br>
     <a class="btn" href="#">↑ Jump to the top</a>
     <br>

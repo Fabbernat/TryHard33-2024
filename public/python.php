@@ -31,6 +31,7 @@ include_once "inc/navbar.inc.php"; ?>
             <li><a href="#data-structures">Data Structures</a> (lists, tuples, dictionaries)</li>
             <li><a href="#file-handling">File Handling</a></li>
             <li><a href="#error-handling">Error Handling</a></li>
+            <li><a href="#contact">Contact Us</a></li>
         </ul>
     </div>
 </header>
@@ -390,7 +391,7 @@ print(message)  # Output: Hello, Alice!
     </div>
 </main>
 
-<div class="two-px-border" style="border-radius: 20px; width: 30%; margin: 30px auto 0;">
+<div class="two-px-border white_background" style="border-radius: 20px; width: 30%; margin: 30px auto 0;">
     <a class="btn" href="#">↑ Jump to the top</a>
     <br>
     <br>

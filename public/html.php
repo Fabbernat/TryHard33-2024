@@ -19,17 +19,17 @@ if (isset($_SESSION["user_id"])) {
         $userData[$userId] = [];
     }
 
-        // Count the number of correct answers
-        $numCorrectAnswers = 0;
+    // Count the number of correct answers
+    $numCorrectAnswers = 0;
 
-        $answers = @$_POST;
+    $answers = @$_POST;
 
-        $correctAnswers = [
-            "html" => "A",
-            "html-essential" => "B",
-            "html-output" => "B",
-            "html-definition" => "D"
-        ];
+    $correctAnswers = [
+        "html" => "A",
+        "html-essential" => "B",
+        "html-output" => "B",
+        "html-definition" => "D"
+    ];
 
     if (isset($_POST["quiz_submit"])) {
         foreach ($answers as $question => $userAnswer) {
@@ -110,6 +110,7 @@ include_once "inc/navbar.inc.php";
             <li><a href="#elements">HTML Elements</a></li>
             <li><a href="#attributes">HTML Attributes</a></li>
             <li><a href="#quiz">Quiz</a></li>
+            <li><a href="#contact">Contact Us</a></li>
 
             <?php
             if ($learned) {
