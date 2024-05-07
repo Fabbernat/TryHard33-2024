@@ -67,7 +67,7 @@ include_once "inc/navbar.inc.php";
         <h3>Change profile picture</h3>
         <!-- File uploading -->
         <form enctype="multipart/form-data" action="inc/upload.inc.php" method="POST">
-            <label for="file-upload">profile-picture</label>
+            <label for="file-upload">Upload your profile picture</label>
             <input type="file" name="profile_picture" accept="img/*" id="file-upload">
             <input type="hidden" name="MAX_FILE_SIZE" value="102400">
             <input type="submit" value="Upload Profile Picture" name="upload-btn">

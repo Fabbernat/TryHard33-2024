@@ -110,7 +110,6 @@ include_once "inc/navbar.inc.php";
             <li><a href="#elements">HTML Elements</a></li>
             <li><a href="#attributes">HTML Attributes</a></li>
             <li><a href="#quiz">Quiz</a></li>
-            <li><a href="#contact">Contact Us</a></li>
 
             <?php
             if ($learned) {
