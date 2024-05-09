@@ -10,7 +10,8 @@ session_start();
 </head>
 <body>
 <?php
-include_once "inc/navbar.inc.php"; ?>
+include_once "inc/navbar.inc.php";
+?>
 <header class="yellow-font gray-background">
     <h1>PHP tutorial</h1>
     <div class="html-css-nav">

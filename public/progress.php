@@ -494,15 +494,18 @@ if (isset($user_id) && $user_id != null) {
                         </li>
                         <li class="answer">
                             <input type="radio" id="javascript-3-b" name="javascript-3" value="B">
-                            <label for="javascript-3-b">B) Creates a new array with the results of calling a provided function on every element in the calling array</label>
+                            <label for="javascript-3-b">B) Creates a new array with the results of calling a provided
+                                function on every element in the calling array</label>
                         </li>
                         <li class="answer">
                             <input type="radio" id="javascript-3-c" name="javascript-3" value="C">
-                            <label for="javascript-3-c">C) Sorts the elements of the array in place and returns the sorted array</label>
+                            <label for="javascript-3-c">C) Sorts the elements of the array in place and returns the
+                                sorted array</label>
                         </li>
                         <li class="answer">
                             <input type="radio" id="javascript-3-d" name="javascript-3" value="D">
-                            <label for="javascript-3-d">D) Removes the first element from the array and returns that removed element</label>
+                            <label for="javascript-3-d">D) Removes the first element from the array and returns that
+                                removed element</label>
                         </li>
                     </ul>
 
@@ -511,7 +514,8 @@ if (isset($user_id) && $user_id != null) {
                     </button>
 
                     <p class="feedback" id="js-feedback-3" style="display: none;"><strong>Correct Answer:</strong>
-                        Correct Answer: B) Creates a new array with the results of calling a provided function on every element in the calling array
+                        Correct Answer: B) Creates a new array with the results of calling a provided function on every
+                        element in the calling array
                     </p>
                 </div>
 
@@ -720,7 +724,8 @@ if (isset($user_id) && $user_id != null) {
                             <label for="python-2-d">D) fopen("filename.txt")</label>
                         </li>
                     </ul>
-                    <button type="button" id="python-feedback-2-button" onclick="showCorrectAnswer('python-feedback-2')">
+                    <button type="button" id="python-feedback-2-button"
+                            onclick="showCorrectAnswer('python-feedback-2')">
                         Show Correct Answer!
                     </button>
                     <p class="feedback" id="python-feedback-2" style="display: none;"><strong>Correct Answer:</strong>
@@ -748,7 +753,8 @@ if (isset($user_id) && $user_id != null) {
                             <label for="python-3-d">D) ''' '''</label>
                         </li>
                     </ul>
-                    <button type="button" id="python-feedback-3-button" onclick="showCorrectAnswer('python-feedback-3')">
+                    <button type="button" id="python-feedback-3-button"
+                            onclick="showCorrectAnswer('python-feedback-3')">
                         Show Correct Answer!
                     </button>
                     <p class="feedback" id="python-feedback-3" style="display: none;"><strong>Correct Answer:</strong>
@@ -776,7 +782,8 @@ if (isset($user_id) && $user_id != null) {
                             <label for="python-4-d">D) Total elements in a tuple</label>
                         </li>
                     </ul>
-                    <button type="button" id="python-feedback-4-button" onclick="showCorrectAnswer('python-feedback-4')">
+                    <button type="button" id="python-feedback-4-button"
+                            onclick="showCorrectAnswer('python-feedback-4')">
                         Show Correct Answer!
                     </button>
                     <p class="feedback" id="python-feedback-4" style="display: none;"><strong>Correct Answer:</strong>
@@ -1018,31 +1025,51 @@ if (isset($user_id) && $user_id != null) {
         <div class="progress-item">
             <div class="progress-label">HTML</div>
             <div class="progress-bar">
-                <div class="progress-bar-inner <?php echo isset($_POST['html_completed']) ? 'bar--higher' : 'bar--lowest'; ?>"></div>
+                <div class=" <?php if (isset($_POST['html_completed'])) {
+                    echo 'progress-bar-inner-green bar--highest';
+                } else {
+                    echo 'progress-bar-inner bar--lowest';
+                } ?>"></div>
             </div>
         </div>
         <div class="progress-item">
             <div class="progress-label">CSS</div>
             <div class="progress-bar">
-                <div class="progress-bar-inner <?php echo isset($_POST['css_completed']) ? 'bar--higher' : 'bar--lowest'; ?>"></div>
+                <div class=" <?php if (isset($_POST['css_completed'])) {
+                    echo 'progress-bar-inner-green bar--highest';
+                } else {
+                    echo 'progress-bar-inner bar--lowest';
+                } ?>"></div>
             </div>
         </div>
         <div class="progress-item">
             <div class="progress-label">JavaScript</div>
             <div class="progress-bar">
-                <div class="progress-bar-inner <?php echo isset($_POST['javascript_completed']) ? 'bar--higher' : 'bar--lowest'; ?>"></div>
+                <div class=" <?php if (isset($_POST['javascript_completed'])) {
+                    echo 'progress-bar-inner-green bar--highest';
+                } else {
+                    echo 'progress-bar-inner bar--lowest';
+                } ?>"></div>
             </div>
         </div>
         <div class="progress-item">
             <div class="progress-label">PHP</div>
             <div class="progress-bar">
-                <div class="progress-bar-inner <?php echo isset($_POST['php_completed']) ? 'bar--higher' : 'bar--lowest'; ?>"></div>
+                <div class=" <?php if (isset($_POST['php_completed'])) {
+                    echo 'progress-bar-inner-green bar--highest';
+                } else {
+                    echo 'progress-bar-inner bar--lowest';
+                } ?>"></div>
             </div>
         </div>
         <div class="progress-item">
             <div class="progress-label">Python</div>
             <div class="progress-bar">
-                <div class="progress-bar-inner <?php echo isset($_POST['python_completed']) ? 'bar--higher' : 'bar--lowest'; ?>"></div>
+                <div class=" <?php if (isset($_POST['python_completed'])) {
+                    echo 'progress-bar-inner-green bar--highest';
+                } else {
+                    echo 'progress-bar-inner bar--lowest';
+                } ?>"></div>
             </div>
         </div>
         <form action="progress.php" method="post">
