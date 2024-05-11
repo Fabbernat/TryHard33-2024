@@ -43,6 +43,17 @@
             "correct_answers": 0,
             "subscribed": false,
             "profile_picture": "default"
+        },
+        {
+            "username": "aaaaa",
+            "email": "aaaaa@aaaaa.aaaaa",
+            "password": "$2y$10$N2yDVMM52w0xPy34ccd9AupZCpqnD.mz4P7x882dw6kf8cj31reiG",
+            "birthdate": "1111-02-02",
+            "registration_age": 913,
+            "solved_tasks": [],
+            "correct_answers": 0,
+            "subscribed": false,
+            "profile_picture": "default"
         }
     ],
     "b": {

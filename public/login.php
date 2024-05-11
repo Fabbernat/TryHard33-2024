@@ -19,7 +19,7 @@ if (isset($_POST["login"])) {    // miután az űrlapot elküldték...
         $authenticated = false;
         foreach ($accounts["users"] as $account) {
             if ($account["username"] === $username && password_verify($password, $account["password"])) {
-                $message = "You have logged in successfully!";
+                $message = "You have logged in successfully! Go to the Home Page!";
                 $authenticated = true;
                 $_SESSION["username"] = $username;
                 $_SESSION['user_id'] = $username; // ezt használja a kód inkább
@@ -68,11 +68,11 @@ if (isset($_POST["login"])) {    // miután az űrlapot elküldték...
         <button class="button" type="submit" name="login">Log in</button>
         <?php
         if ($echo_errors) {
-            echo "<p>";
+            echo "<ul>";
             foreach ($errors as $error) {
-                echo $error . "<br>";
+                echo "<li>" . $error . "</li>";
             }
-            echo "</p>";
+            echo "</ul>";
         } elseif (isset($message) && trim($message) != "") {
             echo $message;
         }

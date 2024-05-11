@@ -135,7 +135,7 @@ include_once 'inc/navbar.inc.php';
 ?>
 <main class="signup">
     <header>
-        <h1 class="signup-and-login-caption">Sign up</h1>
+        <h1>Sign up</h1>
         <a href="login.php">Already registered? Click here to log in!</a>
     </header>
     <form action="signup.php" class="background-form white_background form" method="POST"><!--includes/signup.inc.php-->
@@ -210,7 +210,7 @@ include_once 'inc/navbar.inc.php';
                     echo "<li>" . $error . "</li>"; // Display each error as a list item
                 }
                 echo "</ul>"; // End unordered list
-            } elseif (isset($success) && !$success) {
+            } else {
                 echo "<p>Fill all input boxes with your information to sign up!</p>";
             }
             ?>
