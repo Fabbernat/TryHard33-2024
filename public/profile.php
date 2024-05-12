@@ -73,12 +73,12 @@ include_once "inc/navbar.inc.php";
             <input type="submit" value="Upload Profile Picture" name="upload-btn">
         </form>
         <?php
-        if (isset($success)) {
-            echo "File name: " . $_FILES["profile_picture"]["name"] . "<br/>";
-            echo "Temporary name: " . $_FILES["profile_picture"]["tmp_name"] . "<br/>";
-            echo "File size (in bytes): " . $_FILES["profile_picture"]["size"] . "<br/>";
-            echo "File type: " . $_FILES["profile_picture"]["type"] . "<br/>";
-            echo "Error code: " . $_FILES["profile_picture"]["error"] . "<br/>";
+        if ($_SERVER["REQUEST_METHOD"] === "POST") {
+            echo "File name: " . @$_FILES["profile_picture"]["name"] . "<br/>";
+            echo "Temporary name: " . @$_FILES["profile_picture"]["tmp_name"] . "<br/>";
+            echo "File size (in bytes): " . @$_FILES["profile_picture"]["size"] . "<br/>";
+            echo "File type: " . @$_FILES["profile_picture"]["type"] . "<br/>";
+            echo "Error code: " . @$_FILES["profile_picture"]["error"] . "<br/>";
         }
         ?>
         <h3>Profile Information</h3>
@@ -102,7 +102,7 @@ include_once "inc/navbar.inc.php";
         }
         ?>
 
-        <form class="choose-your-interests form" action="inc/process_interests.php">
+        <form class="choose-your-interests form" action="inc/process_interests.php" method="post" id="interests">
             <h1 class="bigger-letters">
 
                 Choose Your Interests (only
@@ -127,7 +127,7 @@ include_once "inc/navbar.inc.php";
                         class="checkmark"></span>PHP Database Support</label>
             <label class="custom-checkbox"><input name="interests" type="checkbox" value="python"><span
                         class="checkmark"></span>Python Programming</label>
-            <label for="submit"><input id="submit" type="submit" value="Save" onclick="saveInterests(event)"></label>
+            <label for="submit"><input id="submit" name="interests" type="submit" value="Save" onclick="saveInterests(event)"></label>
         </form>
         <script>
             function toggleCircle(checkbox) {
@@ -148,12 +148,10 @@ include_once "inc/navbar.inc.php";
         <?php
         $uzenet = "";                    // változó az űrlap alatt megjelenő üzenetnek
 
-        if (isset($_POST["submit"])) {  // itt a $_POST szuperglobálist használjuk, hiszen az űrlapunk a method="POST" attribútummal rendelkezik
-            if (isset($_POST["interests"])) {
+        if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["interests"])) {  // itt a $_POST szuperglobálist használjuk, hiszen az űrlapunk a method="POST" attribútummal rendelkezik
                 // ha legalább egy opciót kiválasztottak, akkor eltároljuk a bejelölt értékeket egy változóban
-                $chosen = $_POST["interests"];   // ez egy tömb lesz, ami a bejelölt jelölőnégyzetek value értékeit tartalmazza
-                $uzenet = "Chosen interests: " . implode(", ", $chosen) . "<br/>"; // tömbelemek egyesítése egy stringgé
-            }
+                @$chosen = $_POST["interests"];   // ez egy tömb lesz, ami a bejelölt jelölőnégyzetek value értékeit tartalmazza
+                @$uzenet = "Chosen interests: " . implode(", ", $chosen) . "<br/>"; // tömbelemek egyesítése egy stringgé
         }
         ?>
         <?php echo "<p>" . $uzenet . "</p>"; ?>

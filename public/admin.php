@@ -2,7 +2,7 @@
 session_start();
 include_once "inc/functions.inc.php";
 
-$accounts = load_users("json/admins.json"); // betöltjük a regisztrált felhasználók adatait, és eltároljuk őket a $fiokok változóban
+$accounts = load_users("json/admins.json"); // betöltjük a regisztrált felhasználók adatait, és eltároljuk őket az $accounts változóban
 $errors = [];
 $already_logged_in = false;
 
@@ -62,7 +62,8 @@ include_once "inc/navbar.inc.php";
             @$animal_name = $_POST["animal_name"];
             @$password = $_POST["admin_password"];
 
-            $everything_is_ok = isset($id) && $id >= 0 && $id < 10 &&
+            $everything_is_ok =
+                isset($id) && $id >= 0 && $id < 10 &&
                 isset($code) && ($code == 17 || $code == 107 || $code == 217) &&
                 isset($animal_name) && ($animal_name == "cat" || $animal_name == "kitten") &&
                 isset($password) && trim($password) !== "" && $password === "meowuwuka";
@@ -75,12 +76,11 @@ include_once "inc/navbar.inc.php";
                 echo "<p>You can now access confidential data and manage the website's content.</p>";
 
                 // Read and display the content of the JSON file
-                $jsonContent = file_get_contents("json/users.json");
-                $feedbacks_data = json_decode($jsonContent, true);
+                $users_data = json_decode(file_get_contents("json/users.json"), true);
 
                 echo "<h3>User Data:</h3>";
                 echo "<pre class='no-margin-no-padding code left'>";
-                print_r($feedbacks_data);
+                print_r($users_data);
                 echo "</pre>";
 
                 $jsonContent = file_get_contents("json/feedback.json");

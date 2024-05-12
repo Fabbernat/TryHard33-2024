@@ -8,7 +8,8 @@ include_once "inc/functions.inc.php";
 $users = load_users("json/users.json");
 $solved_tasks = []; // retrieve data from users
 $numCorrectAnswers = 0; // Count the number of correct answers
-$quiz_message = "Submit after you answered the questions to see how many questions you got right.";
+$quiz_message = [];
+$quiz_message[] = "Submit after you answered the questions to see how many questions you got right.";
 global $html_completed, $css_completed, $javascript_completed, $php_completed, $python_completed;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["quiz_submit"]) && isset($_SESSION["user_id"])) {
@@ -59,7 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["quiz_submit"]) && isse
     file_put_contents("json/users.json", json_encode($userData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 
     // Display success message
-    $quiz_message = "Number of correct answers saved for user $userId: $numCorrectAnswers.";
+    $quiz_message[] = "Number of correct answers saved for user $userId: $numCorrectAnswers.";
 
     if ($numCorrectAnswers > 2) {
         $learned = true;
@@ -68,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["quiz_submit"]) && isse
         $javascript_completed = true;
         $php_completed = true;
         $python_completed = true;
-        $quiz_message .= " Congratulations! You did a great job!";
+        $quiz_message[] = " Congratulations! You did a great job!";
     }
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
@@ -792,8 +793,12 @@ if (isset($user_id) && $user_id != null) {
                 </div>
 
                 <button type="submit" name="quiz_submit" onclick="saveProgress()" id="end_of_quiz">Submit</button>
-                <?php if (isset($quiz_message) && trim($quiz_message) !== "") {
-                    echo "<p>$quiz_message</p>";
+                <?php if (isset($quiz_message) && !empty($quiz_message)) {
+                    echo "<p>";
+                    foreach ($quiz_message as $str){
+                        echo $str;
+                    }
+                    echo "</p>";
                 }
                 echo "Number of correct answers: $numCorrectAnswers" . "<br>";
                 //                echo "REQUEST_METHOD: " . $_SERVER["REQUEST_METHOD"] . "<br>";
