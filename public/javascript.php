@@ -307,7 +307,7 @@ function functionName(parameters) {
         </div>
         <div id="progress_tracker">
             <br>
-            <form action="css.php" method="post" class="progress-form">
+            <form action="javascript.php" method="post" class="progress-form">
                 <h1>Track your progress!</h1>
                 <!-- Use a span to create a circle -->
                 <label for="trackProgress">
