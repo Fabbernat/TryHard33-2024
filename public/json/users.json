@@ -1,0 +1,15 @@
+{
+    "users": [
+        {
+            "username": "aaaaa",
+            "email": "aaaaa@aaaaa.aaaaa",
+            "password": "$2y$10$QUFhCu4ZaGzKqtUyr6D8s.ebisYKzVI9Lb4l3w0UgYPAor9kWYaMK",
+            "birthdate": "1111-11-11",
+            "registration_age": 912,
+            "solved_tasks": [],
+            "correct_answers": 0,
+            "subscribed": false,
+            "profile_picture": "default"
+        }
+    ]
+}
